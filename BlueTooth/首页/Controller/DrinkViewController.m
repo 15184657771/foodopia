@@ -40,10 +40,23 @@
     [self.drinkBtn setTitle:@"喝一杯" forState:UIControlStateNormal];
     self.drinkBtn.layer.cornerRadius = 20;
     self.drinkBtn.clipsToBounds = YES;
+    [self.drinkBtn addTarget:self action:@selector(drinkBtnAction:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:self.drinkBtn];
     
     self.drinkView = [[RecordDrinkView alloc]initWithFrame:CGRectMake(18, CGRectGetMaxY(self.drinkBtn.frame) + 30, SCREEN_WIDTH - 18 * 2, 167 * HeightNum) andCount:3];
     [self.view addSubview:self.drinkView];
+    
+    UITapGestureRecognizer *drinkTap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(drinkTapAction)];
+    [self.drinkView addGestureRecognizer:drinkTap];
+    
+}
+
+#pragma mark -- UITapGestureRecognizer
+- (void)drinkTapAction {
+    
+}
+#pragma mark -- button click methods
+- (void)drinkBtnAction:(UIButton *)sender {
     
 }
 

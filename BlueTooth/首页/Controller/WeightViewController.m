@@ -45,11 +45,14 @@
     [self.recordBtn setTitle:@"记录" forState:UIControlStateNormal];
     self.recordBtn.layer.cornerRadius = 20;
     self.recordBtn.clipsToBounds = YES;
+    [self.recordBtn addTarget:self action:@selector(recordBtnAction:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:self.recordBtn];
 
     self.weightView = [[RecordWeightView alloc]initWithFrame:CGRectMake(18, CGRectGetMaxY(self.recordBtn.frame) + 30, SCREEN_WIDTH - 18 * 2, 147 * HeightNum)];
     [self.view addSubview:self.weightView];
     
+    UITapGestureRecognizer *weightTap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(weightTapAction)];
+    [self.weightView addGestureRecognizer:weightTap];
     
 }
 
@@ -57,5 +60,13 @@
     self.showLabel.text = [NSString stringWithFormat:@"%.1fkg",rulerScrollView.rulerValue];
 }
 
+#pragma mark -- UITapGestureRecognizer
+- (void)weightTapAction {
+    
+}
+#pragma mark -- button click methods
+- (void)recordBtnAction:(UIButton *)sender {
+    
+}
 
 @end

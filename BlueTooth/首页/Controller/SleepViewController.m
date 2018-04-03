@@ -50,11 +50,15 @@
     [self.button setTitle:@"起 床 了" forState:UIControlStateNormal];
     self.button.layer.cornerRadius = 20;
     self.button.clipsToBounds = YES;
+    [self.button addTarget:self action:@selector(buttonAction:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:self.button];
     
     
     self.recordView = [[RecordSleepView alloc]initWithFrame:CGRectMake(18, CGRectGetMaxY(self.button.frame) + 30, SCREEN_WIDTH - 18 * 2, 146 * HeightNum)];
     [self.view addSubview:self.recordView];
+    
+    UITapGestureRecognizer *recordTap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(recordTapAction)];
+    [self.recordView addGestureRecognizer:recordTap];
     
     UILabel *bottomLabel = [[UILabel alloc]initWithFrame:CGRectMake(0, CGRectGetMaxY(self.recordView.frame), SCREEN_WIDTH, 30)];
     bottomLabel.text = @"每天的数据会从中午12点到次日中午计算噢";
@@ -66,6 +70,13 @@
     
 }
 
-
+#pragma mark -- UITapGestureRecognizer
+- (void)recordTapAction {
+    
+}
+#pragma mark -- button click methods
+- (void)buttonAction:(UIButton *)sender {
+    
+}
 
 @end
