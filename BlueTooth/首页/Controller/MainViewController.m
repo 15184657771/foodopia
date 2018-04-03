@@ -12,7 +12,7 @@
 #import "ChooseRecordController.h"
 #import "UIViewController+XYSideCategory.h"
 #import "RecordTabViewController.h"
-
+#import "InforViewController.h"
 @interface MainViewController ()<ChooseRecordDelegate>
 
 @property (nonatomic, strong) MainView *mainView;
@@ -128,7 +128,8 @@
 }
 //宠物
 - (void)petBtnAction:(UIButton *)sender {
-    
+    InforViewController *inforViewController = [[InforViewController alloc]init];
+    [self.navigationController pushViewController:inforViewController animated:YES];
 }
 //记录
 - (void)recordBtnAction:(UIButton *)btn {
