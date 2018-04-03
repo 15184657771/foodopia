@@ -8,6 +8,7 @@
 
 #import "SleepViewController.h"
 #import "UIColor+Hex.h"
+#import "RecordSleepView.h"
 
 @interface SleepViewController ()
 
@@ -18,6 +19,7 @@
 
 @property (nonatomic, strong)UIButton *button;
 
+@property (nonatomic, strong)RecordSleepView *recordView;
 @end
 
 @implementation SleepViewController
@@ -49,6 +51,17 @@
     self.button.layer.cornerRadius = 20;
     self.button.clipsToBounds = YES;
     [self.view addSubview:self.button];
+    
+    
+    self.recordView = [[RecordSleepView alloc]initWithFrame:CGRectMake(18, CGRectGetMaxY(self.button.frame) + 30, SCREEN_WIDTH - 18 * 2, 146 * HeightNum)];
+    [self.view addSubview:self.recordView];
+    
+    UILabel *bottomLabel = [[UILabel alloc]initWithFrame:CGRectMake(0, CGRectGetMaxY(self.recordView.frame), SCREEN_WIDTH, 30)];
+    bottomLabel.text = @"每天的数据会从中午12点到次日中午计算噢";
+    bottomLabel.textColor = [UIColor colorWithHex:@"c1c1c3"];
+    bottomLabel.font = [UIFont systemFontOfSize:10];
+    bottomLabel.textAlignment = NSTextAlignmentCenter;
+    [self.view addSubview:bottomLabel];
     
     
 }

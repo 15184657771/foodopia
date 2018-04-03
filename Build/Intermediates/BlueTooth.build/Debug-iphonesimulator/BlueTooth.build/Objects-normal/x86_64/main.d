@@ -1,3 +1,3 @@
-dependencies: /Users/daodao/Desktop/new/foodopia/BlueTooth/main.m \
-  /Users/daodao/Desktop/new/foodopia/BlueTooth/PrefixHeader.pch \
-  /Users/daodao/Desktop/new/foodopia/BlueTooth/AppDelegate.h
+dependencies: /Users/daodao/Desktop/foodopia/BlueTooth/main.m \
+  /Users/daodao/Desktop/foodopia/BlueTooth/PrefixHeader.pch \
+  /Users/daodao/Desktop/foodopia/BlueTooth/AppDelegate.h

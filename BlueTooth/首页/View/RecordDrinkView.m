@@ -31,7 +31,7 @@
 - (void)creatView:(NSInteger)count {
     self.backgroundColor = [UIColor colorWithHex:@"f8f7f9"];
     
-    UIImageView *backImageView = [[UIImageView alloc]initWithFrame:CGRectMake(80, 22, self.frame.size.width - 80 * 2, 34)];
+    UIImageView *backImageView = [[UIImageView alloc]initWithFrame:CGRectMake(80, 20, self.frame.size.width - 80 * 2, 34)];
     backImageView.backgroundColor = [UIColor whiteColor];
     backImageView.image = [UIImage imageNamed:@""];
     [self addSubview:backImageView];

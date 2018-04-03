@@ -1,3 +1,3 @@
 dependencies: \
-  /Users/daodao/Desktop/new/foodopia/Pods/Target\ Support\ Files/Masonry/Masonry-dummy.m \
-  /Users/daodao/Desktop/new/foodopia/Pods/Target\ Support\ Files/Masonry/Masonry-prefix.pch
+  /Users/daodao/Desktop/foodopia/Pods/Target\ Support\ Files/Masonry/Masonry-dummy.m \
+  /Users/daodao/Desktop/foodopia/Pods/Target\ Support\ Files/Masonry/Masonry-prefix.pch
