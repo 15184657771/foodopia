@@ -8,6 +8,14 @@
 
 #import <UIKit/UIKit.h>
 
+@protocol DrinkViewDelegate <NSObject>
+
+- (void)DrinkViewBackIndex:(NSInteger )index;
+
+@end
+
 @interface DrinkViewController : UIViewController
+
+@property (nonatomic, assign)id delegate;
 
 @end

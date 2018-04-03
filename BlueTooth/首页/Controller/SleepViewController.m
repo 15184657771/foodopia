@@ -72,7 +72,7 @@
 
 #pragma mark -- UITapGestureRecognizer
 - (void)recordTapAction {
-    
+    [self.delegate SleepViewBackIndex:2];
 }
 #pragma mark -- button click methods
 - (void)buttonAction:(UIButton *)sender {

@@ -13,7 +13,8 @@
 #import "UIViewController+XYSideCategory.h"
 #import "RecordTabViewController.h"
 #import "InforViewController.h"
-@interface MainViewController ()<ChooseRecordDelegate>
+
+@interface MainViewController ()<ChooseRecordDelegate,RecordTabDelegate>
 
 @property (nonatomic, strong) MainView *mainView;
 
@@ -128,8 +129,7 @@
 }
 //宠物
 - (void)petBtnAction:(UIButton *)sender {
-    InforViewController *inforViewController = [[InforViewController alloc]init];
-    [self.navigationController pushViewController:inforViewController animated:YES];
+    
 }
 //记录
 - (void)recordBtnAction:(UIButton *)btn {
@@ -149,6 +149,7 @@
     UIWindow *fK = [[UIApplication sharedApplication] keyWindow];
     RecordTabViewController *recordVC = [[RecordTabViewController alloc]init];
     [recordVC selectTab:index];
+    recordVC.delegate = self;
     recordVC.modalPresentationStyle = UIModalPresentationOverFullScreen;
     self.definesPresentationContext = YES;
     
@@ -156,6 +157,12 @@
         recordVC.view.superview.backgroundColor = [UIColor clearColor];
     }];
     
+}
+
+- (void)RecordTabBackIndex:(NSInteger)index {
+    InforViewController *inforViewController = [[InforViewController alloc]init];
+    inforViewController.showTag = index;
+    [self.navigationController pushViewController:inforViewController animated:YES];
 }
 
 @end

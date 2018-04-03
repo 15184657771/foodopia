@@ -11,8 +11,9 @@
 #import "WeightViewController.h"
 #import "DrinkViewController.h"
 #import "SleepViewController.h"
+#import "InforViewController.h"
 
-@interface RecordTabViewController ()
+@interface RecordTabViewController ()<WeightViewDelegate,DrinkViewDelegate,SleepViewDelegate>
 
 @property (nonatomic, strong) UIView *backView;
 
@@ -55,11 +56,14 @@
     NSArray *normalArr = @[@"体重_未选",@"喝水_未选",@"睡眠_未选"];
     NSArray *selectedArr = @[@"体重_已选",@"喝水_已选",@"睡眠_已选"];
     for (NSInteger index = 0; index <3; index ++) {
+        
+        
+        
         self.btn = [UIButton buttonWithType:UIButtonTypeCustom];
         [self.view addSubview:self.btn];
         self.btn.backgroundColor = [UIColor whiteColor];
         self.btn.tag = index + 100;
-        self.btn.frame = CGRectMake(index *width, 147 * HeightNum, width, 44);
+        self.btn.frame = CGRectMake(index * width, 147 * HeightNum, width, 44);
         [self.btn setImage:[UIImage imageNamed:normalArr[index]] forState:UIControlStateNormal];
         [self.btn setImage:[UIImage imageNamed:selectedArr[index]] forState:UIControlStateSelected];
         [self.btn addTarget:self action:@selector(touch:) forControlEvents:UIControlEventTouchUpInside];
@@ -92,11 +96,14 @@
 
 - (void)configChildControllers {
     self.weightVC = [[WeightViewController alloc]init];
+    self.weightVC.delegate = self;
     [self.weightVC.view setFrame:CGRectMake(0, CGRectGetMaxY(self.lineLabel.frame), SCREEN_WIDTH, SCREEN_HEIGHT - CGRectGetMaxY(self.lineLabel.frame))];
     [self addChildViewController:self.weightVC];
     self.drinkVC = [[DrinkViewController alloc]init];
+    self.drinkVC.delegate = self;
     [self.drinkVC.view setFrame:CGRectMake(0, CGRectGetMaxY(self.lineLabel.frame), SCREEN_WIDTH, SCREEN_HEIGHT - CGRectGetMaxY(self.lineLabel.frame))];    [self addChildViewController:self.drinkVC];
     self.sleepVC = [[SleepViewController alloc]init];
+    self.sleepVC.delegate = self;
     [self.sleepVC.view setFrame:CGRectMake(0, CGRectGetMaxY(self.lineLabel.frame), SCREEN_WIDTH, SCREEN_HEIGHT - CGRectGetMaxY(self.lineLabel.frame))];
     [self addChildViewController:self.sleepVC];
     
@@ -132,23 +139,22 @@
         } else {
            [self replaceController:self.currentVC newController:self.weightVC];
         }
-        self.lineLabel.frame = CGRectMake(0, CGRectGetMaxY(self.btn.frame), SCREEN_WIDTH / 3, 1);
     } else if (index == 101) {
         if (self.currentVC == self.drinkVC) {
             return;
         } else {
             [self replaceController:self.currentVC newController:self.drinkVC];
         }
-        self.lineLabel.frame = CGRectMake(SCREEN_WIDTH / 3, CGRectGetMaxY(self.btn.frame), SCREEN_WIDTH / 3, 1);
     } else {
         if (self.currentVC == self.sleepVC) {
             return;
         } else {
             [self replaceController:self.currentVC newController:self.sleepVC];
         }
-        self.lineLabel.frame = CGRectMake(SCREEN_WIDTH / 3 * 2, CGRectGetMaxY(self.btn.frame), SCREEN_WIDTH / 3, 1);
     }
-    
+    [UIView animateWithDuration:0.2 animations:^{
+        self.lineLabel.frame = CGRectMake(SCREEN_WIDTH / 3 * (index - 100), CGRectGetMaxY(self.btn.frame), SCREEN_WIDTH / 3, 1);
+    }];
   
 }
 
@@ -168,5 +174,20 @@
     }];
 }
 
+#pragma mark -- delegate methods
+- (void)WeightViewBackIndex:(NSInteger)index {
+    [self dismissViewControllerAnimated:NO completion:nil];
+    [self.delegate RecordTabBackIndex:index];
+}
+
+- (void)DrinkViewBackIndex:(NSInteger)index {
+    [self dismissViewControllerAnimated:NO completion:nil];
+    [self.delegate RecordTabBackIndex:index];
+}
+
+- (void)SleepViewBackIndex:(NSInteger)index {
+    [self dismissViewControllerAnimated:NO completion:nil];
+    [self.delegate RecordTabBackIndex:index];
+}
 
 @end

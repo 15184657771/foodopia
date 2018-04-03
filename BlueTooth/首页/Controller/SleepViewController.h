@@ -8,6 +8,14 @@
 
 #import <UIKit/UIKit.h>
 
+@protocol SleepViewDelegate <NSObject>
+
+- (void)SleepViewBackIndex:(NSInteger )index;
+
+@end
+
 @interface SleepViewController : UIViewController
+
+@property (nonatomic, assign)id delegate;
 
 @end

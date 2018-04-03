@@ -8,8 +8,16 @@
 
 #import <UIKit/UIKit.h>
 
+@protocol RecordTabDelegate <NSObject>
+
+- (void)RecordTabBackIndex:(NSInteger )index;
+
+@end
+
 @interface RecordTabViewController : UIViewController
 
 -(void)selectTab:(NSUInteger)index;
+
+@property (nonatomic, assign)id delegate;
 
 @end

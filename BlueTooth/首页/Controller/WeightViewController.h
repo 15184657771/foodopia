@@ -8,6 +8,14 @@
 
 #import <UIKit/UIKit.h>
 
+@protocol WeightViewDelegate <NSObject>
+
+- (void)WeightViewBackIndex:(NSInteger )index;
+
+@end
+
 @interface WeightViewController : UIViewController
+
+@property (nonatomic, assign)id delegate;
 
 @end

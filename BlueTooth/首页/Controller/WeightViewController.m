@@ -49,6 +49,7 @@
     [self.view addSubview:self.recordBtn];
 
     self.weightView = [[RecordWeightView alloc]initWithFrame:CGRectMake(18, CGRectGetMaxY(self.recordBtn.frame) + 30, SCREEN_WIDTH - 18 * 2, 147 * HeightNum)];
+    self.weightView.userInteractionEnabled = YES;
     [self.view addSubview:self.weightView];
     
     UITapGestureRecognizer *weightTap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(weightTapAction)];
@@ -62,6 +63,7 @@
 
 #pragma mark -- UITapGestureRecognizer
 - (void)weightTapAction {
+    [self.delegate WeightViewBackIndex:0];
     
 }
 #pragma mark -- button click methods

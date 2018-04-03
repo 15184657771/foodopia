@@ -53,7 +53,7 @@
 
 #pragma mark -- UITapGestureRecognizer
 - (void)drinkTapAction {
-    
+    [self.delegate DrinkViewBackIndex:1];
 }
 #pragma mark -- button click methods
 - (void)drinkBtnAction:(UIButton *)sender {
