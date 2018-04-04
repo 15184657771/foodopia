@@ -22,7 +22,7 @@
 @property (nonatomic, copy)NSString *min;
 /**秒  ps: 40*/
 @property (nonatomic, copy)NSString *second;
-/**分  ps: 55.5*/
-@property (nonatomic, assign)double weight;
+/**杯数  ps: 1 杯*/
+@property (nonatomic, assign)NSInteger count;
 
 @end
