@@ -9,6 +9,9 @@
 #import "SideViewController.h"
 #import "SlideCell.h"
 #import "SlideModel.h"
+#import "UIViewController+XYSideCategory.h"
+#import "InforViewController.h"
+
 @interface SideViewController ()<UITableViewDelegate, UITableViewDataSource>
 
 @property (nonatomic, strong) UITableView *tableView;
@@ -85,6 +88,13 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [tableView deselectRowAtIndexPath:indexPath animated:NO];
+    
+    if (indexPath.row == 0) {
+        InforViewController *inforViewController = [[InforViewController alloc]init];
+        inforViewController.showTag = 0;
+        [self XYSidePushViewController:inforViewController animated:YES];
+    }
+    
 }
 
 
