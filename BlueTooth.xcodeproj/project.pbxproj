@@ -18,7 +18,6 @@
 		7436B64020737BC10029BA71 /* DrinkHighViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7436B63F20737BC10029BA71 /* DrinkHighViewController.m */; };
 		7436B64620737BDF0029BA71 /* SleepHighViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7436B64520737BDF0029BA71 /* SleepHighViewController.m */; };
 		7436B64920737DAD0029BA71 /* InforViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7436B64820737DAD0029BA71 /* InforViewController.m */; };
-		7436B64C20737DFD0029BA71 /* FindSegmentView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7436B64A20737DFD0029BA71 /* FindSegmentView.m */; };
 		7439F16C205188AC00F3DCA5 /* SlideCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7439F16B205188AC00F3DCA5 /* SlideCell.m */; };
 		7439F16F20518D4800F3DCA5 /* SlideModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 7439F16E20518D4800F3DCA5 /* SlideModel.m */; };
 		7439F1722052254F00F3DCA5 /* SlideHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7439F1712052254F00F3DCA5 /* SlideHeaderView.m */; };
@@ -88,8 +87,6 @@
 		7436B64520737BDF0029BA71 /* SleepHighViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SleepHighViewController.m; sourceTree = "<group>"; };
 		7436B64720737DAD0029BA71 /* InforViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = InforViewController.h; sourceTree = "<group>"; };
 		7436B64820737DAD0029BA71 /* InforViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = InforViewController.m; sourceTree = "<group>"; };
-		7436B64A20737DFD0029BA71 /* FindSegmentView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FindSegmentView.m; sourceTree = "<group>"; };
-		7436B64B20737DFD0029BA71 /* FindSegmentView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FindSegmentView.h; sourceTree = "<group>"; };
 		7439F16A205188AC00F3DCA5 /* SlideCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SlideCell.h; sourceTree = "<group>"; };
 		7439F16B205188AC00F3DCA5 /* SlideCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SlideCell.m; sourceTree = "<group>"; };
 		7439F16D20518D4800F3DCA5 /* SlideModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SlideModel.h; sourceTree = "<group>"; };
@@ -244,8 +241,6 @@
 				7436B64820737DAD0029BA71 /* InforViewController.m */,
 				7436B638207378FC0029BA71 /* HealthScrollContentView.h */,
 				7436B639207378FC0029BA71 /* HealthScrollContentView.m */,
-				7436B64B20737DFD0029BA71 /* FindSegmentView.h */,
-				7436B64A20737DFD0029BA71 /* FindSegmentView.m */,
 				7436B63B20737BB30029BA71 /* WeightHighViewController.h */,
 				7436B63C20737BB30029BA71 /* WeightHighViewController.m */,
 				7436B63E20737BC10029BA71 /* DrinkHighViewController.h */,
@@ -613,7 +608,6 @@
 				A646DE2420722A96003A29D8 /* DrinkViewController.m in Sources */,
 				74369E14204FEEEB007CC3BF /* AppDelegate.m in Sources */,
 				7439F191205232F500F3DCA5 /* MainViewController.m in Sources */,
-				7436B64C20737DFD0029BA71 /* FindSegmentView.m in Sources */,
 				A646DE2720722AA6003A29D8 /* SleepViewController.m in Sources */,
 				7436B64920737DAD0029BA71 /* InforViewController.m in Sources */,
 				7436B64620737BDF0029BA71 /* SleepHighViewController.m in Sources */,

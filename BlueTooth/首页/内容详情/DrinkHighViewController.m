@@ -9,6 +9,7 @@
 #import "DrinkHighViewController.h"
 
 @interface DrinkHighViewController ()
+@property (nonatomic, strong) UISegmentedControl *segmentedControl;
 
 @end
 
@@ -16,7 +17,8 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
+    [self.view setBackgroundColor:[UIColor whiteColor]];
+    [self creatView];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -24,14 +26,38 @@
     // Dispose of any resources that can be recreated.
 }
 
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+- (void)creatView {
+    _segmentedControl = [[UISegmentedControl alloc] initWithItems:@[@"日",@"月",@"年"]];
+    _segmentedControl.backgroundColor = [UIColor clearColor];
+    _segmentedControl.momentary = NO;
+    _segmentedControl.tintColor = RGB(173, 119, 205);
+    _segmentedControl.selectedSegmentIndex = 0;
+    NSDictionary *selected = @{NSFontAttributeName :[UIFont systemFontOfSize:13],
+                               NSForegroundColorAttributeName:[UIColor whiteColor]};
+    NSDictionary *normal = @{NSFontAttributeName :[UIFont systemFontOfSize:13],
+                             NSForegroundColorAttributeName:RGB(173, 119, 205)};
+    [_segmentedControl setTitleTextAttributes:selected forState:UIControlStateSelected];
+    [_segmentedControl setTitleTextAttributes:normal forState:UIControlStateNormal];
+    [_segmentedControl addTarget:self action:@selector(changeTypeAction:) forControlEvents:UIControlEventValueChanged];
+    [self.view addSubview:_segmentedControl];
+    [_segmentedControl mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(@15);
+        make.right.equalTo(@(-15));
+        make.top.equalTo(@30);
+        make.height.equalTo(@28);
+    }];
 }
-*/
+- (void)changeTypeAction:(UISegmentedControl *)sgc{
+    switch (sgc.selectedSegmentIndex) {
+        case 0:
+            break;
+        case 1:
+            break;
+        case 2:
+            break;
+        default:
+            break;
+    }
+}
 
 @end

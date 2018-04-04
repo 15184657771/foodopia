@@ -35,10 +35,25 @@
     [super viewDidLoad];
     self.edgesForExtendedLayout = UIRectEdgeNone;
     [self.view setBackgroundColor:[UIColor whiteColor]];
+
+    [self setNav];
     [self createView];
     [self segmentValue];
 
     
+}
+
+- (void)setNav {
+    self.navigationController.navigationBar.barTintColor = [UIColor whiteColor];
+    UIButton *leftMedalBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+    [leftMedalBtn setImage:[UIImage imageNamed:@"shape"] forState:UIControlStateNormal];
+    [leftMedalBtn setFrame:CGRectMake(0, 0, 20, 28)];
+    leftMedalBtn.imageEdgeInsets = UIEdgeInsetsMake(5, 5, 5, 5);
+    [leftMedalBtn addTarget:self action:@selector(backAction:) forControlEvents:UIControlEventTouchUpInside];
+    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc]initWithCustomView:leftMedalBtn];
+    [self.navigationController.navigationBar setTitleTextAttributes:@{NSForegroundColorAttributeName:[UIColor blackColor],NSFontAttributeName:[UIFont systemFontOfSize:17]}];
+    NSArray *titleArray = @[@"体重",@"喝水",@"睡眠"];
+    self.title = titleArray[self.showTag];
 }
 
 - (void)createView {
@@ -84,7 +99,7 @@
     [vcs addObject:drinkHighViewController];
     [vcs addObject:sleepHighViewController];
     [self.contentView reloadViewWithChildVcs:vcs parentVC:self];
-    self.contentView.currentIndex = 0;
+    self.contentView.currentIndex = self.showTag;
 }
 
 
@@ -111,6 +126,8 @@
 }
 
 - (void)viewChange {
+    NSArray *titleArray = @[@"体重",@"喝水",@"睡眠"];
+    self.title = titleArray[self.showTag];
     for (int i = 0; i < 3; i++) {
         UIButton *btn = [self.view viewWithTag:100 + i];
         if (btn.tag == self.showTag + 100) {
@@ -124,6 +141,9 @@
     }];
 }
 
+- (void)backAction:(UIButton *)btn {
+    [self.navigationController popViewControllerAnimated:YES];
+}
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
