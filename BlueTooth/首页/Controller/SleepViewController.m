@@ -77,6 +77,29 @@
 #pragma mark -- button click methods
 - (void)buttonAction:(UIButton *)sender {
     
+    if ([sender.currentTitle isEqualToString:@"起 床 了"]) {
+        self.imageView.image = [UIImage imageNamed:@"起床"];
+        [self.button setTitle:@"起 床 了" forState:UIControlStateNormal];
+        //TODO:
+        /**
+         1.更新上一次起床时间
+         2.取上一次点击去睡觉时间 ，算出距现在的时间 得到一次睡眠时间
+         3.取出睡眠总时间 + 这一次睡眠时间
+         3.更新睡眠时间
+         */
+   
+    } else {
+        self.imageView.image = [UIImage imageNamed:@"睡觉"];
+        [self.button setTitle:@"去 睡 觉" forState:UIControlStateNormal];
+        //TODO:
+        /**
+         1.更新上一次睡觉时间
+         */
+        
+        
+    }
+    
+    
 }
 
 @end

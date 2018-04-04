@@ -5,4 +5,5 @@ dependencies: \
   /Users/daodao/Desktop/foodopia/BlueTooth/Tools/PrettyRulerClass/TXHRrettyRuler.h \
   /Users/daodao/Desktop/foodopia/BlueTooth/Tools/PrettyRulerClass/TXHRulerScrollView.h \
   /Users/daodao/Desktop/foodopia/BlueTooth/Tools/Color/UIColor+Hex.h \
-  /Users/daodao/Desktop/foodopia/BlueTooth/首页/View/RecordWeightView.h
+  /Users/daodao/Desktop/foodopia/BlueTooth/首页/View/RecordWeightView.h \
+  /Users/daodao/Desktop/foodopia/BlueTooth/首页/Model/WeightModel.h

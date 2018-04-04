@@ -40,6 +40,9 @@
 		A671E19720732A1C00072BAD /* RecordWeightView.m in Sources */ = {isa = PBXBuildFile; fileRef = A671E19620732A1C00072BAD /* RecordWeightView.m */; };
 		A671E19A207332E400072BAD /* RecordDrinkView.m in Sources */ = {isa = PBXBuildFile; fileRef = A671E199207332E400072BAD /* RecordDrinkView.m */; };
 		A671E19D2073335F00072BAD /* RecordSleepView.m in Sources */ = {isa = PBXBuildFile; fileRef = A671E19C2073335F00072BAD /* RecordSleepView.m */; };
+		A671E1A52074B82300072BAD /* WeightModel.m in Sources */ = {isa = PBXBuildFile; fileRef = A671E1A42074B82300072BAD /* WeightModel.m */; };
+		A671E1A82074B83D00072BAD /* DrinkModel.m in Sources */ = {isa = PBXBuildFile; fileRef = A671E1A72074B83D00072BAD /* DrinkModel.m */; };
+		A671E1AB2074B84B00072BAD /* SleepModel.m in Sources */ = {isa = PBXBuildFile; fileRef = A671E1AA2074B84B00072BAD /* SleepModel.m */; };
 		D331F141587000576A7803E2 /* libPods-BlueTooth.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 172237DFFCB88065A4B73FF4 /* libPods-BlueTooth.a */; };
 /* End PBXBuildFile section */
 
@@ -133,6 +136,12 @@
 		A671E199207332E400072BAD /* RecordDrinkView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RecordDrinkView.m; sourceTree = "<group>"; };
 		A671E19B2073335F00072BAD /* RecordSleepView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RecordSleepView.h; sourceTree = "<group>"; };
 		A671E19C2073335F00072BAD /* RecordSleepView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RecordSleepView.m; sourceTree = "<group>"; };
+		A671E1A32074B82300072BAD /* WeightModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WeightModel.h; sourceTree = "<group>"; };
+		A671E1A42074B82300072BAD /* WeightModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WeightModel.m; sourceTree = "<group>"; };
+		A671E1A62074B83D00072BAD /* DrinkModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DrinkModel.h; sourceTree = "<group>"; };
+		A671E1A72074B83D00072BAD /* DrinkModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DrinkModel.m; sourceTree = "<group>"; };
+		A671E1A92074B84B00072BAD /* SleepModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SleepModel.h; sourceTree = "<group>"; };
+		A671E1AA2074B84B00072BAD /* SleepModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SleepModel.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -270,7 +279,7 @@
 		7439F1952054D79F00F3DCA5 /* 首页 */ = {
 			isa = PBXGroup;
 			children = (
-				A646DE1820720631003A29D8 /* Model */,
+				A671E1A22074B81300072BAD /* Model */,
 				A646DE172072062B003A29D8 /* View */,
 				A646DE1620720622003A29D8 /* Controller */,
 				7436B62B207371650029BA71 /* 内容详情 */,
@@ -389,13 +398,6 @@
 			path = View;
 			sourceTree = "<group>";
 		};
-		A646DE1820720631003A29D8 /* Model */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Model;
-			sourceTree = "<group>";
-		};
 		A646DE2820727E91003A29D8 /* PrettyRulerClass */ = {
 			isa = PBXGroup;
 			children = (
@@ -405,6 +407,19 @@
 				A646DE2C20727E91003A29D8 /* TXHRrettyRuler.h */,
 			);
 			path = PrettyRulerClass;
+			sourceTree = "<group>";
+		};
+		A671E1A22074B81300072BAD /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				A671E1A32074B82300072BAD /* WeightModel.h */,
+				A671E1A42074B82300072BAD /* WeightModel.m */,
+				A671E1A62074B83D00072BAD /* DrinkModel.h */,
+				A671E1A72074B83D00072BAD /* DrinkModel.m */,
+				A671E1A92074B84B00072BAD /* SleepModel.h */,
+				A671E1AA2074B84B00072BAD /* SleepModel.m */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -608,6 +623,8 @@
 				A646DE1B20720B77003A29D8 /* ChooseRecordController.m in Sources */,
 				7436B64020737BC10029BA71 /* DrinkHighViewController.m in Sources */,
 				A671E19720732A1C00072BAD /* RecordWeightView.m in Sources */,
+				A671E1A82074B83D00072BAD /* DrinkModel.m in Sources */,
+				A671E1AB2074B84B00072BAD /* SleepModel.m in Sources */,
 				7439F1882052315E00F3DCA5 /* OtherViewController.m in Sources */,
 				A646DE1E207220BE003A29D8 /* RecordTabViewController.m in Sources */,
 				A646DE2420722A96003A29D8 /* DrinkViewController.m in Sources */,
@@ -618,6 +635,7 @@
 				7436B64920737DAD0029BA71 /* InforViewController.m in Sources */,
 				7436B64620737BDF0029BA71 /* SleepHighViewController.m in Sources */,
 				747D1DB52050DBA400CF0D2A /* Toast.m in Sources */,
+				A671E1A52074B82300072BAD /* WeightModel.m in Sources */,
 				7439F1852052314900F3DCA5 /* SideViewController.m in Sources */,
 				7439F18E205232C400F3DCA5 /* UIViewController+XYSideCategory.m in Sources */,
 				7439F1722052254F00F3DCA5 /* SlideHeaderView.m in Sources */,

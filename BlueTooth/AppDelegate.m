@@ -11,6 +11,7 @@
 #import "SideViewController.h"
 #import "UIViewController+XYSideCategory.h"
 #import "MainViewController.h"
+#import <JQFMDB/JQFMDB.h>
 
 @interface AppDelegate ()
 
@@ -25,6 +26,9 @@
     [self.window setBackgroundColor:[UIColor whiteColor]];
     [self.window makeKeyAndVisible];
 
+    //创建数据库
+    [JQFMDB shareDatabase:@"BYSJ.sqlite" path:@"Documents/BYSJ.db"];
+    
     SideViewController *leftViewController = [[SideViewController alloc] init];
     // 主VC
 //    UITabBarController *tabBarViewController = [[UITabBarController alloc] init];

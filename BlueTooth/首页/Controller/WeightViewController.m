@@ -10,6 +10,8 @@
 #import "TXHRrettyRuler.h"
 #import "UIColor+Hex.h"
 #import "RecordWeightView.h"
+#import <JQFMDB/JQFMDB.h>
+#import "WeightModel.h"
 
 @interface WeightViewController ()<TXHRrettyRulerDelegate>
 
@@ -68,7 +70,54 @@
 }
 #pragma mark -- button click methods
 - (void)recordBtnAction:(UIButton *)sender {
-    
+    WeightModel *model = [self getDate];
+    model.weight = [[self.showLabel.text stringByReplacingOccurrencesOfString:@"kg" withString:@""] doubleValue];
+    JQFMDB *db = [JQFMDB shareDatabase];
+    if (![db jq_isExistTable:@"weight"]) {  //如果没有 weight 表  创建
+        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+            [db jq_inDatabase:^{
+                if ([db jq_createTable:@"weight" dicOrModel:model]) {
+                    NSLog(@"创建成功！！！");
+                }
+            }];
+        });
+    } else { //有表  直接插入
+        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+            [db jq_inDatabase:^{
+                if ([db jq_insertTable:@"weight" dicOrModel:model]) {
+                    NSLog(@"插入成功！！！");
+                }
+            }];
+        });
+    }
 }
+
+- (WeightModel *)getDate {
+    WeightModel *model = [[WeightModel alloc]init];
+    
+    NSTimeZone* timeZone = [NSTimeZone timeZoneWithName:@"Asia/Beijing"];
+    NSDate * date = [NSDate date];
+    NSTimeInterval sec = [date timeIntervalSinceNow];
+    NSDate * currentDate = [[NSDate alloc] initWithTimeIntervalSinceNow:sec];
+    //设置时间输出格式：
+    NSDateFormatter * df = [[NSDateFormatter alloc] init];
+    [df setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
+    [df setTimeZone:timeZone];
+    NSString * currentTime = [df stringFromDate:currentDate];
+    NSLog(@"currentTime=====%@",currentTime);
+    NSArray *arr = [currentTime componentsSeparatedByString:@" "];
+    NSArray *time1 = [arr[0] componentsSeparatedByString:@"-"];
+    NSArray *time2 = [arr[1] componentsSeparatedByString:@":"];
+    model.year = time1[0];
+    model.month = time1[1];
+    model.day = time1[2];
+    model.hour = time2[0];
+    model.min = time2[1];
+    model.second = time2[2];
+    
+    return model;
+}
+
+
 
 @end
