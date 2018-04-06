@@ -42,6 +42,7 @@
 		A671E1A52074B82300072BAD /* WeightModel.m in Sources */ = {isa = PBXBuildFile; fileRef = A671E1A42074B82300072BAD /* WeightModel.m */; };
 		A671E1A82074B83D00072BAD /* DrinkModel.m in Sources */ = {isa = PBXBuildFile; fileRef = A671E1A72074B83D00072BAD /* DrinkModel.m */; };
 		A671E1AB2074B84B00072BAD /* SleepModel.m in Sources */ = {isa = PBXBuildFile; fileRef = A671E1AA2074B84B00072BAD /* SleepModel.m */; };
+		A671E1AE20770F9F00072BAD /* InfoTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A671E1AD20770F9F00072BAD /* InfoTableViewCell.m */; };
 		D331F141587000576A7803E2 /* libPods-BlueTooth.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 172237DFFCB88065A4B73FF4 /* libPods-BlueTooth.a */; };
 /* End PBXBuildFile section */
 
@@ -139,6 +140,8 @@
 		A671E1A72074B83D00072BAD /* DrinkModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DrinkModel.m; sourceTree = "<group>"; };
 		A671E1A92074B84B00072BAD /* SleepModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SleepModel.h; sourceTree = "<group>"; };
 		A671E1AA2074B84B00072BAD /* SleepModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SleepModel.m; sourceTree = "<group>"; };
+		A671E1AC20770F9F00072BAD /* InfoTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = InfoTableViewCell.h; sourceTree = "<group>"; };
+		A671E1AD20770F9F00072BAD /* InfoTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = InfoTableViewCell.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -389,6 +392,8 @@
 				A671E199207332E400072BAD /* RecordDrinkView.m */,
 				A671E19B2073335F00072BAD /* RecordSleepView.h */,
 				A671E19C2073335F00072BAD /* RecordSleepView.m */,
+				A671E1AC20770F9F00072BAD /* InfoTableViewCell.h */,
+				A671E1AD20770F9F00072BAD /* InfoTableViewCell.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -614,6 +619,7 @@
 				A646DE2D20727E91003A29D8 /* TXHRulerScrollView.m in Sources */,
 				A646DE2E20727E91003A29D8 /* TXHRrettyRuler.m in Sources */,
 				7439F1982054D7B900F3DCA5 /* MainView.m in Sources */,
+				A671E1AE20770F9F00072BAD /* InfoTableViewCell.m in Sources */,
 				7436B63A207378FC0029BA71 /* HealthScrollContentView.m in Sources */,
 				A646DE1B20720B77003A29D8 /* ChooseRecordController.m in Sources */,
 				7436B64020737BC10029BA71 /* DrinkHighViewController.m in Sources */,
