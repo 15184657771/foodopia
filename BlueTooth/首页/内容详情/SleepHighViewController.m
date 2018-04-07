@@ -32,7 +32,7 @@
 
 - (UITableView *)tableView {
     if (!_tableView) {
-        _tableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 284 * HeightNum, SCREEN_WIDTH, SCREEN_HEIGHT - 284 * HeightNum) style:UITableViewStylePlain];
+        _tableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, 0, 0) style:UITableViewStylePlain];
         _tableView.bounces = NO;
         _tableView.showsVerticalScrollIndicator = NO;
         _tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
@@ -53,12 +53,13 @@
 }
 
 - (void)creatView {
-    
+    WS(ws);
     [self.view addSubview:self.topView];
     [self.topView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.and.right.and.top.equalTo(@0);
-        make.height.equalTo(@(284 * HeightNum));
+        make.height.equalTo(@(285 * HeightNum));
     }];
+    
     
     _segmentedControl = [[UISegmentedControl alloc] initWithItems:@[@"日",@"月",@"年"]];
     _segmentedControl.backgroundColor = [UIColor clearColor];
@@ -82,6 +83,15 @@
     
     
     [self.view addSubview:self.tableView];
+    [self.tableView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(ws.topView.mas_bottom);
+        make.left.right.equalTo(ws.view);
+        if (@available(iOS 11.0, *)) {
+            make.bottom.equalTo(self.view.mas_safeAreaLayoutGuideBottom);
+        } else {
+            make.bottom.equalTo(ws.view);
+        }
+    }];
     
 }
 - (void)changeTypeAction:(UISegmentedControl *)sgc{
@@ -129,7 +139,7 @@
     if (cell == nil) {
         cell = [[InfoTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"InfoTableViewCell"];
     }
-    
+    [cell setSelectionStyle:UITableViewCellSelectionStyleNone];
     cell.bigLabel.text = @"睡得最多";
     cell.dateLabel.text = @"2017/09/28 达成";
     cell.timeLabel.text = @"12h 34min";
