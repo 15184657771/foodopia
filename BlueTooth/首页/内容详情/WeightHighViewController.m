@@ -9,7 +9,7 @@
 #import "WeightHighViewController.h"
 #import "UIColor+Hex.h"
 #import "InfoTableViewCell.h"
-
+#import "BaseView.h"
 @interface WeightHighViewController ()<UITableViewDelegate,UITableViewDataSource>
 
 @property (nonatomic, strong) UIView *topView;
@@ -18,6 +18,7 @@
 
 @property (nonatomic, strong) UISegmentedControl *segmentedControl;
 
+@property (nonatomic, strong) BaseView *baseView;
 @end
 
 @implementation WeightHighViewController
@@ -62,7 +63,7 @@
     [self.view addSubview:self.topView];
     [self.topView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.and.right.and.top.equalTo(@0);
-        make.height.equalTo(@(284 * HeightNum));
+        make.height.equalTo(@(285 * HeightNum));
     }];
     
     _segmentedControl = [[UISegmentedControl alloc] initWithItems:@[@"日",@"月",@"年"]];
@@ -79,11 +80,16 @@
     [_segmentedControl addTarget:self action:@selector(changeTypeAction:) forControlEvents:UIControlEventValueChanged];
     [self.topView addSubview:_segmentedControl];
     [_segmentedControl mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(@15);
-        make.right.equalTo(@(-15));
-        make.top.equalTo(@30);
-        make.height.equalTo(@28);
+        make.left.equalTo(@(15 * HeightNum));
+        make.right.equalTo(@(-15 * HeightNum));
+        make.top.equalTo(@(30 * HeightNum));
+        make.height.equalTo(@(28 * HeightNum));
     }];
+    
+    self.baseView = [[BaseView alloc]initWithFrame:CGRectMake(0, 85 * HeightNum, SCREEN_WIDTH, 200 * HeightNum)];
+    [self.view addSubview:self.baseView];
+    [self.baseView setVerticalDaySource:@[@"8:30",@"9:30",@"10.45"] horizontalValueArray:@[[NSNumber numberWithFloat:50],[NSNumber numberWithFloat:50.2],[NSNumber numberWithFloat:49.9]]];
+    [self.baseView show];
     
     [self.view addSubview:self.tableView];
 }
