@@ -44,6 +44,7 @@
 		A671E1A82074B83D00072BAD /* DrinkModel.m in Sources */ = {isa = PBXBuildFile; fileRef = A671E1A72074B83D00072BAD /* DrinkModel.m */; };
 		A671E1AB2074B84B00072BAD /* SleepModel.m in Sources */ = {isa = PBXBuildFile; fileRef = A671E1AA2074B84B00072BAD /* SleepModel.m */; };
 		A671E1AE20770F9F00072BAD /* InfoTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A671E1AD20770F9F00072BAD /* InfoTableViewCell.m */; };
+		A671E1B2207891BF00072BAD /* FMDBUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = A671E1B1207891BF00072BAD /* FMDBUtil.m */; };
 		D331F141587000576A7803E2 /* libPods-BlueTooth.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 172237DFFCB88065A4B73FF4 /* libPods-BlueTooth.a */; };
 /* End PBXBuildFile section */
 
@@ -145,6 +146,8 @@
 		A671E1AA2074B84B00072BAD /* SleepModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SleepModel.m; sourceTree = "<group>"; };
 		A671E1AC20770F9F00072BAD /* InfoTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = InfoTableViewCell.h; sourceTree = "<group>"; };
 		A671E1AD20770F9F00072BAD /* InfoTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = InfoTableViewCell.m; sourceTree = "<group>"; };
+		A671E1B0207891BF00072BAD /* FMDBUtil.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FMDBUtil.h; sourceTree = "<group>"; };
+		A671E1B1207891BF00072BAD /* FMDBUtil.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FMDBUtil.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -320,6 +323,7 @@
 		A646DE0F20720530003A29D8 /* Tools */ = {
 			isa = PBXGroup;
 			children = (
+				A671E1AF207891A500072BAD /* FMDBUtil */,
 				A646DE2820727E91003A29D8 /* PrettyRulerClass */,
 				A646DE1220720578003A29D8 /* Color */,
 				A646DE112072055C003A29D8 /* Toast */,
@@ -433,6 +437,15 @@
 				A671E1AA2074B84B00072BAD /* SleepModel.m */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		A671E1AF207891A500072BAD /* FMDBUtil */ = {
+			isa = PBXGroup;
+			children = (
+				A671E1B0207891BF00072BAD /* FMDBUtil.h */,
+				A671E1B1207891BF00072BAD /* FMDBUtil.m */,
+			);
+			path = FMDBUtil;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -626,6 +639,7 @@
 				74369E22204FEEEB007CC3BF /* main.m in Sources */,
 				7439F18D205232C400F3DCA5 /* XYSideViewController.m in Sources */,
 				7439F19C205520F800F3DCA5 /* TypeViewController.m in Sources */,
+				A671E1B2207891BF00072BAD /* FMDBUtil.m in Sources */,
 				74369E4D204FF14A007CC3BF /* UIColor+Hex.m in Sources */,
 				A646DE2120722A84003A29D8 /* WeightViewController.m in Sources */,
 				7436B63D20737BB30029BA71 /* WeightHighViewController.m in Sources */,
@@ -803,7 +817,7 @@
 				DEVELOPMENT_TEAM = 8RRS2EF37Z;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/BlueTooth/PrefixHeader.pch";
 				INFOPLIST_FILE = BlueTooth/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = cn.akeso.doctor;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -821,7 +835,7 @@
 				DEVELOPMENT_TEAM = 8RRS2EF37Z;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/BlueTooth/PrefixHeader.pch";
 				INFOPLIST_FILE = BlueTooth/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = cn.akeso.doctor;
 				PRODUCT_NAME = "$(TARGET_NAME)";

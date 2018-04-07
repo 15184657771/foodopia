@@ -12,6 +12,7 @@
 #import "RecordWeightView.h"
 #import <JQFMDB/JQFMDB.h>
 #import "WeightModel.h"
+#import "BaseView.h"
 
 @interface WeightViewController ()<TXHRrettyRulerDelegate>
 
@@ -21,9 +22,31 @@
 
 @property (nonatomic, strong) RecordWeightView *weightView;
 
+@property (nonatomic, strong) BaseView *baseView;
+
+@property (nonatomic, strong) NSArray *lookForArr;
+
+@property (nonatomic, strong) NSMutableArray *timeArr;
+
+@property (nonatomic, strong) NSMutableArray *weightArr;
+
 @end
 
 @implementation WeightViewController
+
+- (NSMutableArray *)timeArr {
+    if (!_timeArr) {
+        _timeArr = [[NSMutableArray alloc]initWithCapacity:0];
+    }
+    return _timeArr;
+}
+
+- (NSMutableArray *)weightArr {
+    if (!_weightArr) {
+        _weightArr = [[NSMutableArray alloc]initWithCapacity:0];
+    }
+    return _weightArr;
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -54,8 +77,33 @@
     self.weightView.userInteractionEnabled = YES;
     [self.view addSubview:self.weightView];
     
+    NSArray *arr = [self getDate];
+    JQFMDB *db = [JQFMDB shareDatabase];
+    
+    //查询当天的数据
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        self.lookForArr = [db jq_lookupTable:@"weight" dicOrModel:[WeightModel class] whereFormat:@"where day = '%@'",arr[2]];
+        for (WeightModel *model in self.lookForArr) {
+            [self.timeArr addObject:[NSString stringWithFormat:@"%@:%@",model.hour,model.second]];
+            [self.weightArr addObject:model.weight];
+        }
+        
+        NSLog(@"where day:%@", self.lookForArr);
+    });
+    
+    
+    
+    
+    self.baseView = [[BaseView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH - 18 * 2, 147 * HeightNum)];
+    [self.baseView setVerticalDaySource:self.timeArr horizontalValueArray:@[[NSNumber numberWithFloat:50],[NSNumber numberWithFloat:50.2],[NSNumber numberWithFloat:49.9]]];
+    [self.baseView show];
+    [self.weightView addSubview:self.baseView];
+    
+    
     UITapGestureRecognizer *weightTap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(weightTapAction)];
     [self.weightView addGestureRecognizer:weightTap];
+    
+    
     
 }
 
@@ -70,8 +118,8 @@
 }
 #pragma mark -- button click methods
 - (void)recordBtnAction:(UIButton *)sender {
-    WeightModel *model = [self getDate];
-    model.weight = [[self.showLabel.text stringByReplacingOccurrencesOfString:@"kg" withString:@""] doubleValue];
+    WeightModel *model = [self getWeightModel];
+    model.weight = [self.showLabel.text stringByReplacingOccurrencesOfString:@"kg" withString:@""];
     JQFMDB *db = [JQFMDB shareDatabase];
     if (![db jq_isExistTable:@"weight"]) {  //如果没有 weight 表  创建
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
@@ -92,8 +140,20 @@
     }
 }
 
-- (WeightModel *)getDate {
+- (WeightModel *)getWeightModel {
     WeightModel *model = [[WeightModel alloc]init];
+    NSArray *arr = [self getDate];
+    model.year = arr[0];
+    model.month = arr[1];
+    model.day = arr[2];
+    model.hour = arr[3];
+    model.min = arr[4];
+    model.second = arr[5];
+    return model;
+}
+
+- (NSArray *)getDate {
+    NSMutableArray *arrAll = [[NSMutableArray alloc]initWithCapacity:0];
     
     NSTimeZone* timeZone = [NSTimeZone timeZoneWithName:@"Asia/Beijing"];
     NSDate * date = [NSDate date];
@@ -108,16 +168,17 @@
     NSArray *arr = [currentTime componentsSeparatedByString:@" "];
     NSArray *time1 = [arr[0] componentsSeparatedByString:@"-"];
     NSArray *time2 = [arr[1] componentsSeparatedByString:@":"];
-    model.year = time1[0];
-    model.month = time1[1];
-    model.day = time1[2];
-    model.hour = time2[0];
-    model.min = time2[1];
-    model.second = time2[2];
     
-    return model;
+    [arrAll addObject:time1[0]];
+    [arrAll addObject:time1[1]];
+    [arrAll addObject:time1[2]];
+    [arrAll addObject:time2[0]];
+    [arrAll addObject:time2[1]];
+    [arrAll addObject:time2[2]];
+    
+    //返回 年、月、日、时、分、秒
+    return arrAll;
 }
-
 
 
 @end

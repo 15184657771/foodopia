@@ -10,4 +10,6 @@
 
 @interface RecordSleepView : UIView
 
+- (void)setText:(NSString *)str;
+
 @end

@@ -87,7 +87,7 @@
     }];
     
     self.baseView = [[BaseView alloc]initWithFrame:CGRectMake(0, 85 * HeightNum, SCREEN_WIDTH, 200 * HeightNum)];
-    [self.view addSubview:self.baseView];
+    [self.topView addSubview:self.baseView];
     [self.baseView setVerticalDaySource:@[@"8:30",@"9:30",@"10.45"] horizontalValueArray:@[[NSNumber numberWithFloat:50],[NSNumber numberWithFloat:50.2],[NSNumber numberWithFloat:49.9]]];
     [self.baseView show];
     

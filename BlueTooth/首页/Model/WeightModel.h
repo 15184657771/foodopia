@@ -25,6 +25,6 @@
 /**秒  ps: 40*/
 @property (nonatomic, copy)NSString *second;
 /**分  ps: 55.5*/
-@property (nonatomic, assign)double weight;
+@property (nonatomic, copy)NSString *weight;
 
 @end

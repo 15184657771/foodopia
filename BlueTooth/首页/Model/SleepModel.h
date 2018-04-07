@@ -22,7 +22,10 @@
 @property (nonatomic, copy)NSString *min;
 /**秒  ps: 40*/
 @property (nonatomic, copy)NSString *second;
-/**分  ps: 55.5*/
-@property (nonatomic, assign)double weight;
+/**睡眠时间  */
+@property (nonatomic, copy)NSString *sleepTime;
+
+//是不是完整的睡眠时间
+@property (nonatomic, copy)NSString *isAll;
 
 @end
