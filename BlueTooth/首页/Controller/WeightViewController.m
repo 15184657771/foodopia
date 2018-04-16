@@ -81,12 +81,6 @@
     JQFMDB *db = [JQFMDB shareDatabase];
     
     //查询当天的数据
-    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-        
-        
-        NSLog(@"where day:%@", self.lookForArr);
-    });
-    
     self.lookForArr = [db jq_lookupTable:@"weight" dicOrModel:[WeightModel class] whereFormat:@"where day = '%@'",arr[2]];
     
     if (self.lookForArr.count > 0) {

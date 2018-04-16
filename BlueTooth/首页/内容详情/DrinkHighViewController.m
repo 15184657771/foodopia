@@ -128,6 +128,12 @@
     
 }
 - (void)changeTypeAction:(UISegmentedControl *)sgc{
+    
+    NSArray *dateArr = [self getDate];
+    JQFMDB *db = [JQFMDB shareDatabase];
+    NSArray *monthArr = [db jq_lookupTable:@"drink" dicOrModel:[DrinkModel class] whereFormat:@"where month = '%@'",dateArr[1]]; //1.当月所有数据
+    NSArray *yearArr = [db jq_lookupTable:@"drink" dicOrModel:[DrinkModel class] whereFormat:@"where year = '%@'",dateArr[0]];  //1.当年所有数据
+    
     switch (sgc.selectedSegmentIndex) {
         case 0:
             break;
@@ -175,6 +181,35 @@
     cell.dateLabel.text = arr2[indexPath.row];
     cell.timeLabel.text = arr3[indexPath.row];
     return cell;
+}
+
+
+- (NSArray *)getDate {
+    NSMutableArray *arrAll = [[NSMutableArray alloc]initWithCapacity:0];
+    
+    NSTimeZone* timeZone = [NSTimeZone timeZoneWithName:@"Asia/Beijing"];
+    NSDate * date = [NSDate date];
+    NSTimeInterval sec = [date timeIntervalSinceNow];
+    NSDate * currentDate = [[NSDate alloc] initWithTimeIntervalSinceNow:sec];
+    //设置时间输出格式：
+    NSDateFormatter * df = [[NSDateFormatter alloc] init];
+    [df setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
+    [df setTimeZone:timeZone];
+    NSString * currentTime = [df stringFromDate:currentDate];
+    NSLog(@"currentTime=====%@",currentTime);
+    NSArray *arr = [currentTime componentsSeparatedByString:@" "];
+    NSArray *time1 = [arr[0] componentsSeparatedByString:@"-"];
+    NSArray *time2 = [arr[1] componentsSeparatedByString:@":"];
+    
+    [arrAll addObject:time1[0]];
+    [arrAll addObject:time1[1]];
+    [arrAll addObject:time1[2]];
+    [arrAll addObject:time2[0]];
+    [arrAll addObject:time2[1]];
+    [arrAll addObject:time2[2]];
+    
+    //返回 年、月、日、时、分、秒
+    return arrAll;
 }
 
 @end
