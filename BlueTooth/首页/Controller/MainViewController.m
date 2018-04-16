@@ -11,7 +11,7 @@
 #import "TypeViewController.h"
 #import "ChooseRecordController.h"
 #import "UIViewController+XYSideCategory.h"
-#import "RecordTabViewController.h"
+#import "RecordInfoTabController.h"
 #import "InforViewController.h"
 
 @interface MainViewController ()<ChooseRecordDelegate,RecordTabDelegate>
@@ -147,8 +147,8 @@
 - (void)ChooseRecordBackIndex:(NSInteger)index {
     
     UIWindow *fK = [[UIApplication sharedApplication] keyWindow];
-    RecordTabViewController *recordVC = [[RecordTabViewController alloc]init];
-    [recordVC selectTab:index];
+    RecordInfoTabController *recordVC = [[RecordInfoTabController alloc]init];
+    recordVC.showTag = index - 100;
     recordVC.delegate = self;
     recordVC.modalPresentationStyle = UIModalPresentationOverFullScreen;
     self.definesPresentationContext = YES;

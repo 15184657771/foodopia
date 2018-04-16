@@ -83,10 +83,10 @@
     //查询当天的数据
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
         self.lookForArr = [db jq_lookupTable:@"weight" dicOrModel:[WeightModel class] whereFormat:@"where day = '%@'",arr[2]];
-        for (WeightModel *model in self.lookForArr) {
-            [self.timeArr addObject:[NSString stringWithFormat:@"%@:%@",model.hour,model.second]];
-            [self.weightArr addObject:model.weight];
-        }
+//        for (WeightModel *model in self.lookForArr) {
+//            [self.timeArr addObject:[NSString stringWithFormat:@"%@:%@",model.hour,model.second]];
+//            [self.weightArr addObject:model.weight];
+//        }
         
         NSLog(@"where day:%@", self.lookForArr);
     });
@@ -95,8 +95,8 @@
     
     
     self.baseView = [[BaseView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH - 18 * 2, 147 * HeightNum)];
-    [self.baseView setVerticalDaySource:self.timeArr horizontalValueArray:@[[NSNumber numberWithFloat:50],[NSNumber numberWithFloat:50.2],[NSNumber numberWithFloat:49.9]]];
-    [self.baseView show];
+//    [self.baseView setVerticalDaySource:self.timeArr horizontalValueArray:@[[NSNumber numberWithFloat:50],[NSNumber numberWithFloat:50.2],[NSNumber numberWithFloat:49.9]]];
+//    [self.baseView show];
     [self.weightView addSubview:self.baseView];
     
     
