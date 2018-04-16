@@ -116,13 +116,16 @@
     NSArray *lookForArr2 = [db jq_lookupTable:@"weight" dicOrModel:[WeightModel class] whereFormat:@"where weight = (select min(weight) from weight)"];
     
     NSLog(@"%@",lookForArr);
-    WeightModel *model1 = lookForArr[0];  //最重
-    WeightModel *model2 = lookForArr2[0]; //最轻
-
-    arr2 = [NSArray arrayWithObjects:[NSString stringWithFormat:@"%@/%@/%@达成",model1.year,model1.month,model1.day],[NSString stringWithFormat:@"%@/%@/%@达成",model2.year,model2.month,model2.day],@"目标偏差+5.1kg", nil];
-    arr3 = [NSArray arrayWithObjects:model1.weight,model2.weight,@"50kg", nil];
-    
-    [self.tableView reloadData];
+    if (lookForArr.count > 0) {
+        WeightModel *model1 = lookForArr[0];  //最重
+        WeightModel *model2 = lookForArr2[0]; //最轻
+        
+        arr2 = [NSArray arrayWithObjects:[NSString stringWithFormat:@"%@/%@/%@达成",model1.year,model1.month,model1.day],[NSString stringWithFormat:@"%@/%@/%@达成",model2.year,model2.month,model2.day],@"目标偏差+5.1kg", nil];
+        arr3 = [NSArray arrayWithObjects:model1.weight,model2.weight,@"50kg", nil];
+        
+        [self.tableView reloadData];
+    }
+   
     
 }
 - (void)changeTypeAction:(UISegmentedControl *)sgc{

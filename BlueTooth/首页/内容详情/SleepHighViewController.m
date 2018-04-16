@@ -9,6 +9,7 @@
 #import "SleepHighViewController.h"
 #import "UIColor+Hex.h"
 #import "InfoTableViewCell.h"
+#import "ErectView.h"
 
 @interface SleepHighViewController ()<UITableViewDelegate,UITableViewDataSource>
 
@@ -17,6 +18,8 @@
 @property (nonatomic, strong) UITableView *tableView;
 
 @property (nonatomic, strong) UISegmentedControl *segmentedControl;
+
+@property (nonatomic, strong) ErectView *erectView;
 
 @end
 
@@ -60,8 +63,13 @@
         make.height.equalTo(@(285 * HeightNum));
     }];
     
+    self.erectView = [[ErectView alloc]initWithFrame:CGRectMake(0, 85 * HeightNum, SCREEN_WIDTH, 200 * HeightNum)];
+    [self.topView addSubview:self.erectView];
+    self.erectView.maxValue = 12;
+    [self.erectView setVerticalDaySource:@[@"5.2",@"5.3",@"5.5"] horizontalValueArray:@[[NSNumber numberWithFloat:9.1],[NSNumber numberWithFloat:7.2],[NSNumber numberWithFloat:10.2]]];
+    [self.erectView show];
     
-    _segmentedControl = [[UISegmentedControl alloc] initWithItems:@[@"日",@"月",@"年"]];
+    _segmentedControl = [[UISegmentedControl alloc] initWithItems:@[@"月",@"年"]];
     _segmentedControl.backgroundColor = [UIColor clearColor];
     _segmentedControl.momentary = NO;
     _segmentedControl.tintColor = RGB(173, 119, 205);
@@ -82,6 +90,7 @@
     }];
     
     
+    
     [self.view addSubview:self.tableView];
     [self.tableView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(ws.topView.mas_bottom);
@@ -99,8 +108,6 @@
         case 0:
             break;
         case 1:
-            break;
-        case 2:
             break;
         default:
             break;
