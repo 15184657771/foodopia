@@ -32,7 +32,6 @@
 		747D1DB52050DBA400CF0D2A /* Toast.m in Sources */ = {isa = PBXBuildFile; fileRef = 747D1DB32050DBA400CF0D2A /* Toast.m */; };
 		748B02AD2077297D00606719 /* BaseView.m in Sources */ = {isa = PBXBuildFile; fileRef = 748B02AC2077297D00606719 /* BaseView.m */; };
 		A646DE1B20720B77003A29D8 /* ChooseRecordController.m in Sources */ = {isa = PBXBuildFile; fileRef = A646DE1A20720B77003A29D8 /* ChooseRecordController.m */; };
-		A646DE1E207220BE003A29D8 /* RecordTabViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A646DE1D207220BE003A29D8 /* RecordTabViewController.m */; };
 		A646DE2120722A84003A29D8 /* WeightViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A646DE2020722A84003A29D8 /* WeightViewController.m */; };
 		A646DE2420722A96003A29D8 /* DrinkViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A646DE2320722A96003A29D8 /* DrinkViewController.m */; };
 		A646DE2720722AA6003A29D8 /* SleepViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A646DE2620722AA6003A29D8 /* SleepViewController.m */; };
@@ -45,6 +44,7 @@
 		A671E1A82074B83D00072BAD /* DrinkModel.m in Sources */ = {isa = PBXBuildFile; fileRef = A671E1A72074B83D00072BAD /* DrinkModel.m */; };
 		A671E1AB2074B84B00072BAD /* SleepModel.m in Sources */ = {isa = PBXBuildFile; fileRef = A671E1AA2074B84B00072BAD /* SleepModel.m */; };
 		A671E1AE20770F9F00072BAD /* InfoTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A671E1AD20770F9F00072BAD /* InfoTableViewCell.m */; };
+		A671E1B520843F8400072BAD /* RecordInfoTabController.m in Sources */ = {isa = PBXBuildFile; fileRef = A671E1B420843F8400072BAD /* RecordInfoTabController.m */; };
 		D331F141587000576A7803E2 /* libPods-BlueTooth.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 172237DFFCB88065A4B73FF4 /* libPods-BlueTooth.a */; };
 /* End PBXBuildFile section */
 
@@ -122,8 +122,6 @@
 		8F85FB0D744B688174D17C52 /* Pods-BlueTooth.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BlueTooth.debug.xcconfig"; path = "Pods/Target Support Files/Pods-BlueTooth/Pods-BlueTooth.debug.xcconfig"; sourceTree = "<group>"; };
 		A646DE1920720B77003A29D8 /* ChooseRecordController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ChooseRecordController.h; sourceTree = "<group>"; };
 		A646DE1A20720B77003A29D8 /* ChooseRecordController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ChooseRecordController.m; sourceTree = "<group>"; };
-		A646DE1C207220BE003A29D8 /* RecordTabViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RecordTabViewController.h; sourceTree = "<group>"; };
-		A646DE1D207220BE003A29D8 /* RecordTabViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RecordTabViewController.m; sourceTree = "<group>"; };
 		A646DE1F20722A84003A29D8 /* WeightViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WeightViewController.h; sourceTree = "<group>"; };
 		A646DE2020722A84003A29D8 /* WeightViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WeightViewController.m; sourceTree = "<group>"; };
 		A646DE2220722A96003A29D8 /* DrinkViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DrinkViewController.h; sourceTree = "<group>"; };
@@ -148,6 +146,8 @@
 		A671E1AA2074B84B00072BAD /* SleepModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SleepModel.m; sourceTree = "<group>"; };
 		A671E1AC20770F9F00072BAD /* InfoTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = InfoTableViewCell.h; sourceTree = "<group>"; };
 		A671E1AD20770F9F00072BAD /* InfoTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = InfoTableViewCell.m; sourceTree = "<group>"; };
+		A671E1B320843F8400072BAD /* RecordInfoTabController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RecordInfoTabController.h; sourceTree = "<group>"; };
+		A671E1B420843F8400072BAD /* RecordInfoTabController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RecordInfoTabController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -387,8 +387,8 @@
 				7439F190205232F500F3DCA5 /* MainViewController.m */,
 				A646DE1920720B77003A29D8 /* ChooseRecordController.h */,
 				A646DE1A20720B77003A29D8 /* ChooseRecordController.m */,
-				A646DE1C207220BE003A29D8 /* RecordTabViewController.h */,
-				A646DE1D207220BE003A29D8 /* RecordTabViewController.m */,
+				A671E1B320843F8400072BAD /* RecordInfoTabController.h */,
+				A671E1B420843F8400072BAD /* RecordInfoTabController.m */,
 				A646DE1F20722A84003A29D8 /* WeightViewController.h */,
 				A646DE2020722A84003A29D8 /* WeightViewController.m */,
 				A646DE2220722A96003A29D8 /* DrinkViewController.h */,
@@ -641,12 +641,12 @@
 				7436B63A207378FC0029BA71 /* HealthScrollContentView.m in Sources */,
 				A646DE1B20720B77003A29D8 /* ChooseRecordController.m in Sources */,
 				7436B64020737BC10029BA71 /* DrinkHighViewController.m in Sources */,
+				A671E1B520843F8400072BAD /* RecordInfoTabController.m in Sources */,
 				A671E19720732A1C00072BAD /* RecordWeightView.m in Sources */,
 				748B02AD2077297D00606719 /* BaseView.m in Sources */,
 				A671E1A82074B83D00072BAD /* DrinkModel.m in Sources */,
 				A671E1AB2074B84B00072BAD /* SleepModel.m in Sources */,
 				7439F1882052315E00F3DCA5 /* OtherViewController.m in Sources */,
-				A646DE1E207220BE003A29D8 /* RecordTabViewController.m in Sources */,
 				A646DE2420722A96003A29D8 /* DrinkViewController.m in Sources */,
 				74369E14204FEEEB007CC3BF /* AppDelegate.m in Sources */,
 				744DA4CE2084452D0041D9E7 /* ErectView.m in Sources */,

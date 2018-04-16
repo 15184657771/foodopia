@@ -35,8 +35,17 @@
 }
 
 - (void)createUI {
+    
+    //获取当前时间
+    NSArray *arr = [self getDate];
+    
     self.timeLabel = [[UILabel alloc]initWithFrame:CGRectMake(0, 38, SCREEN_WIDTH, 32)];
-    self.timeLabel.text = @"08:30 am";
+    
+    if ([arr[3] integerValue] >= 12) {
+        self.timeLabel.text = [NSString stringWithFormat:@"%@:%@ pm",arr[3],arr[4]];
+    } else {
+        self.timeLabel.text = [NSString stringWithFormat:@"%@:%@ am",arr[3],arr[4]];
+    }
     self.timeLabel.textColor = [UIColor colorWithHex:@"ad77cd"];
     self.timeLabel.font = [UIFont systemFontOfSize:30];
     self.timeLabel.textAlignment = NSTextAlignmentCenter;
@@ -53,7 +62,7 @@
     [self.button addTarget:self action:@selector(buttonAction:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:self.button];
     
-    NSArray *arr = [self getDate];
+   
     
     if ([arr[3] integerValue] >= 12) {
         self.imageView.image = [UIImage imageNamed:@"睡觉"];

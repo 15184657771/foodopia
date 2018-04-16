@@ -1,8 +1,8 @@
 //
-//  RecordTabViewController.h
+//  RecordInfoTabController.h
 //  BlueTooth
 //
-//  Created by Qian on 2018/4/2.
+//  Created by Qian on 2018/4/16.
 //  Copyright © 2018年 Chen. All rights reserved.
 //
 
@@ -14,9 +14,9 @@
 
 @end
 
-@interface RecordTabViewController : UIViewController
+@interface RecordInfoTabController : UIViewController
 
--(void)selectTab:(NSUInteger)index;
+@property (nonatomic, assign) NSInteger showTag;
 
 @property (nonatomic, assign)id delegate;
 

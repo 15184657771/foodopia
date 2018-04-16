@@ -113,7 +113,7 @@
 }
 
 - (void)contentViewDidEndDecelerating:(HealthScrollContentView *)contentView startIndex:(NSInteger)startIndex endIndex:(NSInteger)endIndex{
-//    self.findSegmentView.selectedIndex = endIndex;
+    //    self.findSegmentView.selectedIndex = endIndex;
     self.showTag = endIndex;
     [self viewChange];
 }

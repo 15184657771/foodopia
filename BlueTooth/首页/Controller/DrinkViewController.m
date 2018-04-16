@@ -30,7 +30,6 @@
     [super viewDidLoad];
     self.view.backgroundColor = [UIColor whiteColor];
     
-//    [self createDBTable];
     
     [self createUI];
     
@@ -56,13 +55,15 @@
     //查询当天的数据
     self.lookForArr = [db jq_lookupTable:@"drink" dicOrModel:[DrinkModel class] whereFormat:@"where day = '%@' and year = '%@' and month = '%@'",arr[2],arr[0],arr[1]];
     NSLog(@"where day:%@", self.lookForArr);
-    DrinkModel *model = self.lookForArr[0];
-    self.drinkView = [[RecordDrinkView alloc]initWithFrame:CGRectMake(18, CGRectGetMaxY(self.drinkBtn.frame) + 30, SCREEN_WIDTH - 18 * 2, 167 * HeightNum) andCount:[model.count integerValue]];
-    [self.view addSubview:self.drinkView];
     
-    for (DrinkModel *model in self.lookForArr) {
-        NSLog(@"drink day:%@-%@-%@", model.year,model.month,model.day);
-    }   
+    if (self.lookForArr.count > 0) {
+        DrinkModel *model = self.lookForArr[0];
+        self.drinkView = [[RecordDrinkView alloc]initWithFrame:CGRectMake(18, CGRectGetMaxY(self.drinkBtn.frame) + 30, SCREEN_WIDTH - 18 * 2, 167 * HeightNum) andCount:[model.count integerValue]];
+        [self.view addSubview:self.drinkView];
+    } else {
+        self.drinkView = [[RecordDrinkView alloc]initWithFrame:CGRectMake(18, CGRectGetMaxY(self.drinkBtn.frame) + 30, SCREEN_WIDTH - 18 * 2, 167 * HeightNum) andCount:0];
+        [self.view addSubview:self.drinkView];
+    }
 
     UITapGestureRecognizer *drinkTap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(drinkTapAction)];
     [self.drinkView addGestureRecognizer:drinkTap];
@@ -77,15 +78,13 @@
 - (void)drinkBtnAction:(UIButton *)sender {
     NSArray *arr = [self getDate];
     JQFMDB *db = [JQFMDB shareDatabase];
-    DrinkModel *model = self.lookForArr[0];
-    NSString *count = [NSString stringWithFormat:@"%ld",[model.count integerValue] + 1];
-    
     if (self.lookForArr.count > 0) {   //如果今天有数据， 更新count+1
+        DrinkModel *model = self.lookForArr[0];
+        NSString *count = [NSString stringWithFormat:@"%ld",[model.count integerValue] + 1];
         [db jq_updateTable:@"drink" dicOrModel:@{@"count":count} whereFormat:@"WHERE day = '%@' and year = '%@' and month = '%@' FROM drink)",arr[2],arr[0],arr[1]];
     } else {
         DrinkModel *model = [self getDrinkModel];
         model.count = @"1";
-        
         if (![db jq_isExistTable:@"drink"]) {  //如果没有 drink 表  创建
             if ([db jq_createTable:@"drink" dicOrModel:model]) {
                 NSLog(@"创建成功！！！");

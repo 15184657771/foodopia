@@ -116,16 +116,15 @@
     
     JQFMDB *db = [JQFMDB shareDatabase];
     NSArray *lookForArr = [db jq_lookupTable:@"drink" dicOrModel:[DrinkModel class] whereFormat:@"where count = (select max(count) from drink)"];
-    
-    
-    NSLog(@"%@",lookForArr);
+    NSArray *lookForArr2 = [db jq_lookupTable:@"drink" dicOrModel:[DrinkModel class] whereFormat:@"where count = (select min(count) from drink)"];
+
     if (lookForArr.count > 0) {
         DrinkModel *model1 = lookForArr[0];  //最多
+        DrinkModel *model2 = lookForArr2[0];  //最少
         
         arr2 = [NSArray arrayWithObjects:[NSString stringWithFormat:@"%@/%@/%@达成",model1.year,model1.month,model1.day],[NSString stringWithFormat:@"%@/%@/%@达成",model1.year,model1.month,model1.day],@"目标偏差+250ml", nil];
-        arr3 = [NSArray arrayWithObjects:model1.count,model1.count,@"500ml", nil];
+        arr3 = [NSArray arrayWithObjects:[NSString stringWithFormat:@"%ldml",[model1.count integerValue] * 250],[NSString stringWithFormat:@"%ldml",[model2.count integerValue] * 250],@"500ml", nil];
     }
-    
     
 }
 - (void)changeTypeAction:(UISegmentedControl *)sgc{
@@ -172,9 +171,9 @@
         cell = [[InfoTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"InfoTableViewCell"];
     }
     [cell setSelectionStyle:UITableViewCellSelectionStyleNone];
-    cell.bigLabel.text = @"睡得最多";
-    cell.dateLabel.text = @"2017/09/28 达成";
-    cell.timeLabel.text = @"12h 34min";
+    cell.bigLabel.text = arr1[indexPath.row];
+    cell.dateLabel.text = arr2[indexPath.row];
+    cell.timeLabel.text = arr3[indexPath.row];
     return cell;
 }
 
