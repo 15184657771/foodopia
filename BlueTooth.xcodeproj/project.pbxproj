@@ -28,6 +28,7 @@
 		7439F191205232F500F3DCA5 /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7439F190205232F500F3DCA5 /* MainViewController.m */; };
 		7439F1982054D7B900F3DCA5 /* MainView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7439F1972054D7B900F3DCA5 /* MainView.m */; };
 		7439F19C205520F800F3DCA5 /* TypeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7439F19B205520F800F3DCA5 /* TypeViewController.m */; };
+		744DA4CE2084452D0041D9E7 /* ErectView.m in Sources */ = {isa = PBXBuildFile; fileRef = 744DA4CD2084452D0041D9E7 /* ErectView.m */; };
 		747D1DB52050DBA400CF0D2A /* Toast.m in Sources */ = {isa = PBXBuildFile; fileRef = 747D1DB32050DBA400CF0D2A /* Toast.m */; };
 		748B02AD2077297D00606719 /* BaseView.m in Sources */ = {isa = PBXBuildFile; fileRef = 748B02AC2077297D00606719 /* BaseView.m */; };
 		A646DE1B20720B77003A29D8 /* ChooseRecordController.m in Sources */ = {isa = PBXBuildFile; fileRef = A646DE1A20720B77003A29D8 /* ChooseRecordController.m */; };
@@ -112,6 +113,8 @@
 		7439F1972054D7B900F3DCA5 /* MainView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MainView.m; sourceTree = "<group>"; };
 		7439F19A205520F800F3DCA5 /* TypeViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TypeViewController.h; sourceTree = "<group>"; };
 		7439F19B205520F800F3DCA5 /* TypeViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TypeViewController.m; sourceTree = "<group>"; };
+		744DA4CC2084452D0041D9E7 /* ErectView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ErectView.h; sourceTree = "<group>"; };
+		744DA4CD2084452D0041D9E7 /* ErectView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ErectView.m; sourceTree = "<group>"; };
 		747D1DB32050DBA400CF0D2A /* Toast.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Toast.m; sourceTree = "<group>"; };
 		747D1DB42050DBA400CF0D2A /* Toast.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Toast.h; sourceTree = "<group>"; };
 		748B02AB2077297D00606719 /* BaseView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BaseView.h; sourceTree = "<group>"; };
@@ -303,6 +306,8 @@
 			children = (
 				748B02AB2077297D00606719 /* BaseView.h */,
 				748B02AC2077297D00606719 /* BaseView.m */,
+				744DA4CC2084452D0041D9E7 /* ErectView.h */,
+				744DA4CD2084452D0041D9E7 /* ErectView.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -644,6 +649,7 @@
 				A646DE1E207220BE003A29D8 /* RecordTabViewController.m in Sources */,
 				A646DE2420722A96003A29D8 /* DrinkViewController.m in Sources */,
 				74369E14204FEEEB007CC3BF /* AppDelegate.m in Sources */,
+				744DA4CE2084452D0041D9E7 /* ErectView.m in Sources */,
 				7439F191205232F500F3DCA5 /* MainViewController.m in Sources */,
 				A646DE2720722AA6003A29D8 /* SleepViewController.m in Sources */,
 				7436B64920737DAD0029BA71 /* InforViewController.m in Sources */,
@@ -805,7 +811,7 @@
 				INFOPLIST_FILE = BlueTooth/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = cn.akeso.doctor;
+				PRODUCT_BUNDLE_IDENTIFIER = cn.akeso.foodopia;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -823,7 +829,7 @@
 				INFOPLIST_FILE = BlueTooth/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = cn.akeso.doctor;
+				PRODUCT_BUNDLE_IDENTIFIER = cn.akeso.foodopia;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};

@@ -11,6 +11,8 @@
 #import "InfoTableViewCell.h"
 #import <JQFMDB/JQFMDB.h>
 #import "DrinkModel.h"
+#import "ErectView.h"
+
 
 @interface DrinkHighViewController ()<UITableViewDelegate,UITableViewDataSource>
 
@@ -19,6 +21,8 @@
 @property (nonatomic, strong) UITableView *tableView;
 
 @property (nonatomic, strong) UISegmentedControl *segmentedControl;
+
+@property (nonatomic, strong) ErectView *erectView;
 
 @end
 
@@ -71,7 +75,13 @@
         make.height.equalTo(@(285 * HeightNum));
     }];
     
-    _segmentedControl = [[UISegmentedControl alloc] initWithItems:@[@"日",@"月",@"年"]];
+    self.erectView = [[ErectView alloc]initWithFrame:CGRectMake(0, 85 * HeightNum, SCREEN_WIDTH, 200 * HeightNum)];
+    [self.topView addSubview:self.erectView];
+    self.erectView.maxValue = 3000;
+    [self.erectView setVerticalDaySource:@[@"5.2",@"5.3",@"5.5"] horizontalValueArray:@[[NSNumber numberWithFloat:1000],[NSNumber numberWithFloat:1250],[NSNumber numberWithFloat:2000]]];
+    [self.erectView show];
+    
+    _segmentedControl = [[UISegmentedControl alloc] initWithItems:@[@"月",@"年"]];
     _segmentedControl.backgroundColor = [UIColor clearColor];
     _segmentedControl.momentary = NO;
     _segmentedControl.tintColor = RGB(173, 119, 205);
@@ -109,10 +119,12 @@
     
     
     NSLog(@"%@",lookForArr);
-    DrinkModel *model1 = lookForArr[0];  //最多
-    
-    arr2 = [NSArray arrayWithObjects:[NSString stringWithFormat:@"%@/%@/%@达成",model1.year,model1.month,model1.day],[NSString stringWithFormat:@"%@/%@/%@达成",model1.year,model1.month,model1.day],@"目标偏差+250ml", nil];
-    arr3 = [NSArray arrayWithObjects:model1.count,model1.count,@"500ml", nil];
+    if (lookForArr.count > 0) {
+        DrinkModel *model1 = lookForArr[0];  //最多
+        
+        arr2 = [NSArray arrayWithObjects:[NSString stringWithFormat:@"%@/%@/%@达成",model1.year,model1.month,model1.day],[NSString stringWithFormat:@"%@/%@/%@达成",model1.year,model1.month,model1.day],@"目标偏差+250ml", nil];
+        arr3 = [NSArray arrayWithObjects:model1.count,model1.count,@"500ml", nil];
+    }
     
     
 }
@@ -121,8 +133,6 @@
         case 0:
             break;
         case 1:
-            break;
-        case 2:
             break;
         default:
             break;
