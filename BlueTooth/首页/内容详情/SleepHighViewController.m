@@ -37,6 +37,19 @@
     NSArray *arr3;
 }
 
+- (NSMutableArray *)timeArr {
+    if (!_timeArr) {
+        _timeArr = [NSMutableArray arrayWithCapacity:0];
+    }
+    return _timeArr;
+}
+
+- (NSMutableArray *)sleepArr {
+    if (!_sleepArr) {
+        _sleepArr = [NSMutableArray arrayWithCapacity:0];
+    }
+    return _sleepArr;
+}
 
 - (UIView *)topView {
     if (!_topView) {
@@ -138,7 +151,7 @@
         arr3 = [NSArray arrayWithObjects:[NSString stringWithFormat:@"%@h%@min",[model1.sleepTime substringWithRange:NSMakeRange(10, 2)],[model1.sleepTime substringWithRange:NSMakeRange(13, 2)]],[NSString stringWithFormat:@"%@h%@min",[model1.sleepTime substringWithRange:NSMakeRange(10, 2)],[model1.sleepTime substringWithRange:NSMakeRange(13, 2)]],@"8h/天", nil];
     } else {
         arr2 = [NSArray arrayWithObjects:@"2017/09/28达成",@"2018/01/14达成",@"今天睡得太少啦", nil];
-        arr3 = [NSArray arrayWithObjects:@"12h34min",@"4h%28min",@"8h/天", nil];
+        arr3 = [NSArray arrayWithObjects:@"12h34min",@"4h28min",@"8h/天", nil];
     }
     [self.tableView reloadData];
     

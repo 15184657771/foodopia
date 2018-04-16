@@ -38,6 +38,20 @@
     NSArray *arr3;
 }
 
+- (NSMutableArray *)timeArr {
+    if (!_timeArr) {
+        _timeArr = [NSMutableArray arrayWithCapacity:0];
+    }
+    return _timeArr;
+}
+
+- (NSMutableArray *)countArr {
+    if (!_countArr) {
+        _countArr = [NSMutableArray arrayWithCapacity:0];
+    }
+    return _countArr;
+}
+
 - (UIView *)topView {
     if (!_topView) {
         _topView = [[UIView alloc]init];

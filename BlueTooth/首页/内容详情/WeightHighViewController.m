@@ -37,6 +37,20 @@
     NSArray *arr3;
 }
 
+- (NSMutableArray *)timeArr {
+    if (!_timeArr) {
+        _timeArr = [NSMutableArray arrayWithCapacity:0];
+    }
+    return _timeArr;
+}
+
+- (NSMutableArray *)weightArr {
+    if (!_weightArr) {
+        _weightArr = [NSMutableArray arrayWithCapacity:0];
+    }
+    return _weightArr;
+}
+
 - (UIView *)topView {
     if (!_topView) {
         _topView = [[UIView alloc]init];
@@ -141,7 +155,7 @@
         WeightModel *model2 = lookForArr2[0]; //最轻
         
         arr2 = [NSArray arrayWithObjects:[NSString stringWithFormat:@"%@/%@/%@达成",model1.year,model1.month,model1.day],[NSString stringWithFormat:@"%@/%@/%@达成",model2.year,model2.month,model2.day],@"目标偏差+5.1kg", nil];
-        arr3 = [NSArray arrayWithObjects:model1.weight,model2.weight,@"50kg", nil];
+        arr3 = [NSArray arrayWithObjects:[NSString stringWithFormat:@"%@kg",model1.weight],[NSString stringWithFormat:@"%@kg",model2.weight],@"50kg", nil];
         
     } else {
         arr2 = [NSArray arrayWithObjects:@"2017/09/28达成",@"2018/01/14达成",@"目标偏差+5.1kg", nil];

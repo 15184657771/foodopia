@@ -82,31 +82,22 @@
     
     //查询当天的数据
     self.lookForArr = [db jq_lookupTable:@"weight" dicOrModel:[WeightModel class] whereFormat:@"where day = '%@'",arr[2]];
-    
+     self.baseView = [[BaseView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH - 18 * 2, 147 * HeightNum)];
+    [self.weightView addSubview:self.baseView];
     if (self.lookForArr.count > 0) {
         for (WeightModel *model in self.lookForArr) {
             [self.timeArr addObject:[NSString stringWithFormat:@"%@:%@",model.hour,model.second]];
-            [self.weightArr addObject:model.weight];
+            [self.weightArr addObject:[NSNumber numberWithFloat:[model.weight floatValue]]];
         }
-        self.baseView = [[BaseView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH - 18 * 2, 147 * HeightNum)];
-        [self.baseView setVerticalDaySource:self.timeArr horizontalValueArray:@[[NSNumber numberWithFloat:50],[NSNumber numberWithFloat:50.2],[NSNumber numberWithFloat:49.9]]];
+        [self.baseView setVerticalDaySource:self.timeArr horizontalValueArray:self.weightArr];
         [self.baseView show];
-        [self.weightView addSubview:self.baseView];
     } else {
-        
+        [self.baseView setVerticalDaySource:@[@"8:30",@"9:30",@"10.45"] horizontalValueArray:@[[NSNumber numberWithFloat:50],[NSNumber numberWithFloat:50.2],[NSNumber numberWithFloat:49.9]]];
+        [self.baseView show];
     }
-    
-    
-    
-    
-    
-    
-    
     UITapGestureRecognizer *weightTap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(weightTapAction)];
     [self.weightView addGestureRecognizer:weightTap];
-    
-    
-    
+   
 }
 
 - (void)txhRrettyRuler:(TXHRulerScrollView *)rulerScrollView {
