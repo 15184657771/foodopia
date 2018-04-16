@@ -24,6 +24,12 @@
 
 @property (nonatomic, strong) ErectView *erectView;
 
+@property (nonatomic, strong) NSArray *lookForDayArr;
+
+@property (nonatomic, strong) NSMutableArray *timeArr;
+
+@property (nonatomic, strong) NSMutableArray *countArr;
+
 @end
 
 @implementation DrinkHighViewController {
@@ -78,8 +84,23 @@
     self.erectView = [[ErectView alloc]initWithFrame:CGRectMake(0, 85 * HeightNum, SCREEN_WIDTH, 200 * HeightNum)];
     [self.topView addSubview:self.erectView];
     self.erectView.maxValue = 3000;
-    [self.erectView setVerticalDaySource:@[@"5.2",@"5.3",@"5.5"] horizontalValueArray:@[[NSNumber numberWithFloat:1000],[NSNumber numberWithFloat:1250],[NSNumber numberWithFloat:2000]]];
-    [self.erectView show];
+    
+    
+    NSArray *arr = [self getDate];
+    JQFMDB *db = [JQFMDB shareDatabase];
+    //查询当月的数据
+    self.lookForDayArr = [db jq_lookupTable:@"weight" dicOrModel:[DrinkModel class] whereFormat:@"where month = '%@'",arr[1]];
+    if (self.lookForDayArr.count > 0) {
+        for (DrinkModel *model in self.lookForDayArr) {
+            [self.timeArr addObject:[NSString stringWithFormat:@"%@:%@",model.hour,model.second]];
+            [self.countArr addObject:[NSNumber numberWithFloat:[model.count floatValue]]];
+        }
+        [self.erectView setVerticalDaySource:self.timeArr horizontalValueArray:self.countArr];
+        [self.erectView show];
+    } else {
+        [self.erectView setVerticalDaySource:@[@"2日",@"3日",@"5日"] horizontalValueArray:@[[NSNumber numberWithFloat:1000],[NSNumber numberWithFloat:1250],[NSNumber numberWithFloat:2000]]];
+        [self.erectView show];
+    }
     
     _segmentedControl = [[UISegmentedControl alloc] initWithItems:@[@"月",@"年"]];
     _segmentedControl.backgroundColor = [UIColor clearColor];
@@ -112,19 +133,23 @@
         }
     }];
     
-    arr1 = @[@"喝的最多",@"每日平均",@"我要喝够"];
+    arr1 = @[@"喝的最多",@"喝的最少",@"我要喝够"];
     
-    JQFMDB *db = [JQFMDB shareDatabase];
     NSArray *lookForArr = [db jq_lookupTable:@"drink" dicOrModel:[DrinkModel class] whereFormat:@"where count = (select max(count) from drink)"];
     NSArray *lookForArr2 = [db jq_lookupTable:@"drink" dicOrModel:[DrinkModel class] whereFormat:@"where count = (select min(count) from drink)"];
 
-    if (lookForArr.count > 0) {
+    if (lookForArr.count > 0 && lookForArr2.count > 0) {
         DrinkModel *model1 = lookForArr[0];  //最多
         DrinkModel *model2 = lookForArr2[0];  //最少
         
-        arr2 = [NSArray arrayWithObjects:[NSString stringWithFormat:@"%@/%@/%@达成",model1.year,model1.month,model1.day],[NSString stringWithFormat:@"%@/%@/%@达成",model1.year,model1.month,model1.day],@"目标偏差+250ml", nil];
+        arr2 = [NSArray arrayWithObjects:[NSString stringWithFormat:@"%@/%@/%@达成",model1.year,model1.month,model1.day],[NSString stringWithFormat:@"%@/%@/%@达成",model2.year,model2.month,model2.day],@"目标偏差+250ml", nil];
         arr3 = [NSArray arrayWithObjects:[NSString stringWithFormat:@"%ldml",[model1.count integerValue] * 250],[NSString stringWithFormat:@"%ldml",[model2.count integerValue] * 250],@"500ml", nil];
+    } else {
+        arr2 = [NSArray arrayWithObjects:@"2017/09/28达成",@"2018/01/14达成",@"目标偏差+250ml", nil];
+        arr3 = [NSArray arrayWithObjects:@"2500ml",@"1000ml",@"1250ml", nil];
     }
+    
+    [self.tableView reloadData];
     
 }
 - (void)changeTypeAction:(UISegmentedControl *)sgc{
@@ -133,11 +158,37 @@
     JQFMDB *db = [JQFMDB shareDatabase];
     NSArray *monthArr = [db jq_lookupTable:@"drink" dicOrModel:[DrinkModel class] whereFormat:@"where month = '%@'",dateArr[1]]; //1.当月所有数据
     NSArray *yearArr = [db jq_lookupTable:@"drink" dicOrModel:[DrinkModel class] whereFormat:@"where year = '%@'",dateArr[0]];  //1.当年所有数据
-    
+    [self.timeArr removeAllObjects];
+    [self.countArr removeAllObjects];
     switch (sgc.selectedSegmentIndex) {
         case 0:
+            
+            if (monthArr.count > 0) {
+                for (DrinkModel *model in monthArr) {
+                    [self.timeArr addObject:[NSString stringWithFormat:@"%@日",model.day]];
+                    [self.countArr addObject:[NSNumber numberWithFloat:[model.count floatValue] * 250]];
+                }
+                [self.erectView setVerticalDaySource:self.timeArr horizontalValueArray:self.countArr];
+                [self.erectView show];
+            } else {
+                [self.erectView setVerticalDaySource:@[@"2日",@"3日",@"5日"] horizontalValueArray:@[[NSNumber numberWithFloat:1000],[NSNumber numberWithFloat:1250],[NSNumber numberWithFloat:2000]]];
+                [self.erectView show];
+            }
+            
             break;
         case 1:
+            if (yearArr.count > 0) {
+                for (DrinkModel *model in monthArr) {
+                    [self.timeArr addObject:[NSString stringWithFormat:@"%@月",model.month]];
+                    [self.countArr addObject:[NSNumber numberWithFloat:[model.count floatValue] * 250]];
+                }
+                [self.erectView setVerticalDaySource:self.timeArr horizontalValueArray:self.countArr];
+                [self.erectView show];
+            } else {
+                [self.erectView setVerticalDaySource:@[@"2月",@"3月",@"5月"] horizontalValueArray:@[[NSNumber numberWithFloat:1000],[NSNumber numberWithFloat:1250],[NSNumber numberWithFloat:2000]]];
+                [self.erectView show];
+            }
+            
             break;
         default:
             break;

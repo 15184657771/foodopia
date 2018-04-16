@@ -143,10 +143,12 @@
         arr2 = [NSArray arrayWithObjects:[NSString stringWithFormat:@"%@/%@/%@达成",model1.year,model1.month,model1.day],[NSString stringWithFormat:@"%@/%@/%@达成",model2.year,model2.month,model2.day],@"目标偏差+5.1kg", nil];
         arr3 = [NSArray arrayWithObjects:model1.weight,model2.weight,@"50kg", nil];
         
-        [self.tableView reloadData];
+    } else {
+        arr2 = [NSArray arrayWithObjects:@"2017/09/28达成",@"2018/01/14达成",@"目标偏差+5.1kg", nil];
+        arr3 = [NSArray arrayWithObjects:@"57.8kg",@"53.4kg",@"50.0kg", nil];
     }
    
-    
+    [self.tableView reloadData];
     
     
 }
@@ -165,7 +167,7 @@
     switch (sgc.selectedSegmentIndex) {
         case 0:
             if (dayArr.count > 0) {
-                for (WeightModel *model in self.lookForDayArr) {
+                for (WeightModel *model in dayArr) {
                     [self.timeArr addObject:[NSString stringWithFormat:@"%@:%@",model.hour,model.second]];
                     [self.weightArr addObject:[NSNumber numberWithFloat:[model.weight floatValue]]];
                 }
@@ -178,7 +180,7 @@
             break;
         case 1:
             if (monthArr.count > 0) {
-                for (WeightModel *model in self.lookForDayArr) {
+                for (WeightModel *model in monthArr) {
                     [self.timeArr addObject:[NSString stringWithFormat:@"%@日",model.day]];
                     [self.weightArr addObject:[NSNumber numberWithFloat:[model.weight floatValue]]];
                 }
@@ -191,7 +193,7 @@
             break;
         case 2:
             if (yearArr.count > 0) {
-                for (WeightModel *model in self.lookForDayArr) {
+                for (WeightModel *model in yearArr) {
                     [self.timeArr addObject:[NSString stringWithFormat:@"%@月",model.month]];
                     [self.weightArr addObject:[NSNumber numberWithFloat:[model.weight floatValue]]];
                 }

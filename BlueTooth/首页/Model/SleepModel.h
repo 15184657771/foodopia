@@ -24,6 +24,8 @@
 @property (nonatomic, copy)NSString *second;
 /**睡眠时间  */
 @property (nonatomic, copy)NSString *sleepTime;
+/**时间戳*/
+@property (nonatomic, copy)NSString *time;
 
 //是不是完整的睡眠时间
 @property (nonatomic, copy)NSString *isAll;

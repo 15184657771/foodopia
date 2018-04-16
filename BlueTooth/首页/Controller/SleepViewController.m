@@ -64,7 +64,7 @@
     
    
     
-    if ([arr[3] integerValue] >= 12) {
+    if ([arr[3] integerValue] >= 18) {
         self.imageView.image = [UIImage imageNamed:@"睡觉"];
         [self.button setTitle:@"去 睡 觉" forState:UIControlStateNormal];
     } else {
@@ -78,7 +78,7 @@
     [self.view addSubview:self.recordView];
     
     JQFMDB *db = [JQFMDB shareDatabase];
-    NSArray *array = [db jq_lookupTable:@"drink" dicOrModel:[SleepModel class] whereFormat:@"where isAll = 'YES'"];
+    NSArray *array = [db jq_lookupTable:@"sleep" dicOrModel:[SleepModel class] whereFormat:@"where isAll = 'YES'"];
     
     if (array.count > 0) {
         SleepModel *model = array[array.count - 1];
@@ -121,10 +121,13 @@
             SleepModel *model = arr[arr.count - 1]; //记录的睡觉的时间
             NSString *startStr = [NSString stringWithFormat:@"%@-%@-%@ %@:%@:%@",model.year,model.month,model.day,model.hour,model.min,model.second];
             
+            NSDate* dat = [NSDate dateWithTimeIntervalSinceNow:0];
+            NSTimeInterval a = [dat timeIntervalSince1970] * 1000;
+            NSString *time = [NSString stringWithFormat:@"%f",a - [model.time floatValue]];
+            
             NSDateComponents *cmps = [self pleaseInsertStarTimeo:startStr andInsertEndTime:endStr];
             NSString *sleepStr = [NSString stringWithFormat:@"%ld-%ld-%ld %ld:%ld:%ld",cmps.year,cmps.month,cmps.day,cmps.hour,cmps.minute,cmps.second];
-            
-            [db jq_updateTable:@"sleep" dicOrModel:@{@"sleepTime":sleepStr,@"isAll":@"YES"} whereFormat:@"WHERE rowid = (SELECT max(rowid) FROM sleep)"];
+            [db jq_updateTable:@"sleep" dicOrModel:@{@"time":time,@"sleepTime":sleepStr,@"isAll":@"YES"} whereFormat:@"WHERE rowid = (SELECT max(rowid) FROM sleep)"];
             
         }
         
@@ -135,7 +138,10 @@
         SleepModel *model = [self getSleepModel];
         model.sleepTime = [NSString stringWithFormat:@"%@-%@-%@ %@:%@:%@",model.year,model.month,model.day,model.hour,model.min,model.second];
         model.isAll = @"NO";
-       
+        NSDate* dat = [NSDate dateWithTimeIntervalSinceNow:0];
+        NSTimeInterval a=[dat timeIntervalSince1970]*1000;
+        model.time = [NSString stringWithFormat:@"%f", a];
+        
         if (![db jq_isExistTable:@"sleep"]) {  //如果没有 drink 表  创建
             dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
                 [db jq_inDatabase:^{

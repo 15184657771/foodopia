@@ -23,9 +23,20 @@
 
 @property (nonatomic, strong) ErectView *erectView;
 
+@property (nonatomic, strong) NSArray *lookForDayArr;
+
+@property (nonatomic, strong) NSMutableArray *timeArr;
+
+@property (nonatomic, strong) NSMutableArray *sleepArr;
+
 @end
 
-@implementation SleepHighViewController
+@implementation SleepHighViewController {
+    NSArray *arr1;
+    NSArray *arr2;
+    NSArray *arr3;
+}
+
 
 - (UIView *)topView {
     if (!_topView) {
@@ -68,8 +79,22 @@
     self.erectView = [[ErectView alloc]initWithFrame:CGRectMake(0, 85 * HeightNum, SCREEN_WIDTH, 200 * HeightNum)];
     [self.topView addSubview:self.erectView];
     self.erectView.maxValue = 12;
-    [self.erectView setVerticalDaySource:@[@"5.2",@"5.3",@"5.5"] horizontalValueArray:@[[NSNumber numberWithFloat:9.1],[NSNumber numberWithFloat:7.2],[NSNumber numberWithFloat:10.2]]];
-    [self.erectView show];
+    
+    NSArray *arr = [self getDate];
+    JQFMDB *db = [JQFMDB shareDatabase];
+    //查询当月的数据
+    self.lookForDayArr = [db jq_lookupTable:@"sleep" dicOrModel:[SleepModel class] whereFormat:@"where month = '%@'",arr[1]];
+    if (self.lookForDayArr.count > 0) {
+        for (SleepModel *model in self.lookForDayArr) {
+            [self.timeArr addObject:[NSString stringWithFormat:@"%@日",model.day]];
+            [self.sleepArr addObject:[NSNumber numberWithFloat:[model.time floatValue] / 60 * 60]];
+        }
+        [self.erectView setVerticalDaySource:self.timeArr horizontalValueArray:self.sleepArr];
+        [self.erectView show];
+    } else {
+        [self.erectView setVerticalDaySource:@[@"2日",@"3日",@"5日"] horizontalValueArray:@[[NSNumber numberWithFloat:9.1],[NSNumber numberWithFloat:7.2],[NSNumber numberWithFloat:10.2]]];
+        [self.erectView show];
+    }
     
     _segmentedControl = [[UISegmentedControl alloc] initWithItems:@[@"月",@"年"]];
     _segmentedControl.backgroundColor = [UIColor clearColor];
@@ -90,9 +115,7 @@
         make.top.equalTo(@30);
         make.height.equalTo(@28);
     }];
-    
-    
-    
+
     [self.view addSubview:self.tableView];
     [self.tableView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(ws.topView.mas_bottom);
@@ -104,17 +127,56 @@
         }
     }];
     
+    arr1 = @[@"睡的最多",@"睡的最少",@"我要睡够"];
+    
+    NSArray *lookForArr = [db jq_lookupTable:@"sleep" dicOrModel:[SleepModel class] whereFormat:@"where count = (select max(time) from sleep)"];
+    NSArray *lookForArr2 = [db jq_lookupTable:@"drink" dicOrModel:[SleepModel class] whereFormat:@"where count = (select min(time) from sleep)"];
+    if (lookForArr.count > 0 && lookForArr2.count > 0) {
+        SleepModel *model1 = lookForArr[0];  //最多
+        SleepModel *model2 = lookForArr2[0];  //最少
+        arr2 = [NSArray arrayWithObjects:[NSString stringWithFormat:@"%@/%@/%@达成",model1.year,model1.month,model1.day],[NSString stringWithFormat:@"%@/%@/%@达成",model2.year,model2.month,model2.day],@"今天睡得太少啦", nil];
+        arr3 = [NSArray arrayWithObjects:[NSString stringWithFormat:@"%@h%@min",[model1.sleepTime substringWithRange:NSMakeRange(10, 2)],[model1.sleepTime substringWithRange:NSMakeRange(13, 2)]],[NSString stringWithFormat:@"%@h%@min",[model1.sleepTime substringWithRange:NSMakeRange(10, 2)],[model1.sleepTime substringWithRange:NSMakeRange(13, 2)]],@"8h/天", nil];
+    } else {
+        arr2 = [NSArray arrayWithObjects:@"2017/09/28达成",@"2018/01/14达成",@"今天睡得太少啦", nil];
+        arr3 = [NSArray arrayWithObjects:@"12h34min",@"4h%28min",@"8h/天", nil];
+    }
+    [self.tableView reloadData];
+    
 }
 - (void)changeTypeAction:(UISegmentedControl *)sgc{
     NSArray *dateArr = [self getDate];
     JQFMDB *db = [JQFMDB shareDatabase];
     NSArray *monthArr = [db jq_lookupTable:@"sleep" dicOrModel:[SleepModel class] whereFormat:@"where month = '%@'",dateArr[1]]; //1.当月所有数据
     NSArray *yearArr = [db jq_lookupTable:@"sleep" dicOrModel:[SleepModel class] whereFormat:@"where year = '%@'",dateArr[0]];  //1.当年所有数据
-    
+    [self.timeArr removeAllObjects];
+    [self.sleepArr removeAllObjects];
     switch (sgc.selectedSegmentIndex) {
         case 0:
+            if (monthArr.count > 0) {
+                for (SleepModel *model in monthArr) {
+                    [self.timeArr addObject:[NSString stringWithFormat:@"%@日",model.day]];
+                    [self.sleepArr addObject:[NSNumber numberWithFloat:[model.time floatValue] / 60 * 60]];
+                }
+                [self.erectView setVerticalDaySource:self.timeArr horizontalValueArray:self.sleepArr];
+                [self.erectView show];
+            } else {
+                [self.erectView setVerticalDaySource:@[@"2日",@"3日",@"5日"] horizontalValueArray:@[[NSNumber numberWithFloat:9.1],[NSNumber numberWithFloat:7.2],[NSNumber numberWithFloat:10.2]]];
+                [self.erectView show];
+            }
+            
             break;
         case 1:
+            if (yearArr.count > 0) {
+                for (SleepModel *model in yearArr) {
+                    [self.timeArr addObject:[NSString stringWithFormat:@"%@日",model.day]];
+                    [self.sleepArr addObject:[NSNumber numberWithFloat:[model.time floatValue] / 60 * 60]];
+                }
+                [self.erectView setVerticalDaySource:self.timeArr horizontalValueArray:self.sleepArr];
+                [self.erectView show];
+            } else {
+                [self.erectView setVerticalDaySource:@[@"2月",@"3月",@"5月"] horizontalValueArray:@[[NSNumber numberWithFloat:9.1],[NSNumber numberWithFloat:7.2],[NSNumber numberWithFloat:10.2]]];
+                [self.erectView show];
+            }
             break;
         default:
             break;
@@ -154,9 +216,9 @@
         cell = [[InfoTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"InfoTableViewCell"];
     }
     [cell setSelectionStyle:UITableViewCellSelectionStyleNone];
-    cell.bigLabel.text = @"睡得最多";
-    cell.dateLabel.text = @"2017/09/28 达成";
-    cell.timeLabel.text = @"12h 34min";
+    cell.bigLabel.text = arr1[indexPath.row];
+    cell.dateLabel.text = arr2[indexPath.row];
+    cell.timeLabel.text = arr3[indexPath.row];
     return cell;
 }
 
