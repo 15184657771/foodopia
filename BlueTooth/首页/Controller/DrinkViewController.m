@@ -54,9 +54,10 @@
     JQFMDB *db = [JQFMDB shareDatabase];
     
     //查询当天的数据
-    self.lookForArr = [db jq_lookupTable:@"drink" dicOrModel:[DrinkModel class] whereFormat:@"where day = '%@'",arr[2]];
+    self.lookForArr = [db jq_lookupTable:@"drink" dicOrModel:[DrinkModel class] whereFormat:@"where day = '%@' and year = '%@' and month = '%@'",arr[2],arr[0],arr[1]];
     NSLog(@"where day:%@", self.lookForArr);
-    self.drinkView = [[RecordDrinkView alloc]initWithFrame:CGRectMake(18, CGRectGetMaxY(self.drinkBtn.frame) + 30, SCREEN_WIDTH - 18 * 2, 167 * HeightNum) andCount:self.lookForArr.count];
+    DrinkModel *model = self.lookForArr[0];
+    self.drinkView = [[RecordDrinkView alloc]initWithFrame:CGRectMake(18, CGRectGetMaxY(self.drinkBtn.frame) + 30, SCREEN_WIDTH - 18 * 2, 167 * HeightNum) andCount:[model.count integerValue]];
     [self.view addSubview:self.drinkView];
     
     for (DrinkModel *model in self.lookForArr) {
@@ -74,26 +75,26 @@
 }
 #pragma mark -- button click methods
 - (void)drinkBtnAction:(UIButton *)sender {
-    DrinkModel *model = [self getDrinkModel];
-    model.count = 1;
- 
+    NSArray *arr = [self getDate];
     JQFMDB *db = [JQFMDB shareDatabase];
-    if (![db jq_isExistTable:@"drink"]) {  //如果没有 drink 表  创建
-        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-            [db jq_inDatabase:^{
-                if ([db jq_createTable:@"drink" dicOrModel:model]) {
-                    NSLog(@"创建成功！！！");
-                }
-            }];
-        });
-    } else { //有表  直接插入
-        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-            [db jq_inDatabase:^{
-                if ([db jq_insertTable:@"drink" dicOrModel:model]) {
-                    NSLog(@"插入成功！！！");
-                }
-            }];
-        });
+    DrinkModel *model = self.lookForArr[0];
+    NSString *count = [NSString stringWithFormat:@"%ld",[model.count integerValue] + 1];
+    
+    if (self.lookForArr.count > 0) {   //如果今天有数据， 更新count+1
+        [db jq_updateTable:@"drink" dicOrModel:@{@"count":count} whereFormat:@"WHERE day = '%@' and year = '%@' and month = '%@' FROM drink)",arr[2],arr[0],arr[1]];
+    } else {
+        DrinkModel *model = [self getDrinkModel];
+        model.count = @"1";
+        
+        if (![db jq_isExistTable:@"drink"]) {  //如果没有 drink 表  创建
+            if ([db jq_createTable:@"drink" dicOrModel:model]) {
+                NSLog(@"创建成功！！！");
+            }
+        } else { //有表  直接插入
+            if ([db jq_insertTable:@"drink" dicOrModel:model]) {
+                NSLog(@"插入成功！！！");
+            }
+        }
     }
 }
 

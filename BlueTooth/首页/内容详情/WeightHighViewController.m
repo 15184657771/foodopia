@@ -10,6 +10,9 @@
 #import "UIColor+Hex.h"
 #import "InfoTableViewCell.h"
 #import "BaseView.h"
+#import <JQFMDB/JQFMDB.h>
+#import "WeightModel.h"
+
 @interface WeightHighViewController ()<UITableViewDelegate,UITableViewDataSource>
 
 @property (nonatomic, strong) UIView *topView;
@@ -21,7 +24,11 @@
 @property (nonatomic, strong) BaseView *baseView;
 @end
 
-@implementation WeightHighViewController
+@implementation WeightHighViewController {
+    NSArray *arr1;
+    NSArray *arr2;
+    NSArray *arr3;
+}
 
 - (UIView *)topView {
     if (!_topView) {
@@ -101,6 +108,22 @@
             make.bottom.equalTo(ws.view);
         }
     }];
+    
+    arr1 = @[@"目前最重",@"目前最轻",@"我想变成"];
+    
+    JQFMDB *db = [JQFMDB shareDatabase];
+    NSArray *lookForArr = [db jq_lookupTable:@"weight" dicOrModel:[WeightModel class] whereFormat:@"where weight = (select max(weight) from weight)"];
+    NSArray *lookForArr2 = [db jq_lookupTable:@"weight" dicOrModel:[WeightModel class] whereFormat:@"where weight = (select min(weight) from weight)"];
+    
+    NSLog(@"%@",lookForArr);
+    WeightModel *model1 = lookForArr[0];  //最重
+    WeightModel *model2 = lookForArr2[0]; //最轻
+
+    arr2 = [NSArray arrayWithObjects:[NSString stringWithFormat:@"%@/%@/%@达成",model1.year,model1.month,model1.day],[NSString stringWithFormat:@"%@/%@/%@达成",model2.year,model2.month,model2.day],@"目标偏差+5.1kg", nil];
+    arr3 = [NSArray arrayWithObjects:model1.weight,model2.weight,@"50kg", nil];
+    
+    [self.tableView reloadData];
+    
 }
 - (void)changeTypeAction:(UISegmentedControl *)sgc{
     switch (sgc.selectedSegmentIndex) {
@@ -148,9 +171,9 @@
         cell = [[InfoTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"InfoTableViewCell"];
     }
     [cell setSelectionStyle:UITableViewCellSelectionStyleNone];
-    cell.bigLabel.text = @"睡得最多";
-    cell.dateLabel.text = @"2017/09/28 达成";
-    cell.timeLabel.text = @"12h 34min";
+    cell.bigLabel.text = arr1[indexPath.row];
+    cell.dateLabel.text = arr2[indexPath.row];
+    cell.timeLabel.text = arr3[indexPath.row];
     return cell;
 }
 

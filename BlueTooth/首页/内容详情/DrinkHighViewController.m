@@ -9,6 +9,8 @@
 #import "DrinkHighViewController.h"
 #import "UIColor+Hex.h"
 #import "InfoTableViewCell.h"
+#import <JQFMDB/JQFMDB.h>
+#import "DrinkModel.h"
 
 @interface DrinkHighViewController ()<UITableViewDelegate,UITableViewDataSource>
 
@@ -20,7 +22,11 @@
 
 @end
 
-@implementation DrinkHighViewController
+@implementation DrinkHighViewController {
+    NSArray *arr1;
+    NSArray *arr2;
+    NSArray *arr3;
+}
 
 - (UIView *)topView {
     if (!_topView) {
@@ -95,6 +101,19 @@
             make.bottom.equalTo(ws.view);
         }
     }];
+    
+    arr1 = @[@"喝的最多",@"每日平均",@"我要喝够"];
+    
+    JQFMDB *db = [JQFMDB shareDatabase];
+    NSArray *lookForArr = [db jq_lookupTable:@"drink" dicOrModel:[DrinkModel class] whereFormat:@"where count = (select max(count) from drink)"];
+    
+    
+    NSLog(@"%@",lookForArr);
+    DrinkModel *model1 = lookForArr[0];  //最多
+    
+    arr2 = [NSArray arrayWithObjects:[NSString stringWithFormat:@"%@/%@/%@达成",model1.year,model1.month,model1.day],[NSString stringWithFormat:@"%@/%@/%@达成",model1.year,model1.month,model1.day],@"目标偏差+250ml", nil];
+    arr3 = [NSArray arrayWithObjects:model1.count,model1.count,@"500ml", nil];
+    
     
 }
 - (void)changeTypeAction:(UISegmentedControl *)sgc{

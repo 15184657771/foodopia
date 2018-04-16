@@ -23,6 +23,6 @@
 /**秒  ps: 40*/
 @property (nonatomic, copy)NSString *second;
 /**杯数  ps: 1 杯*/
-@property (nonatomic, assign)NSInteger count;
+@property (nonatomic, copy)NSString *count;
 
 @end
