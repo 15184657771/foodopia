@@ -20,6 +20,9 @@
 /**睡觉按钮*/
 @property (nonatomic, strong) UIButton *sleepBtn;
 
+@property (nonatomic, strong) UILabel *weightLabel;
+@property (nonatomic, strong) UILabel *drinkLabel;
+@property (nonatomic, strong) UILabel *sleepLabel;
 @end
 
 @implementation ChooseRecordController
@@ -30,8 +33,6 @@
     if (!_weightBtn) {
         _weightBtn = [UIButton buttonWithType:UIButtonTypeCustom];
         [_weightBtn setImage:[UIImage imageNamed:@"h2"] forState:UIControlStateNormal];
-        [_weightBtn setTitle:@"体重" forState:UIControlStateNormal];
-        
     }
     [_weightBtn addTarget:self action:@selector(weigthBtnAction:) forControlEvents:UIControlEventTouchUpInside];
     return _weightBtn;
@@ -51,14 +52,45 @@
 - (UIButton *)sleepBtn {
     if (!_sleepBtn) {
         _sleepBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-        [_sleepBtn setImage:[UIImage imageNamed:@"h2"] forState:UIControlStateNormal];
-        [_sleepBtn setTitle:@"体重" forState:UIControlStateNormal];
+        [_sleepBtn setImage:[UIImage imageNamed:@"h3"] forState:UIControlStateNormal];
+        [_sleepBtn setTitle:@"睡眠" forState:UIControlStateNormal];
         
     }
     [_sleepBtn addTarget:self action:@selector(sleepBtnAction:) forControlEvents:UIControlEventTouchUpInside];
     return _sleepBtn;
 }
 
+- (UILabel *)weightLabel {
+    if (!_weightLabel) {
+        _weightLabel = [[UILabel alloc]init];
+        _weightLabel.text = @"体重";
+        _weightLabel.textColor = RGB(17, 17, 17);
+        _weightLabel.font = [UIFont systemFontOfSize:16];
+        _weightLabel.textAlignment = NSTextAlignmentCenter;
+    }
+    return _weightLabel;
+}
+
+- (UILabel *)drinkLabel {
+    if (!_drinkLabel) {
+        _drinkLabel = [[UILabel alloc]init];
+        _drinkLabel.text = @"喝水";
+        _drinkLabel.textColor = RGB(17, 17, 17);
+        _drinkLabel.font = [UIFont systemFontOfSize:16];
+        _drinkLabel.textAlignment = NSTextAlignmentCenter;
+    }
+    return _drinkLabel;
+}
+- (UILabel *)sleepLabel {
+    if (!_sleepLabel) {
+        _sleepLabel = [[UILabel alloc]init];
+        _sleepLabel.text = @"睡觉";
+        _sleepLabel.textColor = RGB(17, 17, 17);
+        _sleepLabel.font = [UIFont systemFontOfSize:16];
+        _sleepLabel.textAlignment = NSTextAlignmentCenter;
+    }
+    return _sleepLabel;
+}
 
 #pragma mark -- lifeCycle methods
 - (void)viewDidLoad {
@@ -82,7 +114,7 @@
     [self.backView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.right.equalTo(self.view);
         make.bottom.equalTo(@20);
-        make.height.equalTo(@(250 * WidthNum));
+        make.height.equalTo(@(230 * WidthNum));
     }];
     
     UIImageView *imageView = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"typeshow"]];
@@ -93,6 +125,7 @@
         make.top.equalTo(self.backView.mas_top).with.offset(-5 * WidthNum);
     }];
     
+    WS(ws);
     [self.backView addSubview:self.weightBtn];
     [self.backView addSubview:self.drinkBtn];
     [self.backView addSubview:self.sleepBtn];
@@ -111,6 +144,22 @@
         make.centerY.equalTo(self.backView.mas_centerY);
         make.left.equalTo(self.drinkBtn.mas_right).with.offset(10 * WidthNum);
         make.size.mas_equalTo(CGSizeMake(106 * WidthNum, 106 * WidthNum));
+    }];
+    
+    [self.backView addSubview:self.weightLabel];
+    [self.backView addSubview:self.drinkLabel];
+    [self.backView addSubview:self.sleepLabel];
+    [self.weightLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.centerX.equalTo(ws.weightBtn.mas_centerX);
+        make.top.equalTo(ws.weightBtn.mas_bottom).with.offset(10);
+    }];
+    [self.drinkLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.centerX.equalTo(ws.drinkBtn.mas_centerX);
+        make.top.equalTo(ws.drinkBtn.mas_bottom).with.offset(10);
+    }];
+    [self.sleepLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.centerX.equalTo(ws.sleepBtn.mas_centerX);
+        make.top.equalTo(ws.sleepBtn.mas_bottom).with.offset(10);
     }];
     
 }

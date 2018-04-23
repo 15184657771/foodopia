@@ -17,6 +17,8 @@
 @property (nonatomic,strong) NSMutableArray *horizontalValueArray;
 @property (nonatomic,assign) CGFloat maxValue;
 @property (nonatomic,assign) CGFloat minValue;
+@property (nonatomic,assign) CGFloat viewWidth;
+@property (nonatomic,assign) CGFloat viewHigh;
 
 @end
 
@@ -40,6 +42,8 @@
     self = [super init];
     if (self) {
         [self initValueAndView];
+        self.viewWidth = SCREEN_WIDTH;
+        self.viewHigh = 200 * HeightNum;
     }
     return self;
 }
@@ -49,6 +53,8 @@
     self = [super initWithFrame:frame];
     if (self) {
         [self initValueAndView];
+        self.viewWidth = self.bounds.size.width;
+        self.viewHigh = self.bounds.size.height;
     }
     return self;
 }
@@ -66,7 +72,7 @@
 - (CAShapeLayer *)lineLayer {
     if (!_lineLayer) {
         CAShapeLayer *layer = [CAShapeLayer layer];
-        layer.frame = CGRectMake(0, 0, SCREEN_WIDTH, 200 * HeightNum);
+        layer.frame = CGRectMake(0, 0, self.viewWidth, self.viewHigh);
         layer.fillColor = [UIColor clearColor].CGColor;
         layer.strokeColor = RGBA(191, 140, 219, 0.25).CGColor;
         layer.lineWidth = 1;
@@ -74,14 +80,14 @@
         layer.lineDashPattern = @[@4,@4];
         UIBezierPath *path = [UIBezierPath bezierPath];
         if (self.horizontalValueArray.count == 1) {
-            [path moveToPoint:CGPointMake(SCREEN_WIDTH/2, 16 * HeightNum)];
-            [path addLineToPoint:CGPointMake(SCREEN_WIDTH/2, 200 * HeightNum)];
+            [path moveToPoint:CGPointMake(self.viewWidth/2, 16 * HeightNum)];
+            [path addLineToPoint:CGPointMake(self.viewWidth/2, self.viewHigh)];
         } else {
-            CGFloat everyX = 295 * WidthNum / (self.horizontalValueArray.count - 1);
+            CGFloat everyX = (self.viewWidth - 80 * WidthNum) / (self.horizontalValueArray.count - 1);
             CGFloat edgX = 40 * WidthNum;
             for (int i = 0; i < self.horizontalValueArray.count; i ++) {
                 [path moveToPoint:CGPointMake(edgX + everyX * i, 16 * HeightNum)];
-                [path addLineToPoint:CGPointMake(edgX + everyX * i, 200 * HeightNum)];
+                [path addLineToPoint:CGPointMake(edgX + everyX * i, self.viewHigh)];
             }
         }
         layer.path = path.CGPath;
@@ -94,15 +100,15 @@
 - (CAShapeLayer *)curveLayer {
     if (!_curveLayer) {
         CAShapeLayer *layer = [CAShapeLayer layer];
-        layer.frame = CGRectMake(0, 0, SCREEN_WIDTH, 200 * HeightNum);
+        layer.frame = CGRectMake(0, 0, self.viewWidth, self.viewHigh);
         layer.fillColor = [UIColor clearColor].CGColor;
         layer.strokeColor = RGB(173, 119, 205).CGColor;
         layer.lineWidth = 3;
         layer.lineJoin = kCALineJoinRound;
         
-        CGFloat everyY = 184 * HeightNum/(self.maxValue - self.minValue);
-        CGFloat everyX = 295 * WidthNum / (self.horizontalValueArray.count - 1);
-        CGFloat edgY = 200 * HeightNum;
+        CGFloat everyY = (self.viewHigh - 16 * HeightNum)/(self.maxValue - self.minValue);
+        CGFloat everyX = (self.viewWidth - 80 * WidthNum) / (self.horizontalValueArray.count - 1);
+        CGFloat edgY = self.viewHigh;
         CGFloat edgX = 40 * WidthNum;
         
         UIBezierPath *path = [UIBezierPath bezierPath];
@@ -137,7 +143,7 @@
 }
 
 - (void)drawRect:(CGRect)rect {
-    CGFloat everyX = 295 * WidthNum / (self.horizontalValueArray.count - 1);
+    CGFloat everyX = (self.viewWidth - 80 * WidthNum) / (self.horizontalValueArray.count - 1);
     CGFloat edgX = 40 * WidthNum;
     NSDictionary *attribute = @{NSFontAttributeName:[UIFont systemFontOfSize:10 * HeightNum], NSForegroundColorAttributeName:RGB(191, 191, 191)};
     for (int i = 0; i < self.verticalDayArray.count; i++) {
