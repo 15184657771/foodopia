@@ -45,6 +45,7 @@
 		A671E1AB2074B84B00072BAD /* SleepModel.m in Sources */ = {isa = PBXBuildFile; fileRef = A671E1AA2074B84B00072BAD /* SleepModel.m */; };
 		A671E1AE20770F9F00072BAD /* InfoTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A671E1AD20770F9F00072BAD /* InfoTableViewCell.m */; };
 		A671E1B520843F8400072BAD /* RecordInfoTabController.m in Sources */ = {isa = PBXBuildFile; fileRef = A671E1B420843F8400072BAD /* RecordInfoTabController.m */; };
+		A68A8916208ECD3D0034885E /* GetToolViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A68A8915208ECD3D0034885E /* GetToolViewController.m */; };
 		D331F141587000576A7803E2 /* libPods-BlueTooth.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 172237DFFCB88065A4B73FF4 /* libPods-BlueTooth.a */; };
 /* End PBXBuildFile section */
 
@@ -148,6 +149,8 @@
 		A671E1AD20770F9F00072BAD /* InfoTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = InfoTableViewCell.m; sourceTree = "<group>"; };
 		A671E1B320843F8400072BAD /* RecordInfoTabController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RecordInfoTabController.h; sourceTree = "<group>"; };
 		A671E1B420843F8400072BAD /* RecordInfoTabController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RecordInfoTabController.m; sourceTree = "<group>"; };
+		A68A8914208ECD3D0034885E /* GetToolViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GetToolViewController.h; sourceTree = "<group>"; };
+		A68A8915208ECD3D0034885E /* GetToolViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GetToolViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -395,6 +398,8 @@
 				A646DE2320722A96003A29D8 /* DrinkViewController.m */,
 				A646DE2520722AA6003A29D8 /* SleepViewController.h */,
 				A646DE2620722AA6003A29D8 /* SleepViewController.m */,
+				A68A8914208ECD3D0034885E /* GetToolViewController.h */,
+				A68A8915208ECD3D0034885E /* GetToolViewController.m */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -628,6 +633,7 @@
 				7439F16F20518D4800F3DCA5 /* SlideModel.m in Sources */,
 				7439F16C205188AC00F3DCA5 /* SlideCell.m in Sources */,
 				A671E19A207332E400072BAD /* RecordDrinkView.m in Sources */,
+				A68A8916208ECD3D0034885E /* GetToolViewController.m in Sources */,
 				74369E22204FEEEB007CC3BF /* main.m in Sources */,
 				7439F18D205232C400F3DCA5 /* XYSideViewController.m in Sources */,
 				7439F19C205520F800F3DCA5 /* TypeViewController.m in Sources */,
