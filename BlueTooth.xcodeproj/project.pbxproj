@@ -46,6 +46,10 @@
 		A671E1AE20770F9F00072BAD /* InfoTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A671E1AD20770F9F00072BAD /* InfoTableViewCell.m */; };
 		A671E1B520843F8400072BAD /* RecordInfoTabController.m in Sources */ = {isa = PBXBuildFile; fileRef = A671E1B420843F8400072BAD /* RecordInfoTabController.m */; };
 		A68A8916208ECD3D0034885E /* GetToolViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A68A8915208ECD3D0034885E /* GetToolViewController.m */; };
+		A68A894D208F20E50034885E /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A68A894B208F20E50034885E /* LoginViewController.m */; };
+		A68A894E208F20E50034885E /* LoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A68A894C208F20E50034885E /* LoginViewController.xib */; };
+		A68A8953208F56820034885E /* PetViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A68A8951208F56820034885E /* PetViewController.m */; };
+		A68A8954208F56820034885E /* PetViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A68A8952208F56820034885E /* PetViewController.xib */; };
 		D331F141587000576A7803E2 /* libPods-BlueTooth.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 172237DFFCB88065A4B73FF4 /* libPods-BlueTooth.a */; };
 /* End PBXBuildFile section */
 
@@ -151,6 +155,12 @@
 		A671E1B420843F8400072BAD /* RecordInfoTabController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RecordInfoTabController.m; sourceTree = "<group>"; };
 		A68A8914208ECD3D0034885E /* GetToolViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GetToolViewController.h; sourceTree = "<group>"; };
 		A68A8915208ECD3D0034885E /* GetToolViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GetToolViewController.m; sourceTree = "<group>"; };
+		A68A894A208F20E50034885E /* LoginViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
+		A68A894B208F20E50034885E /* LoginViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
+		A68A894C208F20E50034885E /* LoginViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LoginViewController.xib; sourceTree = "<group>"; };
+		A68A8950208F56820034885E /* PetViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PetViewController.h; sourceTree = "<group>"; };
+		A68A8951208F56820034885E /* PetViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PetViewController.m; sourceTree = "<group>"; };
+		A68A8952208F56820034885E /* PetViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PetViewController.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -221,6 +231,8 @@
 		74369E11204FEEEB007CC3BF /* BlueTooth */ = {
 			isa = PBXGroup;
 			children = (
+				A68A894F208F56600034885E /* Pet */,
+				A68A8949208F20B40034885E /* Login */,
 				A646DE0F20720530003A29D8 /* Tools */,
 				74369E12204FEEEB007CC3BF /* AppDelegate.h */,
 				74369E13204FEEEB007CC3BF /* AppDelegate.m */,
@@ -445,6 +457,26 @@
 			path = Model;
 			sourceTree = "<group>";
 		};
+		A68A8949208F20B40034885E /* Login */ = {
+			isa = PBXGroup;
+			children = (
+				A68A894A208F20E50034885E /* LoginViewController.h */,
+				A68A894B208F20E50034885E /* LoginViewController.m */,
+				A68A894C208F20E50034885E /* LoginViewController.xib */,
+			);
+			path = Login;
+			sourceTree = "<group>";
+		};
+		A68A894F208F56600034885E /* Pet */ = {
+			isa = PBXGroup;
+			children = (
+				A68A8950208F56820034885E /* PetViewController.h */,
+				A68A8951208F56820034885E /* PetViewController.m */,
+				A68A8952208F56820034885E /* PetViewController.xib */,
+			);
+			path = Pet;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -554,7 +586,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A68A894E208F20E50034885E /* LoginViewController.xib in Resources */,
 				74369E1C204FEEEB007CC3BF /* Assets.xcassets in Resources */,
+				A68A8954208F56820034885E /* PetViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -630,6 +664,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A68A894D208F20E50034885E /* LoginViewController.m in Sources */,
 				7439F16F20518D4800F3DCA5 /* SlideModel.m in Sources */,
 				7439F16C205188AC00F3DCA5 /* SlideCell.m in Sources */,
 				A671E19A207332E400072BAD /* RecordDrinkView.m in Sources */,
@@ -659,6 +694,7 @@
 				7439F191205232F500F3DCA5 /* MainViewController.m in Sources */,
 				A646DE2720722AA6003A29D8 /* SleepViewController.m in Sources */,
 				7436B64920737DAD0029BA71 /* InforViewController.m in Sources */,
+				A68A8953208F56820034885E /* PetViewController.m in Sources */,
 				7436B64620737BDF0029BA71 /* SleepHighViewController.m in Sources */,
 				747D1DB52050DBA400CF0D2A /* Toast.m in Sources */,
 				A671E1A52074B82300072BAD /* WeightModel.m in Sources */,

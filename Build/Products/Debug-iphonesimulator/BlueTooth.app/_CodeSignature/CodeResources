@@ -6,7 +6,7 @@
 	<dict>
 		<key>Assets.car</key>
 		<data>
-		Xiospk1Y48yNgxfe+/NBFDehgQ8=
+		nFHvcooCEXmF+L53UpR4ZK70iZM=
 		</data>
 		<key>Info.plist</key>
 		<data>
@@ -32,6 +32,10 @@
 		<data>
 		sRN308Khf9HlguuI6zmfoJxgXkY=
 		</data>
+		<key>LoginViewController.nib</key>
+		<data>
+		HISWQN0CWzwvJ1POQ25c+tJlP5g=
+		</data>
 		<key>PkgInfo</key>
 		<data>
 		n57qDP4tZfLD1rCS43W0B4LQjzE=
@@ -43,11 +47,11 @@
 		<dict>
 			<key>hash</key>
 			<data>
-			Xiospk1Y48yNgxfe+/NBFDehgQ8=
+			nFHvcooCEXmF+L53UpR4ZK70iZM=
 			</data>
 			<key>hash2</key>
 			<data>
-			S4CYwoOy6NPjgSfE95KMfmkzXBpuXPh3JMvN1lG1KvA=
+			E1EcFxRxN/ST+s8odWbWDixpGlBsfoHSdshjKrwDlkU=
 			</data>
 		</dict>
 		<key>LaunchImage-1100-Portrait-2436h@3x.png</key>
@@ -103,6 +107,17 @@
 			<key>hash2</key>
 			<data>
 			9cbW8aFqvuUUAG0FE6kdBiGQ8AcwLLliQMYejAadFOE=
+			</data>
+		</dict>
+		<key>LoginViewController.nib</key>
+		<dict>
+			<key>hash</key>
+			<data>
+			HISWQN0CWzwvJ1POQ25c+tJlP5g=
+			</data>
+			<key>hash2</key>
+			<data>
+			8CIsu96dNAq+pne18/cGl+1T/RVLzhVw8ctsQSwPq4c=
 			</data>
 		</dict>
 	</dict>

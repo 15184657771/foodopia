@@ -14,6 +14,7 @@
 #import "RecordInfoTabController.h"
 #import "InforViewController.h"
 #import "GetToolViewController.h"
+#import "LoginViewController.h"
 
 @interface MainViewController ()<ChooseRecordDelegate,RecordTabDelegate>
 
@@ -78,8 +79,8 @@
     self.view.layer.masksToBounds = YES;
     
     [self createView];
-    GetToolViewController *toolVC = [[GetToolViewController alloc]init];
-    [toolVC setUpUI:Strawberry];
+    LoginViewController *toolVC = [[LoginViewController alloc]init];
+//    [toolVC setUpUI:Strawberry];
     toolVC.modalPresentationStyle = UIModalPresentationOverFullScreen;
     self.definesPresentationContext = YES;
     [self presentViewController:toolVC animated:NO completion:^ {
