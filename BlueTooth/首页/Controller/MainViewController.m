@@ -16,7 +16,7 @@
 #import "GetToolViewController.h"
 #import "LoginViewController.h"
 
-@interface MainViewController ()<ChooseRecordDelegate,RecordTabDelegate>
+@interface MainViewController ()<ChooseRecordDelegate,RecordTabDelegate,UIScrollViewDelegate>
 
 @property (nonatomic, strong) MainView *mainView;
 
@@ -26,6 +26,9 @@
 @property (nonatomic, strong) UIButton *petBtn;
 /**记录按钮*/
 @property (nonatomic, strong) UIButton *recordBtn;
+
+@property (nonatomic, strong) UIScrollView *scrollView;
+
 
 @end
 
@@ -75,7 +78,7 @@
 #pragma mark -- lifeCycle methods
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [self.view setBackgroundColor:[UIColor whiteColor]];
+    [self.view setBackgroundColor:RGB(225, 239, 255)];
     self.view.layer.masksToBounds = YES;
     
     [self createView];
@@ -101,13 +104,33 @@
 }
 
 - (void)createView {
-    WS(ws);
-    self.mainView = [[MainView alloc]init];
-    [self.view addSubview:self.mainView];
-    [self.mainView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.edges.equalTo(ws.view);
-    }];
-
+    self.scrollView = [[UIScrollView alloc]initWithFrame:CGRectMake(0, -20, SCREEN_WIDTH, SCREEN_HEIGHT + 20)];
+    self.scrollView.backgroundColor = [UIColor whiteColor];
+    self.scrollView.contentSize = CGSizeMake(1550, 1500);
+    self.scrollView.bounces = NO;
+    self.scrollView.delegate = self;
+    self.scrollView.maximumZoomScale = 2.0;
+    self.scrollView.minimumZoomScale = 0.5;
+    self.scrollView.showsVerticalScrollIndicator = NO;
+    self.scrollView.showsHorizontalScrollIndicator = NO;
+//    scrollView.userInteractionEnabled = NO;
+    [self.view addSubview:self.scrollView];
+    
+    UITapGestureRecognizer *doubleTapRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(scrollViewDoubleTapped:)];
+    doubleTapRecognizer.numberOfTapsRequired = 2;
+    doubleTapRecognizer.numberOfTouchesRequired = 1;
+    [self.scrollView addGestureRecognizer:doubleTapRecognizer];
+    //缩小
+    UITapGestureRecognizer *twoFingerTapRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(scrollViewTwoFingerTapped:)];
+    twoFingerTapRecognizer.numberOfTapsRequired = 1;
+    twoFingerTapRecognizer.numberOfTouchesRequired = 2;
+    [self.scrollView addGestureRecognizer:twoFingerTapRecognizer];
+    
+    
+    self.mainView = [[MainView alloc]initWithFrame:CGRectMake(0, 0, 1550, 1500)];
+    [self.scrollView addSubview:self.mainView];
+    
+  
     [self.view addSubview:self.menuBtn];
     [self.menuBtn mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(@(20));
@@ -174,5 +197,65 @@
     inforViewController.showTag = index;
     [self.navigationController pushViewController:inforViewController animated:YES];
 }
+
+
+- (void)scrollViewDoubleTapped:(UITapGestureRecognizer*)recognizer {
+    // 1
+    CGPoint pointInView = [recognizer locationInView:self.mainView];
+    
+    // 2
+    CGFloat newZoomScale = self.scrollView.zoomScale * 1.5f;
+    newZoomScale = MIN(newZoomScale, self.scrollView.maximumZoomScale);
+    
+    // 3
+    CGSize scrollViewSize = self.scrollView.bounds.size;
+    
+    CGFloat w = scrollViewSize.width / newZoomScale;
+    CGFloat h = scrollViewSize.height / newZoomScale;
+    CGFloat x = pointInView.x - (w / 2.0f);
+    CGFloat y = pointInView.y - (h / 2.0f);
+    
+    CGRect rectToZoomTo = CGRectMake(x, y, w, h);
+    
+    // 4
+    [self.scrollView zoomToRect:rectToZoomTo animated:YES];
+}
+
+- (void)scrollViewTwoFingerTapped:(UITapGestureRecognizer*)recognizer {
+    // Zoom out slightly, capping at the minimum zoom scale specified by the scroll view
+    CGFloat newZoomScale = self.scrollView.zoomScale / 1.5f;
+    newZoomScale = MAX(newZoomScale, self.scrollView.minimumZoomScale);
+    [self.scrollView setZoomScale:newZoomScale animated:YES];
+}
+
+- (UIView*)viewForZoomingInScrollView:(UIScrollView *)scrollView {
+    // Return the view that you want to zoom
+    return self.mainView;
+}
+
+- (void)scrollViewDidZoom:(UIScrollView *)scrollView {
+    // The scroll view has zoomed, so you need to re-center the contents
+    [self centerScrollViewContents];
+}
+
+//使图片居中
+- (void)centerScrollViewContents {
+    CGSize boundsSize = self.scrollView.bounds.size;
+    CGRect contentsFrame = self.mainView.frame;
+    
+    if (contentsFrame.size.width < boundsSize.width) {
+        contentsFrame.origin.x = (boundsSize.width - contentsFrame.size.width) / 2.0f;
+    } else {
+        contentsFrame.origin.x = 0.0f;
+    }
+    
+    if (contentsFrame.size.height < boundsSize.height) {
+        contentsFrame.origin.y = (boundsSize.height - contentsFrame.size.height) / 2.0f;
+    } else {
+        contentsFrame.origin.y = 0.0f;
+    }
+    self.mainView.frame = contentsFrame;
+}
+
 
 @end
