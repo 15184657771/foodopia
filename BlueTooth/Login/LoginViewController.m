@@ -35,21 +35,25 @@
 }
 - (IBAction)loginBtnAction:(UIButton *)sender {
     
-//    if (self.nameField.text.length == 0) {
-//        //请填写姓名
-//    }
-//    
-//    if (self.weightField.text.length == 0) {
-//        //请填写
-//    }
-//    
-//    if (self.drinkField.text.length == 0) {
-//        //请填写
-//    }
-//    
-//    if (self.sleepField.text.length == 0) {
-//        //请填写
-//    }
+    if (self.nameField.text.length == 0) {
+        //请填写姓名
+        return;
+    }
+    
+    if (self.weightField.text.length == 0) {
+        //请填写
+         return;
+    }
+    
+    if (self.drinkField.text.length == 0) {
+        //请填写
+         return;
+    }
+    
+    if (self.sleepField.text.length == 0) {
+        //请填写
+         return;
+    }
     
     [self.userDic setObject:self.nameField.text forKey:@"name"];
     [self.userDic setObject:self.weightField.text forKey:@"weight"];

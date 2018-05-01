@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
-    <device id="retina4_7" orientation="portrait">
+    <device id="retina5_5" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
@@ -12,8 +12,12 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="PetViewController">
             <connections>
                 <outlet property="RefrigeratorView" destination="caS-2P-F96" id="bLg-gV-JIU"/>
+                <outlet property="backImageView" destination="0Dv-au-gMa" id="KXE-j1-EcE"/>
                 <outlet property="bigImageView" destination="41l-JC-h4U" id="Ykg-e1-Oih"/>
                 <outlet property="eatBtn" destination="2k8-7c-P1G" id="Zlo-Px-73C"/>
+                <outlet property="eatTopImage" destination="XeR-he-GUI" id="COJ-eR-K45"/>
+                <outlet property="eatView" destination="eVX-SU-Wg5" id="I26-Pl-iac"/>
+                <outlet property="foodImageView" destination="3qp-pG-4iM" id="1oL-rk-ZtM"/>
                 <outlet property="locationView" destination="WQo-XX-7zs" id="yOc-9l-Uh9"/>
                 <outlet property="toastView" destination="Y73-9U-PQp" id="dod-Bg-PUF"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
@@ -21,11 +25,11 @@
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
-            <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+            <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="0-背景" translatesAutoresizingMaskIntoConstraints="NO" id="0Dv-au-gMa">
-                    <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                    <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                 </imageView>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="i6A-yk-Mjk">
                     <rect key="frame" x="20" y="40" width="40" height="40"/>
@@ -39,7 +43,7 @@
                     </connections>
                 </button>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mPT-1v-1XQ">
-                    <rect key="frame" x="315" y="40" width="40" height="40"/>
+                    <rect key="frame" x="354" y="40" width="40" height="40"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="40" id="KYP-cZ-klT"/>
                         <constraint firstAttribute="height" constant="40" id="fYS-ig-vaF"/>
@@ -50,20 +54,20 @@
                     </connections>
                 </button>
                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="提示气泡01" translatesAutoresizingMaskIntoConstraints="NO" id="Y73-9U-PQp">
-                    <rect key="frame" x="116.5" y="205" width="142" height="70"/>
+                    <rect key="frame" x="136" y="205" width="142" height="70"/>
                 </imageView>
                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="原始形态" translatesAutoresizingMaskIntoConstraints="NO" id="41l-JC-h4U">
-                    <rect key="frame" x="109.5" y="289" width="155" height="191"/>
+                    <rect key="frame" x="129" y="358" width="155" height="191"/>
                 </imageView>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2k8-7c-P1G">
-                    <rect key="frame" x="141" y="530" width="92" height="92"/>
+                    <rect key="frame" x="160.66666666666666" y="599" width="92" height="92"/>
                     <state key="normal" backgroundImage="喂养按钮"/>
                     <connections>
                         <action selector="eatBtnAction:" destination="-1" eventType="touchUpInside" id="ASN-8a-ngc"/>
                     </connections>
                 </button>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="WQo-XX-7zs">
-                    <rect key="frame" x="69" y="544.5" width="40" height="63"/>
+                    <rect key="frame" x="88.666666666666671" y="613.66666666666663" width="40.000000000000014" height="63"/>
                     <subviews>
                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="grayCircle" translatesAutoresizingMaskIntoConstraints="NO" id="opr-Ye-09L">
                             <rect key="frame" x="0.0" y="0.0" width="40" height="40"/>
@@ -94,7 +98,7 @@
                     </constraints>
                 </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="caS-2P-F96">
-                    <rect key="frame" x="265" y="545" width="40" height="63"/>
+                    <rect key="frame" x="284.66666666666669" y="614" width="40" height="63"/>
                     <subviews>
                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="grayCircle" translatesAutoresizingMaskIntoConstraints="NO" id="u8W-g1-bCD">
                             <rect key="frame" x="0.0" y="0.0" width="40" height="40"/>
@@ -124,6 +128,31 @@
                         <constraint firstAttribute="bottom" secondItem="NcC-T6-ixO" secondAttribute="bottom" id="yWE-ag-zKZ"/>
                     </constraints>
                 </view>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="eVX-SU-Wg5">
+                    <rect key="frame" x="94" y="451" width="226" height="285"/>
+                    <subviews>
+                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="拖动提示气泡" translatesAutoresizingMaskIntoConstraints="NO" id="XeR-he-GUI">
+                            <rect key="frame" x="42" y="0.0" width="142" height="70"/>
+                        </imageView>
+                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="0-巧克力纸杯蛋糕" translatesAutoresizingMaskIntoConstraints="NO" id="3qp-pG-4iM">
+                            <rect key="frame" x="17" y="70" width="192" height="172"/>
+                        </imageView>
+                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="手" translatesAutoresizingMaskIntoConstraints="NO" id="gKO-X6-axa">
+                            <rect key="frame" x="0.0" y="164" width="226" height="251"/>
+                        </imageView>
+                    </subviews>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstItem="gKO-X6-axa" firstAttribute="centerX" secondItem="eVX-SU-Wg5" secondAttribute="centerX" id="8dz-dy-zOE"/>
+                        <constraint firstItem="XeR-he-GUI" firstAttribute="top" secondItem="eVX-SU-Wg5" secondAttribute="top" id="GSQ-3x-KgN"/>
+                        <constraint firstAttribute="width" constant="226" id="GkB-Bg-kNS"/>
+                        <constraint firstItem="3qp-pG-4iM" firstAttribute="centerX" secondItem="eVX-SU-Wg5" secondAttribute="centerX" id="Lca-NW-oGO"/>
+                        <constraint firstAttribute="bottom" secondItem="gKO-X6-axa" secondAttribute="bottom" constant="-130" id="T41-TJ-CIP"/>
+                        <constraint firstAttribute="height" constant="285" id="YSe-kq-otf"/>
+                        <constraint firstItem="3qp-pG-4iM" firstAttribute="top" secondItem="XeR-he-GUI" secondAttribute="bottom" id="hE9-aB-2cq"/>
+                        <constraint firstItem="XeR-he-GUI" firstAttribute="centerX" secondItem="eVX-SU-Wg5" secondAttribute="centerX" id="rzq-bu-ww3"/>
+                    </constraints>
+                </view>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
@@ -139,21 +168,26 @@
                 <constraint firstItem="i6A-yk-Mjk" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="20" id="OWq-2u-bP0"/>
                 <constraint firstAttribute="bottom" secondItem="0Dv-au-gMa" secondAttribute="bottom" id="TGR-YN-5hU"/>
                 <constraint firstItem="mPT-1v-1XQ" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="40" id="TJk-at-sFl"/>
+                <constraint firstAttribute="bottom" secondItem="eVX-SU-Wg5" secondAttribute="bottom" id="bbP-c0-Qiz"/>
                 <constraint firstItem="2k8-7c-P1G" firstAttribute="top" secondItem="41l-JC-h4U" secondAttribute="bottom" constant="50" id="cMM-7i-e8Y"/>
                 <constraint firstItem="0Dv-au-gMa" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="ghp-pV-wKH"/>
+                <constraint firstItem="eVX-SU-Wg5" firstAttribute="centerX" secondItem="0Dv-au-gMa" secondAttribute="centerX" id="iDK-ji-ReU"/>
                 <constraint firstItem="WQo-XX-7zs" firstAttribute="centerY" secondItem="2k8-7c-P1G" secondAttribute="centerY" id="jMg-td-8BO"/>
                 <constraint firstItem="2k8-7c-P1G" firstAttribute="leading" secondItem="WQo-XX-7zs" secondAttribute="trailing" constant="32" id="mBa-U6-Kdn"/>
                 <constraint firstItem="0Dv-au-gMa" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="uHK-B4-mjo"/>
                 <constraint firstItem="Y73-9U-PQp" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="205" id="xaZ-0A-0KJ"/>
             </constraints>
-            <point key="canvasLocation" x="33.5" y="108.5"/>
+            <point key="canvasLocation" x="33" y="108"/>
         </view>
     </objects>
     <resources>
+        <image name="0-巧克力纸杯蛋糕" width="192" height="172"/>
         <image name="0-背景" width="187" height="333"/>
         <image name="grayCircle" width="19" height="19"/>
         <image name="原始形态" width="155" height="191"/>
         <image name="喂养按钮" width="92" height="92"/>
+        <image name="手" width="226" height="251"/>
+        <image name="拖动提示气泡" width="142" height="70"/>
         <image name="提示气泡01" width="142" height="70"/>
     </resources>
 </document>
