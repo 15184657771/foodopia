@@ -15,10 +15,18 @@
 @property (nonatomic,strong) UIBezierPath *workPath;
 @property (nonatomic,strong) NSMutableArray *pointArray;
 @property (nonatomic,strong) CAShapeLayer *circleLayer;
+@property (nonatomic,strong) UIImageView *locationImageView;
 
 @end
 
 @implementation MainView
+
+- (UIImageView *)locationImageView {
+    if (!_locationImageView) {
+        _locationImageView = [[UIImageView alloc]initWithImage: [UIImage imageNamed:@"pin"]];
+    }
+    return _locationImageView;
+}
 
 - (NSMutableArray *)pointArray {
     if (!_pointArray) {
@@ -177,7 +185,23 @@
             [path addArcWithCenter:CGPointMake(selectPoint.x,selectPoint.y) radius:4 startAngle:0 endAngle:2*M_PI clockwise:YES];
         }
         layer.path = path.CGPath;
-        _circleLayer = layer;
+        CAShapeLayer *whiteLayer = [CAShapeLayer layer];
+        [whiteLayer addSublayer:layer];
+        whiteLayer.frame = CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
+        whiteLayer.fillColor = [UIColor whiteColor].CGColor;
+        whiteLayer.strokeColor = [UIColor whiteColor].CGColor;
+        whiteLayer.lineWidth = 0;
+        UIBezierPath *whitePath = [[UIBezierPath alloc] init];
+        for (int i = 0; i < self.pointArray.count; i++) {
+            NSValue *selectPointValue = self.pointArray[i];
+            CGPoint selectPoint = [selectPointValue CGPointValue];
+            [whitePath moveToPoint:CGPointMake(selectPoint.x,selectPoint.y)];
+            [whitePath addArcWithCenter:CGPointMake(selectPoint.x,selectPoint.y) radius:7 startAngle:0 endAngle:2*M_PI clockwise:YES];
+        }
+        whiteLayer.path = whitePath.CGPath;
+        
+        
+        _circleLayer = whiteLayer;
     }
     return _circleLayer;
 }
@@ -206,6 +230,10 @@
     [self.layer addSublayer:self.lineLayer];
     [self.layer addSublayer:self.dottedLineLayer];
     [self.layer addSublayer:self.circleLayer];
+    
+    [self addSubview:self.locationImageView];
+    CGPoint movePoint = [self moveToPlace];
+    [self.locationImageView setFrame:CGRectMake(movePoint.x - 11, movePoint.y - 31, 22, 36)];
     NSArray *selectNumArray = @[[NSNumber numberWithInt:42],[NSNumber numberWithInt:76],[NSNumber numberWithInt:124],[NSNumber numberWithInt:156],
                                 [NSNumber numberWithInt:193],[NSNumber numberWithInt:238],[NSNumber numberWithInt:269],[NSNumber numberWithInt:304],
                                 [NSNumber numberWithInt:344],[NSNumber numberWithInt:406],[NSNumber numberWithInt:440],[NSNumber numberWithInt:465],
@@ -266,5 +294,21 @@ void MyCGPathApplierFunc (void *info, const CGPathElement *element) {
     }
 }
 
+- (CGPoint)moveToPlace {
+    NSMutableArray *bezierPoints = [NSMutableArray array];
+    CGPathApply(self.workPath.CGPath, (__bridge void *)(bezierPoints), MyCGPathApplierFunc);
+    
+    NSInteger num = [[[NSUserDefaults standardUserDefaults]objectForKey:@"percentNum"] integerValue];
+    NSInteger j = num/50 + 42 < bezierPoints.count?num/50 + 42:bezierPoints.count - 1;
+    NSValue *pointValue = bezierPoints[j];
+    CGPoint point = [pointValue CGPointValue];
+    return point;
+}
 
+- (void)placeMove {
+    [UIView animateWithDuration:0.2 animations:^{
+        CGPoint movePoint = [self moveToPlace];
+        [self.locationImageView setFrame:CGRectMake(movePoint.x - 11, movePoint.y - 31, 22, 36)];
+    }];
+}
 @end
