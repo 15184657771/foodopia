@@ -103,19 +103,49 @@
 //        您还未获得食物
         
         self.eatView.hidden = NO;
+        self.foodImageView.image = [UIImage imageNamed:@"0-巧克力纸杯蛋糕"];
         self.eatBtn.hidden = YES;
         self.locationView.hidden = YES;
         self.RefrigeratorView.hidden = YES;
        
+        self.bigImageView.image = [UIImage imageNamed:@"1-熊"];
+        self.backImageView.image = [UIImage imageNamed:@"1-背景"];
+        
+    } else if ([UIImagePNGRepresentation(self.bigImageView.image) isEqual:UIImagePNGRepresentation([UIImage imageNamed:@"1-熊"])]) {
+        
+        self.eatView.hidden = NO;
+        self.foodImageView.image = [UIImage imageNamed:@"1-蓝莓慕斯"];
+        self.eatBtn.hidden = YES;
+        self.locationView.hidden = YES;
+        self.RefrigeratorView.hidden = YES;
+        self.bigImageView.image = [UIImage imageNamed:@"2-熊"];
+        self.backImageView.image = [UIImage imageNamed:@"2-背景"];
+        
+    } else if ([UIImagePNGRepresentation(self.bigImageView.image) isEqual:UIImagePNGRepresentation([UIImage imageNamed:@"2-熊"])]) {
+        
+        self.eatView.hidden = NO;
+        self.foodImageView.image = [UIImage imageNamed:@"2-草莓芝士"];
+        self.eatBtn.hidden = YES;
+        self.locationView.hidden = YES;
+        self.RefrigeratorView.hidden = YES;
+        
+        self.bigImageView.image = [UIImage imageNamed:@"3-熊"];
+        self.backImageView.image = [UIImage imageNamed:@"3-背景"];
+        
+    } else if ([UIImagePNGRepresentation(self.bigImageView.image) isEqual:UIImagePNGRepresentation([UIImage imageNamed:@"3-熊"])]) {
+        
+        self.eatView.hidden = NO;
+        self.foodImageView.image = [UIImage imageNamed:@"3-抹茶蛋糕卷"];
+        self.eatBtn.hidden = YES;
+        self.locationView.hidden = YES;
+        self.RefrigeratorView.hidden = YES;
+        
+        self.bigImageView.image = [UIImage imageNamed:@"4-熊"];
+        self.backImageView.image = [UIImage imageNamed:@"4-背景"];
+        
+    } else if ([UIImagePNGRepresentation(self.bigImageView.image) isEqual:UIImagePNGRepresentation([UIImage imageNamed:@"4-熊"])]) {
         
         
-    } else if ([UIImagePNGRepresentation(self.bigImageView.image) isEqual:UIImagePNGRepresentation([UIImage imageNamed:@"0-熊"])]) {
-        
-    } else if ([UIImagePNGRepresentation(self.bigImageView.image) isEqual:UIImagePNGRepresentation([UIImage imageNamed:@"0-熊"])]) {
-        
-    } else if ([UIImagePNGRepresentation(self.bigImageView.image) isEqual:UIImagePNGRepresentation([UIImage imageNamed:@"0-熊"])]) {
-        
-    } else if ([UIImagePNGRepresentation(self.bigImageView.image) isEqual:UIImagePNGRepresentation([UIImage imageNamed:@"0-熊"])]) {
         
     }
     
