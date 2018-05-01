@@ -7,6 +7,7 @@
 //
 
 #import "PetViewController.h"
+#import "RefrigeratorViewController.h"
 
 @interface PetViewController ()
 
@@ -29,6 +30,14 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 
+    UITapGestureRecognizer *bigImageTap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(bigImageTap)];
+    [self.bigImageView addGestureRecognizer:bigImageTap];
+    
+    UITapGestureRecognizer *locationViewTap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(locationViewTap)];
+    [self.locationView addGestureRecognizer:locationViewTap];
+    
+    UITapGestureRecognizer *RefrigeratorViewTap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(RefrigeratorViewTap)];
+    [self.RefrigeratorView addGestureRecognizer:RefrigeratorViewTap];
 
 }
 
@@ -42,6 +51,23 @@
     [self.navigationController setNavigationBarHidden:YES animated:animated];
     
 }
+
+- (void)bigImageTap {
+    //如果是原始形态
+    if (self.bigImageView.image == [UIImage imageNamed:@"原始形态"]) {
+        self.bigImageView.image = [UIImage imageNamed:@"0-熊"];
+    }
+}
+
+- (void)locationViewTap {
+    [self.navigationController popViewControllerAnimated:YES];
+}
+
+- (void)RefrigeratorViewTap {
+    RefrigeratorViewController *refrigeratorVC = [[RefrigeratorViewController alloc]init];
+    [self.navigationController pushViewController:refrigeratorVC animated:YES];
+}
+
 - (IBAction)leftBtnAction:(UIButton *)sender {
     
 }

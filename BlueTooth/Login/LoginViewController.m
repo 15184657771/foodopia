@@ -12,16 +12,22 @@
 @interface LoginViewController ()
 @property (strong, nonatomic) IBOutlet UIImageView *headImage;
 @property (strong, nonatomic) IBOutlet UITextField *nameField;
-
 @property (strong, nonatomic) IBOutlet UITextField *weightField;
-
-
 @property (strong, nonatomic) IBOutlet UITextField *drinkField;
 @property (strong, nonatomic) IBOutlet UITextField *sleepField;
+
+@property (strong, nonatomic) NSMutableDictionary *userDic;
 
 @end
 
 @implementation LoginViewController
+
+- (NSMutableDictionary *)userDic {
+    if (!_userDic) {
+        _userDic = [[NSMutableDictionary alloc]initWithCapacity:0];
+    }
+    return _userDic;
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -44,6 +50,15 @@
 //    if (self.sleepField.text.length == 0) {
 //        //请填写
 //    }
+    
+    [self.userDic setObject:self.nameField.text forKey:@"name"];
+    [self.userDic setObject:self.weightField.text forKey:@"weight"];
+    [self.userDic setObject:self.drinkField.text forKey:@"drink"];
+    [self.userDic setObject:self.sleepField.text forKey:@"sleep"];
+    [self.userDic setObject:self.headImage.image forKey:@"headImage"];
+    
+    [[NSUserDefaults standardUserDefaults]setObject:@"1" forKey:@"isLogin"];
+    [[NSUserDefaults standardUserDefaults]setObject:self.userDic forKey:@"userDic"];
     
     [self dismissViewControllerAnimated:NO completion:nil];
     

@@ -83,14 +83,19 @@
     self.view.layer.masksToBounds = YES;
     
     [self createView];
-    LoginViewController *toolVC = [[LoginViewController alloc]init];
-//    [toolVC setUpUI:Strawberry];
-    toolVC.modalPresentationStyle = UIModalPresentationOverFullScreen;
-    self.definesPresentationContext = YES;
-    [self presentViewController:toolVC animated:NO completion:^ {
-        toolVC.view.superview.backgroundColor = [UIColor clearColor];
-    }];
     
+    if ([[NSUserDefaults standardUserDefaults] objectForKey:@"isLogin"]) {
+        if ([[[NSUserDefaults standardUserDefaults] objectForKey:@"isLogin"] isEqualToString:@"1"]) {
+            
+        }else {
+            LoginViewController *loginVC = [[LoginViewController alloc]init];
+            loginVC.modalPresentationStyle = UIModalPresentationOverFullScreen;
+            self.definesPresentationContext = YES;
+            [self presentViewController:loginVC animated:NO completion:^ {
+                loginVC.view.superview.backgroundColor = [UIColor clearColor];
+            }];
+        }
+    }
 }
 
 - (void)viewWillDisappear:(BOOL)animated {

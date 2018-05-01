@@ -50,6 +50,7 @@
 		A68A894E208F20E50034885E /* LoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A68A894C208F20E50034885E /* LoginViewController.xib */; };
 		A68A8953208F56820034885E /* PetViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A68A8951208F56820034885E /* PetViewController.m */; };
 		A68A8954208F56820034885E /* PetViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A68A8952208F56820034885E /* PetViewController.xib */; };
+		A6EDEE8E20987A46000D0F88 /* RefrigeratorViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A6EDEE8D20987A46000D0F88 /* RefrigeratorViewController.m */; };
 		D331F141587000576A7803E2 /* libPods-BlueTooth.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 172237DFFCB88065A4B73FF4 /* libPods-BlueTooth.a */; };
 /* End PBXBuildFile section */
 
@@ -161,6 +162,8 @@
 		A68A8950208F56820034885E /* PetViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PetViewController.h; sourceTree = "<group>"; };
 		A68A8951208F56820034885E /* PetViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PetViewController.m; sourceTree = "<group>"; };
 		A68A8952208F56820034885E /* PetViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PetViewController.xib; sourceTree = "<group>"; };
+		A6EDEE8C20987A46000D0F88 /* RefrigeratorViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RefrigeratorViewController.h; sourceTree = "<group>"; };
+		A6EDEE8D20987A46000D0F88 /* RefrigeratorViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RefrigeratorViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -231,6 +234,7 @@
 		74369E11204FEEEB007CC3BF /* BlueTooth */ = {
 			isa = PBXGroup;
 			children = (
+				A6EDEE8B20987A33000D0F88 /* Refrigerator */,
 				A68A894F208F56600034885E /* Pet */,
 				A68A8949208F20B40034885E /* Login */,
 				A646DE0F20720530003A29D8 /* Tools */,
@@ -477,6 +481,15 @@
 			path = Pet;
 			sourceTree = "<group>";
 		};
+		A6EDEE8B20987A33000D0F88 /* Refrigerator */ = {
+			isa = PBXGroup;
+			children = (
+				A6EDEE8C20987A46000D0F88 /* RefrigeratorViewController.h */,
+				A6EDEE8D20987A46000D0F88 /* RefrigeratorViewController.m */,
+			);
+			path = Refrigerator;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -673,6 +686,7 @@
 				7439F18D205232C400F3DCA5 /* XYSideViewController.m in Sources */,
 				7439F19C205520F800F3DCA5 /* TypeViewController.m in Sources */,
 				74369E4D204FF14A007CC3BF /* UIColor+Hex.m in Sources */,
+				A6EDEE8E20987A46000D0F88 /* RefrigeratorViewController.m in Sources */,
 				A646DE2120722A84003A29D8 /* WeightViewController.m in Sources */,
 				7436B63D20737BB30029BA71 /* WeightHighViewController.m in Sources */,
 				A646DE2D20727E91003A29D8 /* TXHRulerScrollView.m in Sources */,
