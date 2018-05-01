@@ -7,8 +7,17 @@
 //
 
 #import "LoginViewController.h"
+#import "Toast.h"
 
 @interface LoginViewController ()
+@property (strong, nonatomic) IBOutlet UIImageView *headImage;
+@property (strong, nonatomic) IBOutlet UITextField *nameField;
+
+@property (strong, nonatomic) IBOutlet UITextField *weightField;
+
+
+@property (strong, nonatomic) IBOutlet UITextField *drinkField;
+@property (strong, nonatomic) IBOutlet UITextField *sleepField;
 
 @end
 
@@ -18,20 +27,29 @@
     [super viewDidLoad];
     
 }
-
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+- (IBAction)loginBtnAction:(UIButton *)sender {
+    
+//    if (self.nameField.text.length == 0) {
+//        //请填写姓名
+//    }
+//    
+//    if (self.weightField.text.length == 0) {
+//        //请填写
+//    }
+//    
+//    if (self.drinkField.text.length == 0) {
+//        //请填写
+//    }
+//    
+//    if (self.sleepField.text.length == 0) {
+//        //请填写
+//    }
+    
+    [self dismissViewControllerAnimated:NO completion:nil];
+    
+    
 }
 
-/*
-#pragma mark - Navigation
 
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end

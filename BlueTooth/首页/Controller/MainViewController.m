@@ -15,6 +15,7 @@
 #import "InforViewController.h"
 #import "GetToolViewController.h"
 #import "LoginViewController.h"
+#import "PetViewController.h"
 
 @interface MainViewController ()<ChooseRecordDelegate,RecordTabDelegate,UIScrollViewDelegate>
 
@@ -162,7 +163,8 @@
 }
 //宠物
 - (void)petBtnAction:(UIButton *)sender {
-    
+    PetViewController *petVC = [[PetViewController alloc]init];
+    [self.navigationController pushViewController:petVC animated:YES];
 }
 //记录
 - (void)recordBtnAction:(UIButton *)btn {

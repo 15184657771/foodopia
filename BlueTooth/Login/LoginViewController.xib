@@ -11,7 +11,12 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="LoginViewController">
             <connections>
+                <outlet property="drinkField" destination="u23-yp-sR5" id="jKZ-9Y-Dc4"/>
+                <outlet property="headImage" destination="wui-dp-juf" id="5Ea-Su-9t1"/>
+                <outlet property="nameField" destination="N3v-dp-IUB" id="zUs-jB-42c"/>
+                <outlet property="sleepField" destination="usE-kh-ZgE" id="WDU-8Y-JdP"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+                <outlet property="weightField" destination="ioS-3n-yfK" id="0xu-dE-0yA"/>
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
@@ -193,6 +198,9 @@
                             <integer key="value" value="20"/>
                         </userDefinedRuntimeAttribute>
                     </userDefinedRuntimeAttributes>
+                    <connections>
+                        <action selector="loginBtnAction:" destination="-1" eventType="touchUpInside" id="uI3-T5-wri"/>
+                    </connections>
                 </button>
                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="欢迎标题" translatesAutoresizingMaskIntoConstraints="NO" id="E7h-xs-ICL">
                     <rect key="frame" x="52" y="111" width="156" height="52"/>

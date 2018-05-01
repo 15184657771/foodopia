@@ -9,4 +9,5 @@ dependencies: \
   /Users/daodao/Desktop/foodopia/BlueTooth/首页/Controller/RecordInfoTabController.h \
   /Users/daodao/Desktop/foodopia/BlueTooth/首页/内容详情/InforViewController.h \
   /Users/daodao/Desktop/foodopia/BlueTooth/首页/Controller/GetToolViewController.h \
-  /Users/daodao/Desktop/foodopia/BlueTooth/Login/LoginViewController.h
+  /Users/daodao/Desktop/foodopia/BlueTooth/Login/LoginViewController.h \
+  /Users/daodao/Desktop/foodopia/BlueTooth/Pet/PetViewController.h

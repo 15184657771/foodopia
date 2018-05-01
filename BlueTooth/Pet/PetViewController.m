@@ -10,28 +10,50 @@
 
 @interface PetViewController ()
 
+//提示文字
+@property (strong, nonatomic) IBOutlet UIImageView *toastView;
+//熊
+@property (strong, nonatomic) IBOutlet UIImageView *bigImageView;
+ 
+//地图
+@property (strong, nonatomic) IBOutlet UIView *locationView;
+//冰箱
+@property (strong, nonatomic) IBOutlet UIView *RefrigeratorView;
+//喂养
+@property (strong, nonatomic) IBOutlet UIButton *eatBtn;
+
 @end
 
 @implementation PetViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view from its nib.
+
+
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+- (void)viewWillDisappear:(BOOL)animated {
+    [super viewWillDisappear:animated];
+    [self.navigationController setNavigationBarHidden:NO animated:animated];
 }
 
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+- (void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
+    [self.navigationController setNavigationBarHidden:YES animated:animated];
+    
 }
-*/
+- (IBAction)leftBtnAction:(UIButton *)sender {
+    
+}
+
+- (IBAction)rightBtnAction:(UIButton *)sender {
+    
+}
+
+- (IBAction)eatBtnAction:(UIButton *)sender {
+    
+}
+
+
 
 @end
