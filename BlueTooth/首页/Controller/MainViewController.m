@@ -30,6 +30,10 @@
 
 @property (nonatomic, strong) UIScrollView *scrollView;
 
+/**记录按钮*/
+@property (nonatomic, strong) UIButton *goBtn;
+@property (nonatomic, strong) UIImageView *showImageView;//展示图片
+@property (nonatomic, strong) UILabel *showNumLabel;//分数
 
 @end
 
@@ -41,7 +45,7 @@
     if (!_menuBtn) {
         _menuBtn = [UIButton buttonWithType:UIButtonTypeCustom];
         _menuBtn.backgroundColor = [UIColor whiteColor];
-        [_menuBtn setImage:[UIImage imageNamed:@"grayCircle"] forState:UIControlStateNormal];
+        [_menuBtn setImage:[UIImage imageNamed:@"goLeft"] forState:UIControlStateNormal];
         [_menuBtn.layer setCornerRadius:20.0f];
         [_menuBtn.layer setMasksToBounds:YES];
     }
@@ -53,8 +57,7 @@
     if (!_petBtn) {
         _petBtn = [UIButton buttonWithType:UIButtonTypeCustom];
         _petBtn.backgroundColor = [UIColor whiteColor];
-        [_petBtn setImage:[UIImage imageNamed:@"grayCircle"] forState:UIControlStateNormal];
-        [_petBtn setTitle:@"宠物" forState:UIControlStateNormal];
+        [_petBtn setImage:[UIImage imageNamed:@"bottom1"] forState:UIControlStateNormal];
         [_petBtn.layer setCornerRadius:20.0f];
         [_petBtn.layer setMasksToBounds:YES];
     }
@@ -66,8 +69,7 @@
     if (!_recordBtn) {
         _recordBtn = [UIButton buttonWithType:UIButtonTypeCustom];
         _recordBtn.backgroundColor = [UIColor whiteColor];
-        [_recordBtn setImage:[UIImage imageNamed:@"grayCircle"] forState:UIControlStateNormal];
-        [_recordBtn setTitle:@"记录" forState:UIControlStateNormal];
+        [_recordBtn setImage:[UIImage imageNamed:@"bottom2"] forState:UIControlStateNormal];
         [_recordBtn.layer setCornerRadius:20.0f];
         [_recordBtn.layer setMasksToBounds:YES];
         
@@ -75,6 +77,31 @@
     [_recordBtn addTarget:self action:@selector(recordBtnAction:) forControlEvents:UIControlEventTouchUpInside];
     return _recordBtn;
 }
+
+- (UIButton *)goBtn {
+    if (!_goBtn) {
+        _goBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+        [_goBtn setImage:[UIImage imageNamed:@"GO"] forState:UIControlStateNormal];
+        [_goBtn.layer setCornerRadius:39.0f];
+        [_goBtn.imageView setContentMode:UIViewContentModeScaleAspectFill];
+        [_goBtn.layer setMasksToBounds:YES];
+        
+    }
+    [_goBtn addTarget:self action:@selector(goAction:) forControlEvents:UIControlEventTouchUpInside];
+    return _goBtn;
+}
+
+- (UILabel *)showNumLabel {
+    if (!_showNumLabel) {
+        _showNumLabel = [[UILabel alloc]init];
+        _showNumLabel.textColor = RGB(184, 131, 214);
+        _showNumLabel.font = [UIFont systemFontOfSize:12];
+        _showNumLabel.textAlignment = NSTextAlignmentLeft;
+        _showNumLabel.text = @"0";
+    }
+    return _showNumLabel;
+}
+
 
 #pragma mark -- lifeCycle methods
 - (void)viewDidLoad {
@@ -111,7 +138,7 @@
 
 - (void)createView {
     self.scrollView = [[UIScrollView alloc]initWithFrame:CGRectMake(0, -20, SCREEN_WIDTH, SCREEN_HEIGHT + 20)];
-    self.scrollView.backgroundColor = [UIColor whiteColor];
+    self.scrollView.backgroundColor = RGB(204, 225, 252);
     self.scrollView.contentSize = CGSizeMake(1550, 1500);
     self.scrollView.bounces = NO;
     self.scrollView.delegate = self;
@@ -135,7 +162,9 @@
     
     self.mainView = [[MainView alloc]initWithFrame:CGRectMake(0, 0, 1550, 1500)];
     [self.scrollView addSubview:self.mainView];
-    
+    CGPoint movePoint = [self.mainView moveToPlace];
+    [self.scrollView setContentOffset:CGPointMake(movePoint.x - SCREEN_WIDTH/2,movePoint.y - SCREEN_HEIGHT/2) animated:NO];
+
   
     [self.view addSubview:self.menuBtn];
     [self.menuBtn mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -158,6 +187,38 @@
         make.size.mas_equalTo(CGSizeMake(40, 40));
     }];
     
+    WS(ws);
+    UIImageView *backImageView = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"pro2"]];
+    [self.view addSubview:backImageView];
+    self.showImageView = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"pro3"]];
+    self.showImageView.contentMode = UIViewContentModeScaleAspectFill;
+    [self.showImageView.layer setMasksToBounds:YES];
+    [self.showImageView.layer setCornerRadius:10];
+    [self.view addSubview:self.showImageView];
+    [self.view addSubview:self.showNumLabel];
+    [self.view addSubview:self.goBtn];
+    
+    
+    [self.goBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(@(15));
+        make.bottom.equalTo(@(-15));
+        make.size.mas_equalTo(CGSizeMake(78, 78));
+    }];
+    [backImageView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(ws.goBtn.mas_centerX).with.offset(-7);
+        make.centerY.equalTo(ws.goBtn.mas_centerY);
+        make.size.mas_equalTo(CGSizeMake(192, 54));
+    }];
+    [self.showImageView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(backImageView.mas_left).with.offset(11);
+        make.bottom.equalTo(backImageView.mas_bottom).with.offset(-7);
+        make.size.mas_equalTo(CGSizeMake(100, 20));
+    }];
+    [self.showNumLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(backImageView.mas_top).with.offset(4);
+        make.left.equalTo(backImageView.mas_left).with.offset(59);
+        make.height.equalTo(@17);
+    }];
 
 }
 
@@ -180,6 +241,18 @@
     [self presentViewController:recordVC animated:NO completion:^ {
         recordVC.view.superview.backgroundColor = [UIColor clearColor];
     }];
+    
+}
+
+- (void)goAction:(UIButton *)btn {
+    [self.scrollView setZoomScale:1];
+    CGPoint movePoint = [self.mainView moveToPlace];
+    [self.scrollView setContentOffset:CGPointMake(movePoint.x - SCREEN_WIDTH/2,movePoint.y - SCREEN_HEIGHT/2) animated:YES];
+    NSInteger num = [[[NSUserDefaults standardUserDefaults]objectForKey:@"percentNum"] integerValue];
+    num+=100;
+    [[NSUserDefaults standardUserDefaults] setObject:[NSNumber numberWithInteger:num] forKey:@"percentNum"];
+    [[NSUserDefaults standardUserDefaults] synchronize];
+    [self.mainView placeMove];
     
 }
 

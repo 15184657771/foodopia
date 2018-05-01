@@ -10,4 +10,9 @@
 
 @interface MainView : UIView
 
+- (CGPoint)moveToPlace;
+
+- (void)placeMove;
+
+
 @end
