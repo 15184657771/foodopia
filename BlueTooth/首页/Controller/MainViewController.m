@@ -113,7 +113,7 @@
     
     if ([[NSUserDefaults standardUserDefaults] objectForKey:@"isLogin"]) {
         if ([[[NSUserDefaults standardUserDefaults] objectForKey:@"isLogin"] isEqualToString:@"1"]) {
-            
+
         }else {
             LoginViewController *loginVC = [[LoginViewController alloc]init];
             loginVC.modalPresentationStyle = UIModalPresentationOverFullScreen;

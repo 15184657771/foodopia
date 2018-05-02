@@ -16,10 +16,33 @@
 
 @property (nonatomic, strong) UITableView *tableView;
 @property (nonatomic, strong) NSMutableArray *sourceArray;
-
+@property (nonatomic, strong) UIView *headerView;
+@property (nonatomic, strong) UIImageView *headImage;
+@property (nonatomic, strong) UILabel *nameLabel;
 @end
 
 @implementation SideViewController
+
+- (UIView *)headerView {
+    if (!_headerView) {
+        _headerView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 235)];
+        self.headImage = [[UIImageView alloc]initWithFrame:CGRectMake(95, 70, 98, 98)];
+        [_headerView addSubview:self.headImage];
+        self.nameLabel = [[UILabel alloc]initWithFrame:CGRectMake(96, CGRectGetMaxY(self.headImage.frame) + 5, 200, 20)];
+        self.nameLabel.font = [UIFont systemFontOfSize:20];
+        self.nameLabel.textColor = [UIColor whiteColor];
+        [_headerView addSubview:self.nameLabel];
+        
+    }
+    if ([[NSUserDefaults standardUserDefaults] objectForKey:@"userDic"]) {
+        self.headImage.image = [[NSUserDefaults standardUserDefaults]objectForKey:@"headImage"];
+        self.nameLabel.text = [[NSUserDefaults standardUserDefaults]objectForKey:@"name"];
+    } else {
+        self.headImage.image = [UIImage imageNamed:@"添加头像"];
+        self.nameLabel.text = @"李李李阿鹿";
+    }
+    return _headerView;
+}
 
 - (UITableView *)tableView {
     if (!_tableView) {
@@ -29,6 +52,7 @@
         _tableView.backgroundColor = [UIColor clearColor];
         _tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
         _tableView.showsVerticalScrollIndicator = NO;
+        _tableView.tableHeaderView = self.headerView;
         _tableView.showsHorizontalScrollIndicator = NO;
     }
     return _tableView;
@@ -36,10 +60,10 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.view.backgroundColor = RGB(160, 134, 208);
+    
     self.sourceArray = [NSMutableArray array];
     NSArray* strArray = @[@"我的数据",@"储物冰箱",@"旅行日志",@"旅行商店",@"荣誉徽章",@"同行好友"];
-    NSArray* imageArray = @[@"page",@"page",@"page",@"page",@"page",@"page"];
+    NSArray* imageArray = @[@"我的数据icon",@"储物冰箱icon",@"旅行日志icon",@"商店",@"徽章",@"我的好友"];
     for (int i = 0; i < 6; i++) {
         SlideModel *model = [[SlideModel alloc]init];
         model.titleStr= strArray[i];
@@ -51,7 +75,11 @@
 }
 
 - (void)createView {
-    [self.view addSubview:self.tableView];
+    UIImageView *imageview = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT)];
+    imageview.image = [UIImage imageNamed:@"背景图"];
+    imageview.userInteractionEnabled = YES;
+    [self.view addSubview:imageview];
+    [imageview addSubview:self.tableView];
     WS(ws);
     [self.tableView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.right.equalTo(ws.view);
@@ -71,11 +99,11 @@
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
-    return 10;
+    return CGFLOAT_MIN;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    return 45;
+    return 42;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {

@@ -17,6 +17,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+<<<<<<< HEAD
     [self.view setBackgroundColor:[UIColor whiteColor]];
     CAGradientLayer *gradientLayer = [[CAGradientLayer alloc] init];
     gradientLayer.colors = @[(__bridge id)RGB(128, 98, 156).CGColor,(__bridge id)RGB(103, 68, 137).CGColor];
@@ -156,6 +157,9 @@
     [strawberry_cakeBtn addTarget:self action:@selector(chooseAction:) forControlEvents:UIControlEventTouchUpInside];
 
     // Do any additional setup after loading the view.
+=======
+    self.view.backgroundColor = [UIColor whiteColor];
+>>>>>>> master
 }
 
 - (void)didReceiveMemoryWarning {
