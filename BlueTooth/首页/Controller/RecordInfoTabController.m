@@ -47,6 +47,9 @@
     [cancelBackView addGestureRecognizer:tap];
     
     [self createView];
+}
+- (void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
     [self segmentValue];
 }
 
@@ -101,19 +104,22 @@
     drinkHighViewController.delegate = self;
     SleepViewController *sleepHighViewController = [[SleepViewController alloc] init];
     sleepHighViewController.delegate = self;
-    if (self.showTag == 0) {
-        [vcs addObject:weightHighViewController];
-        [vcs addObject:drinkHighViewController];
-        [vcs addObject:sleepHighViewController];
-    } else if (self.showTag == 1) {
-        [vcs addObject:drinkHighViewController];
-        [vcs addObject:weightHighViewController];
-        [vcs addObject:sleepHighViewController];
-    } else {
-        [vcs addObject:sleepHighViewController];
-        [vcs addObject:weightHighViewController];
-        [vcs addObject:drinkHighViewController];
-    }
+//    if (self.showTag == 0) {
+//        [vcs addObject:weightHighViewController];
+//        [vcs addObject:drinkHighViewController];
+//        [vcs addObject:sleepHighViewController];
+//    } else if (self.showTag == 1) {
+//        [vcs addObject:drinkHighViewController];
+//        [vcs addObject:weightHighViewController];
+//        [vcs addObject:sleepHighViewController];
+//    } else {
+//        [vcs addObject:sleepHighViewController];
+//        [vcs addObject:weightHighViewController];
+//        [vcs addObject:drinkHighViewController];
+//    }
+    [vcs addObject:weightHighViewController];
+    [vcs addObject:drinkHighViewController];
+    [vcs addObject:sleepHighViewController];
     [self.contentView reloadViewWithChildVcs:vcs parentVC:self];
     self.contentView.currentIndex = self.showTag;
 }
