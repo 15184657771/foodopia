@@ -127,12 +127,12 @@
 
 - (void)viewWillDisappear:(BOOL)animated {
     [super viewWillDisappear:animated];
-    [self.navigationController setNavigationBarHidden:NO animated:animated];
+    [self.navigationController setNavigationBarHidden:NO animated:NO];
 }
 
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
-    [self.navigationController setNavigationBarHidden:YES animated:animated];
+    [self.navigationController setNavigationBarHidden:YES animated:NO];
     
 }
 
@@ -248,11 +248,7 @@
     [self.scrollView setZoomScale:1];
     CGPoint movePoint = [self.mainView moveToPlace];
     [self.scrollView setContentOffset:CGPointMake(movePoint.x - SCREEN_WIDTH/2,movePoint.y - SCREEN_HEIGHT/2) animated:YES];
-    NSInteger num = [[[NSUserDefaults standardUserDefaults]objectForKey:@"percentNum"] integerValue];
-    num+=100;
-    [[NSUserDefaults standardUserDefaults] setObject:[NSNumber numberWithInteger:num] forKey:@"percentNum"];
-    [[NSUserDefaults standardUserDefaults] synchronize];
-    [self.mainView placeMove];
+    [self.mainView placeMove:100];
     
 }
 

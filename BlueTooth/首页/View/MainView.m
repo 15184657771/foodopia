@@ -16,7 +16,7 @@
 @property (nonatomic,strong) NSMutableArray *pointArray;
 @property (nonatomic,strong) CAShapeLayer *circleLayer;
 @property (nonatomic,strong) UIImageView *locationImageView;
-
+@property (nonatomic,strong) NSArray *selectNumArray;
 @end
 
 @implementation MainView
@@ -234,7 +234,7 @@
     [self addSubview:self.locationImageView];
     CGPoint movePoint = [self moveToPlace];
     [self.locationImageView setFrame:CGRectMake(movePoint.x - 11, movePoint.y - 31, 22, 36)];
-    NSArray *selectNumArray = @[[NSNumber numberWithInt:42],[NSNumber numberWithInt:76],[NSNumber numberWithInt:124],[NSNumber numberWithInt:156],
+    self.selectNumArray = @[[NSNumber numberWithInt:42],[NSNumber numberWithInt:76],[NSNumber numberWithInt:124],[NSNumber numberWithInt:156],
                                 [NSNumber numberWithInt:193],[NSNumber numberWithInt:238],[NSNumber numberWithInt:269],[NSNumber numberWithInt:304],
                                 [NSNumber numberWithInt:344],[NSNumber numberWithInt:406],[NSNumber numberWithInt:440],[NSNumber numberWithInt:465],
                                 [NSNumber numberWithInt:497],[NSNumber numberWithInt:542],[NSNumber numberWithInt:568],[NSNumber numberWithInt:603],
@@ -305,10 +305,33 @@ void MyCGPathApplierFunc (void *info, const CGPathElement *element) {
     return point;
 }
 
-- (void)placeMove {
+- (void)placeMove:(NSInteger)moveNum {
+    NSInteger beforePlace = [self placeCount];
+    NSInteger num = [[[NSUserDefaults standardUserDefaults]objectForKey:@"percentNum"] integerValue];
+    num+=moveNum;
+    [[NSUserDefaults standardUserDefaults] setObject:[NSNumber numberWithInteger:num] forKey:@"percentNum"];
+    [[NSUserDefaults standardUserDefaults] synchronize];
+    
+    NSInteger nowPlace = [self placeCount];
     [UIView animateWithDuration:0.2 animations:^{
         CGPoint movePoint = [self moveToPlace];
         [self.locationImageView setFrame:CGRectMake(movePoint.x - 11, movePoint.y - 31, 22, 36)];
+    } completion:^(BOOL finished) {
+        for (int i = 0; i < self.selectNumArray.count; i++) {
+            if ([self.selectNumArray[i] integerValue] > beforePlace &&[self.selectNumArray[i] integerValue] <= nowPlace) {
+                
+            }
+        }
     }];
 }
+
+- (NSInteger)placeCount {
+    NSMutableArray *bezierPoints = [NSMutableArray array];
+    CGPathApply(self.workPath.CGPath, (__bridge void *)(bezierPoints), MyCGPathApplierFunc);
+    
+    NSInteger num = [[[NSUserDefaults standardUserDefaults]objectForKey:@"percentNum"] integerValue];
+    NSInteger j = num/50 + 42 < bezierPoints.count?num/50 + 42:bezierPoints.count - 1;
+    return j;
+}
+
 @end

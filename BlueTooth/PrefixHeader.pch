@@ -11,6 +11,20 @@
 
 #import "Masonry.h"
 
+typedef enum : NSUInteger {
+    EGG = 0,
+    FLOUR,
+    CHEESE,
+    CHOCOLATE,
+    BLUEBERRY,
+    STRAWBERRY,
+    MOTCHA,
+    CUPCAKE,
+    BLUEBERRY_CAKE,
+    MOTCHA_ROLL,
+    STRAWBERRY_CAKE
+}FoodEnum;
+
 #define SCREEN_WIDTH ([UIScreen mainScreen].bounds.size.width)
 #define SCREEN_HEIGHT ([UIScreen mainScreen].bounds.size.height)
 
