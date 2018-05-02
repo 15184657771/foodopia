@@ -66,17 +66,6 @@
                         <action selector="leftBtnAction:" destination="-1" eventType="touchUpInside" id="oUZ-Lp-g8r"/>
                     </connections>
                 </button>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mPT-1v-1XQ">
-                    <rect key="frame" x="354" y="40" width="40" height="40"/>
-                    <constraints>
-                        <constraint firstAttribute="width" constant="40" id="KYP-cZ-klT"/>
-                        <constraint firstAttribute="height" constant="40" id="fYS-ig-vaF"/>
-                    </constraints>
-                    <state key="normal" backgroundImage="grayCircle"/>
-                    <connections>
-                        <action selector="rightBtnAction:" destination="-1" eventType="touchUpInside" id="9gZ-sw-PK6"/>
-                    </connections>
-                </button>
                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="提示气泡01" translatesAutoresizingMaskIntoConstraints="NO" id="Y73-9U-PQp">
                     <rect key="frame" x="136" y="205" width="142" height="70"/>
                 </imageView>
@@ -192,11 +181,9 @@
                 <constraint firstItem="i6A-yk-Mjk" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="40" id="C1v-td-6gM"/>
                 <constraint firstAttribute="bottom" secondItem="2k8-7c-P1G" secondAttribute="bottom" constant="45" id="FrW-Zm-QUg"/>
                 <constraint firstItem="caS-2P-F96" firstAttribute="centerY" secondItem="2k8-7c-P1G" secondAttribute="centerY" id="IVi-RQ-1Ff"/>
-                <constraint firstAttribute="trailing" secondItem="mPT-1v-1XQ" secondAttribute="trailing" constant="20" id="OJP-x2-Qdy"/>
                 <constraint firstItem="i6A-yk-Mjk" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="20" id="OWq-2u-bP0"/>
                 <constraint firstItem="2k8-7c-P1G" firstAttribute="top" secondItem="kaH-8O-0sM" secondAttribute="bottom" constant="5" id="R85-bd-s6W"/>
                 <constraint firstAttribute="bottom" secondItem="0Dv-au-gMa" secondAttribute="bottom" id="TGR-YN-5hU"/>
-                <constraint firstItem="mPT-1v-1XQ" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="40" id="TJk-at-sFl"/>
                 <constraint firstAttribute="bottom" secondItem="eVX-SU-Wg5" secondAttribute="bottom" id="bbP-c0-Qiz"/>
                 <constraint firstItem="2k8-7c-P1G" firstAttribute="top" secondItem="41l-JC-h4U" secondAttribute="bottom" constant="50" id="cMM-7i-e8Y"/>
                 <constraint firstItem="0Dv-au-gMa" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="ghp-pV-wKH"/>
@@ -214,7 +201,6 @@
     <resources>
         <image name="0-巧克力纸杯蛋糕" width="192" height="172"/>
         <image name="0-背景" width="375" height="667"/>
-        <image name="grayCircle" width="19" height="19"/>
         <image name="冰箱icon" width="42" height="42"/>
         <image name="原始形态" width="155" height="191"/>
         <image name="发光特效" width="372" height="326"/>

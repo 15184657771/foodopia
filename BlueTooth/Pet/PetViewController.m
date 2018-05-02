@@ -8,6 +8,7 @@
 
 #import "PetViewController.h"
 #import "RefrigeratorViewController.h"
+#import "UIViewController+XYSideCategory.h"
 
 @interface PetViewController ()
 //背景
@@ -209,12 +210,9 @@
 
 
 - (IBAction)leftBtnAction:(UIButton *)sender {
-    
+    [self XYSideOpenVC];
 }
 
-- (IBAction)rightBtnAction:(UIButton *)sender {
-    
-}
 
 - (IBAction)eatBtnAction:(UIButton *)sender {
     if ([UIImagePNGRepresentation(self.bigImageView.image) isEqual:UIImagePNGRepresentation([UIImage imageNamed:@"0-熊"])]){

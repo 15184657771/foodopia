@@ -26,7 +26,7 @@
 - (UIView *)headerView {
     if (!_headerView) {
         _headerView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 235)];
-        self.headImage = [[UIImageView alloc]initWithFrame:CGRectMake(95, 80, 98, 98)];
+        self.headImage = [[UIImageView alloc]initWithFrame:CGRectMake(95, 70, 98, 98)];
         [_headerView addSubview:self.headImage];
         self.nameLabel = [[UILabel alloc]initWithFrame:CGRectMake(96, CGRectGetMaxY(self.headImage.frame) + 5, 200, 20)];
         self.nameLabel.font = [UIFont systemFontOfSize:20];
