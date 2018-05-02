@@ -61,7 +61,7 @@
                         <constraint firstAttribute="width" constant="40" id="9b8-lh-pIO"/>
                         <constraint firstAttribute="height" constant="40" id="UAh-Rn-DDk"/>
                     </constraints>
-                    <state key="normal" backgroundImage="grayCircle"/>
+                    <state key="normal" backgroundImage="菜单icon"/>
                     <connections>
                         <action selector="leftBtnAction:" destination="-1" eventType="touchUpInside" id="oUZ-Lp-g8r"/>
                     </connections>
@@ -96,7 +96,7 @@
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="WQo-XX-7zs">
                     <rect key="frame" x="88.666666666666671" y="613.66666666666663" width="40.000000000000014" height="63"/>
                     <subviews>
-                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="grayCircle" translatesAutoresizingMaskIntoConstraints="NO" id="opr-Ye-09L">
+                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="地图icon" translatesAutoresizingMaskIntoConstraints="NO" id="opr-Ye-09L">
                             <rect key="frame" x="0.0" y="0.0" width="40" height="40"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="40" id="q9V-vE-Zci"/>
@@ -127,7 +127,7 @@
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="caS-2P-F96">
                     <rect key="frame" x="284.66666666666669" y="614" width="40" height="63"/>
                     <subviews>
-                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="grayCircle" translatesAutoresizingMaskIntoConstraints="NO" id="u8W-g1-bCD">
+                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="冰箱icon" translatesAutoresizingMaskIntoConstraints="NO" id="u8W-g1-bCD">
                             <rect key="frame" x="0.0" y="0.0" width="40" height="40"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="40" id="mJi-Fh-Erw"/>
@@ -213,15 +213,18 @@
     </objects>
     <resources>
         <image name="0-巧克力纸杯蛋糕" width="192" height="172"/>
-        <image name="0-背景" width="187" height="333"/>
+        <image name="0-背景" width="375" height="667"/>
         <image name="grayCircle" width="19" height="19"/>
+        <image name="冰箱icon" width="42" height="42"/>
         <image name="原始形态" width="155" height="191"/>
         <image name="发光特效" width="372" height="326"/>
         <image name="喂养按钮" width="92" height="92"/>
+        <image name="地图icon" width="42" height="42"/>
         <image name="手" width="226" height="251"/>
         <image name="拖动提示气泡" width="142" height="70"/>
         <image name="提示气泡01" width="142" height="70"/>
         <image name="获得能量气泡" width="87" height="50"/>
+        <image name="菜单icon" width="80" height="82"/>
         <image name="饥饿提示气泡" width="52" height="40"/>
     </resources>
 </document>

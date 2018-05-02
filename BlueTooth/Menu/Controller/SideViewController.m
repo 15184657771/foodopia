@@ -63,7 +63,7 @@
     
     self.sourceArray = [NSMutableArray array];
     NSArray* strArray = @[@"我的数据",@"储物冰箱",@"旅行日志",@"旅行商店",@"荣誉徽章",@"同行好友"];
-    NSArray* imageArray = @[@"我的数据icon",@"page",@"旅行日志icon",@"商店",@"徽章",@"我的好友"];
+    NSArray* imageArray = @[@"我的数据icon",@"储物冰箱icon",@"旅行日志icon",@"商店",@"徽章",@"我的好友"];
     for (int i = 0; i < 6; i++) {
         SlideModel *model = [[SlideModel alloc]init];
         model.titleStr= strArray[i];
