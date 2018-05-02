@@ -50,6 +50,7 @@
 		A68A8953208F56820034885E /* PetViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A68A8951208F56820034885E /* PetViewController.m */; };
 		A68A8954208F56820034885E /* PetViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A68A8952208F56820034885E /* PetViewController.xib */; };
 		A6EDEE8E20987A46000D0F88 /* RefrigeratorViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A6EDEE8D20987A46000D0F88 /* RefrigeratorViewController.m */; };
+		A6EDEE9120999B90000D0F88 /* DSToast.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6EDEE9020999B8F000D0F88 /* DSToast.swift */; };
 		D331F141587000576A7803E2 /* libPods-BlueTooth.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 172237DFFCB88065A4B73FF4 /* libPods-BlueTooth.a */; };
 /* End PBXBuildFile section */
 
@@ -161,6 +162,8 @@
 		A68A8952208F56820034885E /* PetViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PetViewController.xib; sourceTree = "<group>"; };
 		A6EDEE8C20987A46000D0F88 /* RefrigeratorViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RefrigeratorViewController.h; sourceTree = "<group>"; };
 		A6EDEE8D20987A46000D0F88 /* RefrigeratorViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RefrigeratorViewController.m; sourceTree = "<group>"; };
+		A6EDEE8F20999B8E000D0F88 /* BlueTooth-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "BlueTooth-Bridging-Header.h"; sourceTree = "<group>"; };
+		A6EDEE9020999B8F000D0F88 /* DSToast.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DSToast.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -352,8 +355,10 @@
 		A646DE112072055C003A29D8 /* Toast */ = {
 			isa = PBXGroup;
 			children = (
+				A6EDEE9020999B8F000D0F88 /* DSToast.swift */,
 				747D1DB42050DBA400CF0D2A /* Toast.h */,
 				747D1DB32050DBA400CF0D2A /* Toast.m */,
+				A6EDEE8F20999B8E000D0F88 /* BlueTooth-Bridging-Header.h */,
 			);
 			path = Toast;
 			sourceTree = "<group>";
@@ -555,6 +560,7 @@
 				TargetAttributes = {
 					74369E0E204FEEEB007CC3BF = {
 						CreatedOnToolsVersion = 9.2;
+						LastSwiftMigration = 0920;
 						ProvisioningStyle = Automatic;
 					};
 					74369E26204FEEEB007CC3BF = {
@@ -687,6 +693,7 @@
 				A6EDEE8E20987A46000D0F88 /* RefrigeratorViewController.m in Sources */,
 				A646DE2120722A84003A29D8 /* WeightViewController.m in Sources */,
 				7436B63D20737BB30029BA71 /* WeightHighViewController.m in Sources */,
+				A6EDEE9120999B90000D0F88 /* DSToast.swift in Sources */,
 				A646DE2D20727E91003A29D8 /* TXHRulerScrollView.m in Sources */,
 				A646DE2E20727E91003A29D8 /* TXHRrettyRuler.m in Sources */,
 				7439F1982054D7B900F3DCA5 /* MainView.m in Sources */,
@@ -858,6 +865,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 8RRS2EF37Z;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/BlueTooth/PrefixHeader.pch";
@@ -866,6 +874,9 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = cn.akeso.foodopia;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "BlueTooth/Tools/Toast/BlueTooth-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -876,6 +887,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 8RRS2EF37Z;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/BlueTooth/PrefixHeader.pch";
@@ -884,6 +896,8 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = cn.akeso.foodopia;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "BlueTooth/Tools/Toast/BlueTooth-Bridging-Header.h";
+				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
@@ -891,6 +905,7 @@
 		74369E3F204FEEEB007CC3BF /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = BlueToothTests/Info.plist;
@@ -905,6 +920,7 @@
 		74369E40204FEEEB007CC3BF /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = BlueToothTests/Info.plist;
@@ -919,6 +935,7 @@
 		74369E42204FEEEB007CC3BF /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = BlueToothUITests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
@@ -932,6 +949,7 @@
 		74369E43204FEEEB007CC3BF /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = BlueToothUITests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
