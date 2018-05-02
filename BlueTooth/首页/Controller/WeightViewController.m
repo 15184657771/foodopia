@@ -92,7 +92,7 @@
         [self.baseView setVerticalDaySource:self.timeArr horizontalValueArray:self.weightArr];
         [self.baseView show];
     } else {
-        [self.baseView setVerticalDaySource:@[@"8:30",@"9:30",@"10.45"] horizontalValueArray:@[[NSNumber numberWithFloat:50],[NSNumber numberWithFloat:50.2],[NSNumber numberWithFloat:49.9]]];
+        [self.baseView setVerticalDaySource:@[@"8:30",@"9:30",@"10:45"] horizontalValueArray:@[[NSNumber numberWithFloat:50],[NSNumber numberWithFloat:50.2],[NSNumber numberWithFloat:49.9]]];
         [self.baseView show];
     }
     UITapGestureRecognizer *weightTap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(weightTapAction)];
