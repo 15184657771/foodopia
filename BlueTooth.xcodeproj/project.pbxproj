@@ -20,7 +20,6 @@
 		7436B64920737DAD0029BA71 /* InforViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7436B64820737DAD0029BA71 /* InforViewController.m */; };
 		7439F16C205188AC00F3DCA5 /* SlideCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7439F16B205188AC00F3DCA5 /* SlideCell.m */; };
 		7439F16F20518D4800F3DCA5 /* SlideModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 7439F16E20518D4800F3DCA5 /* SlideModel.m */; };
-		7439F1722052254F00F3DCA5 /* SlideHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7439F1712052254F00F3DCA5 /* SlideHeaderView.m */; };
 		7439F1852052314900F3DCA5 /* SideViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7439F1842052314900F3DCA5 /* SideViewController.m */; };
 		7439F1882052315E00F3DCA5 /* OtherViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7439F1872052315E00F3DCA5 /* OtherViewController.m */; };
 		7439F18D205232C400F3DCA5 /* XYSideViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7439F189205232C300F3DCA5 /* XYSideViewController.m */; };
@@ -103,8 +102,6 @@
 		7439F16B205188AC00F3DCA5 /* SlideCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SlideCell.m; sourceTree = "<group>"; };
 		7439F16D20518D4800F3DCA5 /* SlideModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SlideModel.h; sourceTree = "<group>"; };
 		7439F16E20518D4800F3DCA5 /* SlideModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SlideModel.m; sourceTree = "<group>"; };
-		7439F1702052254F00F3DCA5 /* SlideHeaderView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SlideHeaderView.h; sourceTree = "<group>"; };
-		7439F1712052254F00F3DCA5 /* SlideHeaderView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SlideHeaderView.m; sourceTree = "<group>"; };
 		7439F1832052314900F3DCA5 /* SideViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SideViewController.h; sourceTree = "<group>"; };
 		7439F1842052314900F3DCA5 /* SideViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SideViewController.m; sourceTree = "<group>"; };
 		7439F1862052315E00F3DCA5 /* OtherViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OtherViewController.h; sourceTree = "<group>"; };
@@ -382,8 +379,6 @@
 		A646DE14207205A6003A29D8 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				7439F1702052254F00F3DCA5 /* SlideHeaderView.h */,
-				7439F1712052254F00F3DCA5 /* SlideHeaderView.m */,
 				7439F16A205188AC00F3DCA5 /* SlideCell.h */,
 				7439F16B205188AC00F3DCA5 /* SlideCell.m */,
 			);
@@ -717,7 +712,6 @@
 				A671E1A52074B82300072BAD /* WeightModel.m in Sources */,
 				7439F1852052314900F3DCA5 /* SideViewController.m in Sources */,
 				7439F18E205232C400F3DCA5 /* UIViewController+XYSideCategory.m in Sources */,
-				7439F1722052254F00F3DCA5 /* SlideHeaderView.m in Sources */,
 				A671E19D2073335F00072BAD /* RecordSleepView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
