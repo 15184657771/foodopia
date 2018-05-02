@@ -12,7 +12,7 @@
 
 - (CGPoint)moveToPlace;
 
-- (void)placeMove;
+- (void)placeMove:(NSInteger)moveNum;
 
 
 @end
