@@ -11,9 +11,23 @@
 
 @interface RefrigeratorViewController ()
 
+@property (nonatomic, strong) UIButton *backBtn;
+
 @end
 
 @implementation RefrigeratorViewController
+
+- (UIButton *)backBtn {
+    if (!_backBtn) {
+        _backBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+        _backBtn.backgroundColor = [UIColor whiteColor];
+        [_backBtn setImage:[UIImage imageNamed:@"goLeft"] forState:UIControlStateNormal];
+        [_backBtn.layer setCornerRadius:20.0f];
+        [_backBtn.layer setMasksToBounds:YES];
+    }
+    [_backBtn addTarget:self action:@selector(backAction:) forControlEvents:UIControlEventTouchUpInside];
+    return _backBtn;
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -27,6 +41,14 @@
     
     
     WS(ws);
+    
+    [self.view addSubview:self.backBtn];
+    [self.backBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(@(20));
+        make.top.equalTo(@(20));
+        make.size.mas_equalTo(CGSizeMake(40, 40));
+    }];
+    
     UILabel *engTextLabel = [[UILabel alloc]init];
     engTextLabel.textColor = [UIColor whiteColor];
     engTextLabel.font = [UIFont boldSystemFontOfSize:22];
@@ -162,6 +184,10 @@
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (void)backAction:(UIButton *)btn {
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
