@@ -28,6 +28,7 @@
 		7439F191205232F500F3DCA5 /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7439F190205232F500F3DCA5 /* MainViewController.m */; };
 		7439F1982054D7B900F3DCA5 /* MainView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7439F1972054D7B900F3DCA5 /* MainView.m */; };
 		7439F19C205520F800F3DCA5 /* TypeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7439F19B205520F800F3DCA5 /* TypeViewController.m */; };
+		743E8DE62098D3430005A3FF /* UIButton+Badge.m in Sources */ = {isa = PBXBuildFile; fileRef = 743E8DE52098D3430005A3FF /* UIButton+Badge.m */; };
 		744DA4CE2084452D0041D9E7 /* ErectView.m in Sources */ = {isa = PBXBuildFile; fileRef = 744DA4CD2084452D0041D9E7 /* ErectView.m */; };
 		747D1DB52050DBA400CF0D2A /* Toast.m in Sources */ = {isa = PBXBuildFile; fileRef = 747D1DB32050DBA400CF0D2A /* Toast.m */; };
 		748B02AD2077297D00606719 /* BaseView.m in Sources */ = {isa = PBXBuildFile; fileRef = 748B02AC2077297D00606719 /* BaseView.m */; };
@@ -119,6 +120,8 @@
 		7439F1972054D7B900F3DCA5 /* MainView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MainView.m; sourceTree = "<group>"; };
 		7439F19A205520F800F3DCA5 /* TypeViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TypeViewController.h; sourceTree = "<group>"; };
 		7439F19B205520F800F3DCA5 /* TypeViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TypeViewController.m; sourceTree = "<group>"; };
+		743E8DE42098D3430005A3FF /* UIButton+Badge.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIButton+Badge.h"; sourceTree = "<group>"; };
+		743E8DE52098D3430005A3FF /* UIButton+Badge.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIButton+Badge.m"; sourceTree = "<group>"; };
 		744DA4CC2084452D0041D9E7 /* ErectView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ErectView.h; sourceTree = "<group>"; };
 		744DA4CD2084452D0041D9E7 /* ErectView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ErectView.m; sourceTree = "<group>"; };
 		747D1DB32050DBA400CF0D2A /* Toast.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Toast.m; sourceTree = "<group>"; };
@@ -486,6 +489,8 @@
 			children = (
 				A6EDEE8C20987A46000D0F88 /* RefrigeratorViewController.h */,
 				A6EDEE8D20987A46000D0F88 /* RefrigeratorViewController.m */,
+				743E8DE42098D3430005A3FF /* UIButton+Badge.h */,
+				743E8DE52098D3430005A3FF /* UIButton+Badge.m */,
 			);
 			path = Refrigerator;
 			sourceTree = "<group>";
@@ -704,6 +709,7 @@
 				7439F1882052315E00F3DCA5 /* OtherViewController.m in Sources */,
 				A646DE2420722A96003A29D8 /* DrinkViewController.m in Sources */,
 				74369E14204FEEEB007CC3BF /* AppDelegate.m in Sources */,
+				743E8DE62098D3430005A3FF /* UIButton+Badge.m in Sources */,
 				744DA4CE2084452D0041D9E7 /* ErectView.m in Sources */,
 				7439F191205232F500F3DCA5 /* MainViewController.m in Sources */,
 				A646DE2720722AA6003A29D8 /* SleepViewController.m in Sources */,
