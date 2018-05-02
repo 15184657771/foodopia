@@ -42,11 +42,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 
-    self.backImageView.userInteractionEnabled = YES;
-    self.bigImageView.userInteractionEnabled = YES;
-    self.eatView.hidden = YES;
-    self.energyView.hidden = YES;
-    self.hungerImageView.hidden = YES;
+    [self setUpUI];
     
     UITapGestureRecognizer *bigImageTap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(bigImageTap)];
     [self.bigImageView addGestureRecognizer:bigImageTap];
@@ -61,6 +57,19 @@
     UITapGestureRecognizer *eatViewTap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(eatViewTap)];
     [self.eatView addGestureRecognizer:eatViewTap];
    
+}
+
+- (void)setUpUI {
+    self.backImageView.userInteractionEnabled = YES;
+    self.bigImageView.userInteractionEnabled = YES;
+    self.eatView.hidden = YES;
+    self.energyView.hidden = YES;
+    self.hungerImageView.hidden = YES;
+    
+    self.backImageView.image = [UIImage imageNamed:@"0-背景"];
+    self.bigImageView.image = [UIImage imageNamed:@"原始形态"];
+    self.toastView.hidden = NO;
+    
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
