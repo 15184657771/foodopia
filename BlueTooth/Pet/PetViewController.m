@@ -477,7 +477,7 @@
             self.imageView.hidden = NO;
             self.imageView.image = [UIImage imageNamed:@"合成 1_00001"];
         } else {
-            [self setUpNoFoodView];
+            [self setUpNoFoodView:1];
         }
     } else if ([UIImagePNGRepresentation(self.bigImageView.image) isEqual:UIImagePNGRepresentation([UIImage imageNamed:@"1-熊"])]) {
         if (blueberry_cake > 0) {
@@ -489,7 +489,7 @@
             self.hungerImageView.hidden = YES;
             self.imageView.image = [UIImage imageNamed:@"喂养02_00001"];
         } else {
-             [self setUpNoFoodView];
+            [self setUpNoFoodView:2];
         }
         
     } else if ([UIImagePNGRepresentation(self.bigImageView.image) isEqual:UIImagePNGRepresentation([UIImage imageNamed:@"2-熊"])]) {
@@ -502,7 +502,7 @@
             self.hungerImageView.hidden = YES;
             self.imageView.image = [UIImage imageNamed:@"喂养03_00001"];
         } else {
-             [self setUpNoFoodView];
+            [self setUpNoFoodView:3];
         }
     } else if ([UIImagePNGRepresentation(self.bigImageView.image) isEqual:UIImagePNGRepresentation([UIImage imageNamed:@"3-熊"])]) {
         if (motcha_roll > 0) {
@@ -514,7 +514,7 @@
             self.hungerImageView.hidden = YES;
             self.imageView.image = [UIImage imageNamed:@"喂养04_00001"];
         } else {
-             [self setUpNoFoodView];
+            [self setUpNoFoodView:4];
         }
     } else if ([UIImagePNGRepresentation(self.bigImageView.image) isEqual:UIImagePNGRepresentation([UIImage imageNamed:@"4-熊"])]) {
         
@@ -524,9 +524,9 @@
     
 }
 
-- (void)setUpNoFoodView {
+- (void)setUpNoFoodView:(NSInteger)count {
     NSLog(@"没有食物");
-    [DSToast show:@"没有食物"];
+    
     self.backImageView.image = [UIImage imageNamed:@"0-背景"];
     self.bigImageView.image = [UIImage imageNamed:@"0-熊"];
     [self.leftTopBtn setBackgroundImage:[UIImage imageNamed:@"返回icon"] forState:UIControlStateNormal];
@@ -534,6 +534,17 @@
     self.locationView.hidden = YES;
     self.RefrigeratorView.hidden = YES;
     self.hungerImageView.hidden = YES;
+    
+    if (count == 1) {
+        [DSToast show:@"没有巧克力"];
+    } else if (count == 2) {
+        [DSToast show:@"没有蓝莓慕斯"];
+    } else if (count == 3) {
+        [DSToast show:@"没有草莓芝士"];
+    } else if (count == 4) {
+        [DSToast show:@"没有抹茶卷"];
+    }
+    
     
 }
 
