@@ -166,6 +166,11 @@
     } else if (toolType == 5) {
         self.imageView.image = [UIImage imageNamed:@"芝士"];
         self.titleLabel.text = @"获得新芝士啦！";
+    } else if (toolType == 6) {
+        self.imageView.image = [UIImage imageNamed:@"motchax"];
+        self.titleLabel.text = @"获得新抹茶粉啦！";
+    } else {
+        self.titleLabel.text = @"获得新壁纸啦！";
     }
 }
 
@@ -179,7 +184,7 @@
 }
 
 - (void)rightBtnAction:(UIButton *)sender {
-    
+    [self dismissViewControllerAnimated:NO completion:nil];
 }
 
 @end

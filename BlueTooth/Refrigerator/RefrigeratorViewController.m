@@ -8,7 +8,8 @@
 
 #import "RefrigeratorViewController.h"
 #import "UIButton+Badge.h"
-
+#import "FoodShowViewController.h"
+#import "KitchenViewController.h"
 @interface RefrigeratorViewController ()
 
 @property (nonatomic, strong) UIButton *backBtn;
@@ -38,8 +39,35 @@
     gradientLayer.endPoint = CGPointMake(0, 1);
     gradientLayer.frame = CGRectMake(0, 0, CGRectGetWidth(self.view.frame), CGRectGetHeight(self.view.frame));
     [self.view.layer addSublayer:gradientLayer];
+    [self createView];
+    [self setValue];
     
-    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(composed:) name:@"composed" object:nil];
+
+
+    // Do any additional setup after loading the view.
+
+}
+
+- (void)dealloc
+{
+    [[NSNotificationCenter defaultCenter]removeObserver:self name:@"composed" object:nil];
+}
+
+- (void)didReceiveMemoryWarning {
+    [super didReceiveMemoryWarning];
+    // Dispose of any resources that can be recreated.
+}
+
+- (void)composed:(NSNotification *)sender {
+    NSNumber *number = sender.object;
+    KitchenViewController *kitchenViewController = [[KitchenViewController alloc]init];
+    kitchenViewController.foodType = [number integerValue];
+    [self.navigationController pushViewController:kitchenViewController animated:NO];
+}
+
+
+- (void)createView {
     WS(ws);
     
     [self.view addSubview:self.backBtn];
@@ -74,9 +102,11 @@
         make.right.equalTo(@(-30));
         make.top.equalTo(engTextLabel.mas_bottom).with.offset(5);
     }];
-
+    
     
     UIImageView *imageView = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"fridge"]];
+    imageView.userInteractionEnabled = YES;
+    imageView.tag = 200;
     [self.view addSubview:imageView];
     [imageView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.size.mas_equalTo(CGSizeMake(330 * WidthNum, 450 * WidthNum));
@@ -86,73 +116,53 @@
     
     UIButton *cheeseBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     [cheeseBtn setFrame:CGRectMake(222 * WidthNum, 94 * WidthNum, 57 * WidthNum, 40 * WidthNum)];
-    [cheeseBtn setImage:[UIImage imageNamed:@"cheese"] forState:UIControlStateNormal];
     cheeseBtn.shouldHideBadgeAtZero = YES;
-    cheeseBtn.badgeValue = @"1";
     [imageView addSubview:cheeseBtn];
     UIButton *flourBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     [flourBtn setFrame:CGRectMake(125 * WidthNum, 60 * WidthNum, 84 * WidthNum, 74 * WidthNum)];
-    [flourBtn setImage:[UIImage imageNamed:@"flour"] forState:UIControlStateNormal];
     flourBtn.shouldHideBadgeAtZero = YES;
-    flourBtn.badgeValue = @"1";
     [imageView addSubview:flourBtn];
     UIButton *eggBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     [eggBtn setFrame:CGRectMake(60 * WidthNum, 100 * WidthNum, 53 * WidthNum, 33 * WidthNum)];
-    [eggBtn setImage:[UIImage imageNamed:@"egg"] forState:UIControlStateNormal];
     eggBtn.shouldHideBadgeAtZero = YES;
-    eggBtn.badgeValue = @"1";
     [imageView addSubview:eggBtn];
     
     UIButton *motchaBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     [motchaBtn setFrame:CGRectMake(247 * WidthNum, 198 * WidthNum, 45 * WidthNum, 64 * WidthNum)];
-    [motchaBtn setImage:[UIImage imageNamed:@"motcha"] forState:UIControlStateNormal];
     motchaBtn.shouldHideBadgeAtZero = YES;
-    motchaBtn.badgeValue = @"1";
     [imageView addSubview:motchaBtn];
     UIButton *strawberryBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     [strawberryBtn setFrame:CGRectMake(156 * WidthNum, 192 * WidthNum, 74 * WidthNum, 69 * WidthNum)];
-    [strawberryBtn setImage:[UIImage imageNamed:@"strawberry"] forState:UIControlStateNormal];
     strawberryBtn.shouldHideBadgeAtZero = YES;
-    strawberryBtn.badgeValue = @"1";
     [imageView addSubview:strawberryBtn];
     UIButton *blueberryBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     [blueberryBtn setFrame:CGRectMake(102 * WidthNum, 227 * WidthNum, 49 * WidthNum, 35 * WidthNum)];
-    [blueberryBtn setImage:[UIImage imageNamed:@"blueberry"] forState:UIControlStateNormal];
     blueberryBtn.shouldHideBadgeAtZero = YES;
-    blueberryBtn.badgeValue = @"1";
     [imageView addSubview:blueberryBtn];
     UIButton *chocolateBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     [chocolateBtn setFrame:CGRectMake(37 * WidthNum, 182 * WidthNum, 53 * WidthNum, 72 * WidthNum)];
-    [chocolateBtn setImage:[UIImage imageNamed:@"chocolate"] forState:UIControlStateNormal];
     chocolateBtn.shouldHideBadgeAtZero = YES;
-    chocolateBtn.badgeValue = @"1";
     [imageView addSubview:chocolateBtn];
     
     
     UIButton *strawberry_cakeBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     [strawberry_cakeBtn setFrame:CGRectMake(248 * WidthNum, 341 * WidthNum, 64 * WidthNum, 54 * WidthNum)];
-    [strawberry_cakeBtn setImage:[UIImage imageNamed:@"strawberry_cake"] forState:UIControlStateNormal];
     strawberry_cakeBtn.shouldHideBadgeAtZero = YES;
-    strawberry_cakeBtn.badgeValue = @"1";
     [imageView addSubview:strawberry_cakeBtn];
     UIButton *motcha_rollBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     [motcha_rollBtn setFrame:CGRectMake(167 * WidthNum, 339 * WidthNum, 74 * WidthNum, 56 * WidthNum)];
-    [motcha_rollBtn setImage:[UIImage imageNamed:@"motcha_roll"] forState:UIControlStateNormal];
     motcha_rollBtn.shouldHideBadgeAtZero = YES;
-    motcha_rollBtn.badgeValue = @"1";
     [imageView addSubview:motcha_rollBtn];
     UIButton *blueberry_cakeBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     [blueberry_cakeBtn setFrame:CGRectMake(84 * WidthNum, 343 * WidthNum, 77 * WidthNum, 52 * WidthNum)];
-    [blueberry_cakeBtn setImage:[UIImage imageNamed:@"blueberry_cake"] forState:UIControlStateNormal];
     blueberry_cakeBtn.shouldHideBadgeAtZero = YES;
-    blueberry_cakeBtn.badgeValue = @"1";
     [imageView addSubview:blueberry_cakeBtn];
     UIButton *cupcakeBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     [cupcakeBtn setFrame:CGRectMake(25 * WidthNum, 339 * WidthNum, 50 * WidthNum, 56 * WidthNum)];
-    [cupcakeBtn setImage:[UIImage imageNamed:@"cupcake"] forState:UIControlStateNormal];
     cupcakeBtn.shouldHideBadgeAtZero = YES;
-    cupcakeBtn.badgeValue = @"1";
     [imageView addSubview:cupcakeBtn];
+    
+    
     
     eggBtn.tag = EGG;
     [eggBtn addTarget:self action:@selector(chooseAction:) forControlEvents:UIControlEventTouchUpInside];
@@ -176,15 +186,51 @@
     [motcha_rollBtn addTarget:self action:@selector(chooseAction:) forControlEvents:UIControlEventTouchUpInside];
     strawberry_cakeBtn.tag = STRAWBERRY_CAKE;
     [strawberry_cakeBtn addTarget:self action:@selector(chooseAction:) forControlEvents:UIControlEventTouchUpInside];
-
-    // Do any additional setup after loading the view.
-
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+- (void)setValue {
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    UIImageView *imagView = [self.view viewWithTag:200];
+    UIButton *cheeseBtn = [imagView viewWithTag:CHEESE];
+    UIButton *flourBtn = [imagView viewWithTag:FLOUR];
+    UIButton *eggBtn = [imagView viewWithTag:EGG];
+    UIButton *motchaBtn = [imagView viewWithTag:MOTCHA];
+    UIButton *strawberryBtn = [imagView viewWithTag:STRAWBERRY];
+    UIButton *blueberryBtn = [imagView viewWithTag:BLUEBERRY];
+    UIButton *chocolateBtn = [imagView viewWithTag:CHOCOLATE];
+    UIButton *strawberry_cakeBtn = [imagView viewWithTag:STRAWBERRY_CAKE];
+    UIButton *motcha_rollBtn = [imagView viewWithTag:MOTCHA_ROLL];
+    UIButton *blueberry_cakeBtn = [imagView viewWithTag:BLUEBERRY_CAKE];
+    UIButton *cupcakeBtn = [imagView viewWithTag:CUPCAKE];
+
+    
+    cheeseBtn.badgeValue = [NSString stringWithFormat:@"%ld",[[defaults objectForKey:@"cheese"] integerValue]];
+    flourBtn.badgeValue = [NSString stringWithFormat:@"%ld",[[defaults objectForKey:@"flour"] integerValue]];
+    eggBtn.badgeValue = [NSString stringWithFormat:@"%ld",[[defaults objectForKey:@"egg"] integerValue]];
+    motchaBtn.badgeValue = [NSString stringWithFormat:@"%ld",[[defaults objectForKey:@"motcha"] integerValue]];
+    strawberryBtn.badgeValue = [NSString stringWithFormat:@"%ld",[[defaults objectForKey:@"strawberry"] integerValue]];
+    blueberryBtn.badgeValue = [NSString stringWithFormat:@"%ld",[[defaults objectForKey:@"blueberry"] integerValue]];
+    chocolateBtn.badgeValue = [NSString stringWithFormat:@"%ld",[[defaults objectForKey:@"chocolate"] integerValue]];
+    strawberry_cakeBtn.badgeValue = [NSString stringWithFormat:@"%ld",[[defaults objectForKey:@"strawberry_cake"] integerValue]];
+    motcha_rollBtn.badgeValue = [NSString stringWithFormat:@"%ld",[[defaults objectForKey:@"motcha_roll"] integerValue]];
+    blueberry_cakeBtn.badgeValue = [NSString stringWithFormat:@"%ld",[[defaults objectForKey:@"blueberry_cake"] integerValue]];
+    cupcakeBtn.badgeValue = [NSString stringWithFormat:@"%ld",[[defaults objectForKey:@"cupcake"] integerValue]];
+    
+    [cheeseBtn setImage:[UIImage imageNamed:[[defaults objectForKey:@"cheese"] integerValue] > 0?@"cheese":@"cheese_none"] forState:UIControlStateNormal];
+    [flourBtn setImage:[UIImage imageNamed:[[defaults objectForKey:@"flour"] integerValue] > 0?@"flour":@"flour_none"] forState:UIControlStateNormal];
+    [eggBtn setImage:[UIImage imageNamed:[[defaults objectForKey:@"egg"] integerValue] > 0?@"egg":@"egg_none"] forState:UIControlStateNormal];
+    [motchaBtn setImage:[UIImage imageNamed:[[defaults objectForKey:@"motcha"] integerValue] > 0?@"motcha":@"motcha_none"] forState:UIControlStateNormal];
+    [strawberryBtn setImage:[UIImage imageNamed:[[defaults objectForKey:@"strawberry"] integerValue] > 0?@"strawberry":@"strawberry_none"] forState:UIControlStateNormal];
+    [blueberryBtn setImage:[UIImage imageNamed:[[defaults objectForKey:@"blueberry"] integerValue] > 0?@"blueberry":@"blueberry_none"] forState:UIControlStateNormal];
+    [chocolateBtn setImage:[UIImage imageNamed:[[defaults objectForKey:@"chocolate"] integerValue] > 0?@"chocolate":@"chocolate_none"] forState:UIControlStateNormal];
+    [strawberry_cakeBtn setImage:[UIImage imageNamed:[[defaults objectForKey:@"strawberry_cake"] integerValue] > 0?@"strawberry_cake":@"strawberry_cake_none"] forState:UIControlStateNormal];
+    [motcha_rollBtn setImage:[UIImage imageNamed:[[defaults objectForKey:@"motcha_roll"] integerValue] > 0?@"motcha_roll":@"motcha_roll_none"] forState:UIControlStateNormal];
+    [blueberry_cakeBtn setImage:[UIImage imageNamed:[[defaults objectForKey:@"blueberry_cake"] integerValue] > 0?@"blueberry_cake":@"blueberry_cake_none"] forState:UIControlStateNormal];
+    [cupcakeBtn setImage:[UIImage imageNamed:[[defaults objectForKey:@"cupcake"] integerValue] > 0?@"cupcake":@"cupcake_none"] forState:UIControlStateNormal];
+
+    
 }
+
 
 - (void)backAction:(UIButton *)btn {
     [self.navigationController popViewControllerAnimated:YES];
@@ -196,6 +242,12 @@
 }
 
 - (void)chooseAction:(UIButton *)btn {
+    FoodShowViewController *foodShowViewController = [[FoodShowViewController alloc]init];
+    foodShowViewController.modalPresentationStyle = UIModalPresentationOverFullScreen;
+    foodShowViewController.foodType = btn.tag;
+    self.definesPresentationContext = YES;
+    [self presentViewController:foodShowViewController animated:NO completion:nil];
+
     switch (btn.tag) {
         case EGG:
             break;

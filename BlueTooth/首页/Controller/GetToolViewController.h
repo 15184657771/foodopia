@@ -15,6 +15,8 @@ typedef NS_ENUM(NSInteger, ToolType) {
     Flour, //面粉
     Chocolates, //巧克力
     Cheeses,    //芝士
+    Motcha,//抹茶粉
+    Map,//地图
 };
 
 

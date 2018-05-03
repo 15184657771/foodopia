@@ -13,7 +13,6 @@
 #import "UIViewController+XYSideCategory.h"
 #import "RecordInfoTabController.h"
 #import "InforViewController.h"
-#import "GetToolViewController.h"
 #import "LoginViewController.h"
 #import "PetViewController.h"
 
@@ -248,7 +247,7 @@
     [self.scrollView setZoomScale:1];
     CGPoint movePoint = [self.mainView moveToPlace];
     [self.scrollView setContentOffset:CGPointMake(movePoint.x - SCREEN_WIDTH/2,movePoint.y - SCREEN_HEIGHT/2) animated:YES];
-    [self.mainView placeMove:100];
+    [self.mainView placeMove:1300];
     
 }
 
