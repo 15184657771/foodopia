@@ -111,9 +111,12 @@
 }
 #pragma mark -- button click methods
 - (void)recordBtnAction:(UIButton *)sender {
+    
+    NSArray *arr = [self getDate];
+    JQFMDB *db = [JQFMDB shareDatabase];
+    
     WeightModel *model = [self getWeightModel];
     model.weight = [self.showLabel.text stringByReplacingOccurrencesOfString:@"kg" withString:@""];
-    JQFMDB *db = [JQFMDB shareDatabase];
     if (![db jq_isExistTable:@"weight"]) {  //如果没有 weight 表  创建
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
             [db jq_inDatabase:^{
@@ -130,6 +133,18 @@
                 }
             }];
         });
+    }
+    self.lookForArr = [db jq_lookupTable:@"weight" dicOrModel:[WeightModel class] whereFormat:@"where day = '%@'",arr[2]];
+    if (self.lookForArr.count > 0) {
+        for (WeightModel *model in self.lookForArr) {
+            [self.timeArr addObject:[NSString stringWithFormat:@"%@:%@",model.hour,model.second]];
+            [self.weightArr addObject:[NSNumber numberWithFloat:[model.weight floatValue]]];
+        }
+        [self.baseView setVerticalDaySource:self.timeArr horizontalValueArray:self.weightArr];
+        [self.baseView show];
+    } else {
+        [self.baseView setVerticalDaySource:@[@"8:30",@"9:30",@"10:45"] horizontalValueArray:@[[NSNumber numberWithFloat:50],[NSNumber numberWithFloat:50.2],[NSNumber numberWithFloat:49.9]]];
+        [self.baseView show];
     }
 }
 

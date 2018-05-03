@@ -122,6 +122,14 @@
             }];
         }
     }
+//    else {
+//        LoginViewController *loginVC = [[LoginViewController alloc]init];
+//        loginVC.modalPresentationStyle = UIModalPresentationOverFullScreen;
+//        self.definesPresentationContext = YES;
+//        [self presentViewController:loginVC animated:NO completion:^ {
+//            loginVC.view.superview.backgroundColor = [UIColor clearColor];
+//        }];
+//    }
 }
 
 - (void)viewWillDisappear:(BOOL)animated {

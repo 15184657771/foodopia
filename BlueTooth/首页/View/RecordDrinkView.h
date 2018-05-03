@@ -10,6 +10,6 @@
 
 @interface RecordDrinkView : UIView
 
-- (instancetype)initWithFrame:(CGRect)frame andCount:(NSInteger)count;
+- (void)setUpCount:(NSInteger )count;
 
 @end
