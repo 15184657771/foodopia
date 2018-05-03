@@ -60,10 +60,12 @@
     
     if (self.lookForArr.count > 0) {
         DrinkModel *model = self.lookForArr[0];
-        self.drinkView = [[RecordDrinkView alloc]initWithFrame:CGRectMake(18, CGRectGetMaxY(self.drinkBtn.frame) + 30, SCREEN_WIDTH - 18 * 2, 167 * HeightNum) andCount:[model.count integerValue]];
+        self.drinkView = [[RecordDrinkView alloc]initWithFrame:CGRectMake(18, CGRectGetMaxY(self.drinkBtn.frame) + 30, SCREEN_WIDTH - 18 * 2, 167 * HeightNum)];
+        [self.drinkView setUpCount:[model.count integerValue]];
         [self.view addSubview:self.drinkView];
     } else {
-        self.drinkView = [[RecordDrinkView alloc]initWithFrame:CGRectMake(18, CGRectGetMaxY(self.drinkBtn.frame) + 30, SCREEN_WIDTH - 18 * 2, 167 * HeightNum) andCount:0];
+        self.drinkView = [[RecordDrinkView alloc]initWithFrame:CGRectMake(18, CGRectGetMaxY(self.drinkBtn.frame) + 30, SCREEN_WIDTH - 18 * 2, 167 * HeightNum)];
+        [self.drinkView setUpCount:0];
         [self.view addSubview:self.drinkView];
     }
 
@@ -80,11 +82,16 @@
 - (void)drinkBtnAction:(UIButton *)sender {
     NSArray *arr = [self getDate];
     JQFMDB *db = [JQFMDB shareDatabase];
+    self.lookForArr = [db jq_lookupTable:@"drink" dicOrModel:[DrinkModel class] whereFormat:@"where day = '%@'",arr[2]];
     if (self.lookForArr.count > 0) {   //如果今天有数据， 更新count+1
         DrinkModel *model = self.lookForArr[0];
-        NSString *count = [NSString stringWithFormat:@"%ld",[model.count integerValue] + 1];
-        [db jq_updateTable:@"drink" dicOrModel:@{@"count":count} whereFormat:@"WHERE day = '%@' and year = '%@' and month = '%@' FROM drink)",arr[2],arr[0],arr[1]];
+        model.count = [NSString stringWithFormat:@"%ld",[model.count integerValue] + 1];
+        [db jq_updateTable:@"drink" dicOrModel:model whereFormat:@"WHERE rowid = (SELECT min(rowid) FROM drink)"];
+        [self.drinkView setUpCount:[model.count integerValue]];
+        [self.drinkView layoutSubviews];
     } else {
+        [self.drinkView setUpCount:1];
+        [self.drinkView layoutSubviews];
         DrinkModel *model = [self getDrinkModel];
         model.count = @"1";
         if (![db jq_isExistTable:@"drink"]) {  //如果没有 drink 表  创建
@@ -97,6 +104,7 @@
             }
         }
     }
+    
 }
 
 

@@ -64,7 +64,7 @@
     UILabel *timeLabel = [[UILabel alloc]init];
     timeLabel.text = str;
     timeLabel.textColor = [UIColor colorWithHex:@"ad77cd"];
-    timeLabel.font = [UIFont systemFontOfSize:40];
+    timeLabel.font = [UIFont systemFontOfSize:35];
     timeLabel.textAlignment = NSTextAlignmentCenter;
     [self addSubview:timeLabel];
     [timeLabel mas_makeConstraints:^(MASConstraintMaker *make) {
