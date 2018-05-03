@@ -61,7 +61,7 @@
     // 2.创建 TXHRrettyRuler 对象 并设置代理对象
     TXHRrettyRuler *ruler = [[TXHRrettyRuler alloc] initWithFrame:CGRectMake(50, CGRectGetMaxY(self.showLabel.frame) + 20, [UIScreen mainScreen].bounds.size.width - 50 * 2, 105 * HeightNum)];
     ruler.rulerDeletate = self;
-    [ruler showRulerScrollViewWithCount:200 average:[NSNumber numberWithFloat:1] currentValue:50.5f smallMode:YES];
+    [ruler showRulerScrollViewWithCount:220 average:[NSNumber numberWithFloat:1] currentValue:50.0f smallMode:YES];
     [self.view addSubview:ruler];
     
     self.recordBtn = [UIButton buttonWithType:UIButtonTypeCustom];
