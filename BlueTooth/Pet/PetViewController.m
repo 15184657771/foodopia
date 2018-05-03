@@ -118,6 +118,130 @@
         
     });
 }
+- (void)gifPlayTwo {
+    self.imageView.animationImages = @[
+                                       [UIImage imageNamed:@"喂养02_00000"],
+                                       [UIImage imageNamed:@"喂养02_00001"],
+                                       [UIImage imageNamed:@"喂养02_00002"],
+                                       [UIImage imageNamed:@"喂养02_00003"],
+                                       [UIImage imageNamed:@"喂养02_00004"],
+                                       [UIImage imageNamed:@"喂养02_00005"],
+                                       [UIImage imageNamed:@"喂养02_00006"],
+                                       [UIImage imageNamed:@"喂养02_00007"],
+                                       [UIImage imageNamed:@"喂养02_00008"],
+                                       [UIImage imageNamed:@"喂养02_00009"],
+                                       [UIImage imageNamed:@"喂养02_00010"],
+                                       [UIImage imageNamed:@"喂养02_00011"],
+                                       [UIImage imageNamed:@"喂养02_00012"],
+                                       [UIImage imageNamed:@"喂养02_00013"],
+                                       [UIImage imageNamed:@"喂养02_00014"],
+                                       [UIImage imageNamed:@"喂养02_00015"],
+                                       [UIImage imageNamed:@"喂养02_00016"],
+                                       [UIImage imageNamed:@"喂养02_00017"],
+                                       [UIImage imageNamed:@"喂养02_00018"],
+                                       [UIImage imageNamed:@"喂养02_00019"],
+                                       [UIImage imageNamed:@"喂养02_00020"],
+                                       [UIImage imageNamed:@"喂养02_00021"],
+                                       [UIImage imageNamed:@"喂养02_00022"],
+                                       [UIImage imageNamed:@"喂养02_00023"],
+                                       [UIImage imageNamed:@"喂养02_00024"],
+                                       ];
+    
+    self.imageView.animationDuration = 2.0f;
+    self.imageView.animationRepeatCount = 1;
+    [self.view addSubview: self.imageView];
+    [self.imageView startAnimating];
+    
+    dispatch_time_t delayTime2 = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2.0/*延迟执行时间*/ * NSEC_PER_SEC));
+    dispatch_after(delayTime2, dispatch_get_main_queue(), ^{
+        [self.imageView stopAnimating];
+        
+        
+    });
+}
+- (void)gifPlayThree {
+    self.imageView.animationImages = @[
+                                       [UIImage imageNamed:@"喂养03_00000"],
+                                       [UIImage imageNamed:@"喂养03_00001"],
+                                       [UIImage imageNamed:@"喂养03_00002"],
+                                       [UIImage imageNamed:@"喂养03_00003"],
+                                       [UIImage imageNamed:@"喂养03_00004"],
+                                       [UIImage imageNamed:@"喂养03_00005"],
+                                       [UIImage imageNamed:@"喂养03_00006"],
+                                       [UIImage imageNamed:@"喂养03_00007"],
+                                       [UIImage imageNamed:@"喂养03_00008"],
+                                       [UIImage imageNamed:@"喂养03_00009"],
+                                       [UIImage imageNamed:@"喂养03_00010"],
+                                       [UIImage imageNamed:@"喂养03_00011"],
+                                       [UIImage imageNamed:@"喂养03_00012"],
+                                       [UIImage imageNamed:@"喂养03_00013"],
+                                       [UIImage imageNamed:@"喂养03_00014"],
+                                       [UIImage imageNamed:@"喂养03_00015"],
+                                       [UIImage imageNamed:@"喂养03_00016"],
+                                       [UIImage imageNamed:@"喂养03_00017"],
+                                       [UIImage imageNamed:@"喂养03_00018"],
+                                       [UIImage imageNamed:@"喂养03_00019"],
+                                       [UIImage imageNamed:@"喂养03_00020"],
+                                       [UIImage imageNamed:@"喂养03_00021"],
+                                       [UIImage imageNamed:@"喂养03_00022"],
+                                       [UIImage imageNamed:@"喂养03_00023"],
+                                       [UIImage imageNamed:@"喂养03_00024"],
+                                       ];
+    
+    self.imageView.animationDuration = 2.0f;
+    self.imageView.animationRepeatCount = 1;
+    [self.view addSubview: self.imageView];
+    [self.imageView startAnimating];
+    
+    dispatch_time_t delayTime2 = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2.0/*延迟执行时间*/ * NSEC_PER_SEC));
+    dispatch_after(delayTime2, dispatch_get_main_queue(), ^{
+        [self.imageView stopAnimating];
+        
+        
+    });
+}
+- (void)gifPlayFour {
+    self.imageView.animationImages = @[
+                                       [UIImage imageNamed:@"喂养04_00000"],
+                                       [UIImage imageNamed:@"喂养04_00001"],
+                                       [UIImage imageNamed:@"喂养04_00002"],
+                                       [UIImage imageNamed:@"喂养04_00003"],
+                                       [UIImage imageNamed:@"喂养04_00004"],
+                                       [UIImage imageNamed:@"喂养04_00005"],
+                                       [UIImage imageNamed:@"喂养04_00006"],
+                                       [UIImage imageNamed:@"喂养04_00007"],
+                                       [UIImage imageNamed:@"喂养04_00008"],
+                                       [UIImage imageNamed:@"喂养04_00009"],
+                                       [UIImage imageNamed:@"喂养04_00010"],
+                                       [UIImage imageNamed:@"喂养04_00011"],
+                                       [UIImage imageNamed:@"喂养04_00012"],
+                                       [UIImage imageNamed:@"喂养04_00013"],
+                                       [UIImage imageNamed:@"喂养04_00014"],
+                                       [UIImage imageNamed:@"喂养04_00015"],
+                                       [UIImage imageNamed:@"喂养04_00016"],
+                                       [UIImage imageNamed:@"喂养04_00017"],
+                                       [UIImage imageNamed:@"喂养04_00018"],
+                                       [UIImage imageNamed:@"喂养04_00019"],
+                                       [UIImage imageNamed:@"喂养04_00020"],
+                                       [UIImage imageNamed:@"喂养04_00021"],
+                                       [UIImage imageNamed:@"喂养04_00022"],
+                                       [UIImage imageNamed:@"喂养04_00023"],
+                                       [UIImage imageNamed:@"喂养04_00024"],
+                                       ];
+    
+    self.imageView.animationDuration = 2.0f;
+    self.imageView.animationRepeatCount = 1;
+    [self.view addSubview: self.imageView];
+    [self.imageView startAnimating];
+    
+    dispatch_time_t delayTime2 = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2.0/*延迟执行时间*/ * NSEC_PER_SEC));
+    dispatch_after(delayTime2, dispatch_get_main_queue(), ^{
+        [self.imageView stopAnimating];
+        
+        
+    });
+}
+
 
 - (void)setUpUI {
     self.backImageView.userInteractionEnabled = YES;
@@ -231,6 +355,7 @@
                 self.energyView.hidden = NO;
                 self.hungerImageView.hidden = YES;
                 self.finishFoodImage.hidden = NO;
+                self.finishFoodImage.image = [UIImage imageNamed:@"0-旋转飞起"];
                 self.imageView.image = [UIImage imageNamed:@"合成 1_00024"];
             });
             dispatch_after(delayTime2, dispatch_get_main_queue(), ^{
@@ -250,12 +375,13 @@
             [user setObject:[NSString stringWithFormat:@"%ld",percentNum + 500] forKey:@"percentNum"];
             [user setObject:@"2" forKey:@"petprogress"];
             [user setObject:[NSString stringWithFormat:@"%ld",blueberry_cake - 1] forKey:@"blueberry_cake"];
-//            [self gifPlay];
+            [self gifPlayTwo];
             dispatch_after(delayTime, dispatch_get_main_queue(), ^{
                 self.energyView.hidden = NO;
                 self.hungerImageView.hidden = YES;
                 self.finishFoodImage.hidden = NO;
-//                self.imageView.image = [UIImage imageNamed:@"合成 1_00024"];
+                self.finishFoodImage.image = [UIImage imageNamed:@"1-旋转飞起"];
+                self.imageView.image = [UIImage imageNamed:@"喂养02_00024"];
             });
             dispatch_after(delayTime2, dispatch_get_main_queue(), ^{
                 self.backImageView.image = [UIImage imageNamed:@"2-背景"];
@@ -273,12 +399,13 @@
             [user setObject:[NSString stringWithFormat:@"%ld",percentNum + 500] forKey:@"percentNum"];
             [user setObject:@"3" forKey:@"petprogress"];
             [user setObject:[NSString stringWithFormat:@"%ld",strawberry_cake - 1] forKey:@"strawberry_cake"];
-//            [self gifPlay];
+            [self gifPlayThree];
             dispatch_after(delayTime, dispatch_get_main_queue(), ^{
                 self.energyView.hidden = NO;
                 self.hungerImageView.hidden = YES;
                 self.finishFoodImage.hidden = NO;
-                //                self.imageView.image = [UIImage imageNamed:@"合成 1_00024"];
+                self.finishFoodImage.image = [UIImage imageNamed:@"2-旋转飞起"];
+                self.imageView.image = [UIImage imageNamed:@"喂养03_00024"];
             });
             dispatch_after(delayTime2, dispatch_get_main_queue(), ^{
                 self.backImageView.image = [UIImage imageNamed:@"3-背景"];
@@ -296,12 +423,13 @@
             [user setObject:[NSString stringWithFormat:@"%ld",percentNum + 500] forKey:@"percentNum"];
             [user setObject:@"4" forKey:@"petprogress"];
             [user setObject:[NSString stringWithFormat:@"%ld",motcha_roll - 1] forKey:@"motcha_roll"];
-//            [self gifPlay];
+            [self gifPlayFour];
             dispatch_after(delayTime, dispatch_get_main_queue(), ^{
                 self.energyView.hidden = NO;
                 self.hungerImageView.hidden = YES;
                 self.finishFoodImage.hidden = NO;
-                //                self.imageView.image = [UIImage imageNamed:@"合成 1_00024"];
+                self.finishFoodImage.image = [UIImage imageNamed:@"3-旋转飞起"];
+                self.imageView.image = [UIImage imageNamed:@"喂养04_00024"];
             });
             dispatch_after(delayTime2, dispatch_get_main_queue(), ^{
                 self.backImageView.image = [UIImage imageNamed:@"4-背景"];
@@ -309,6 +437,7 @@
                 self.imageView.hidden = YES;
                 self.energyView.hidden = YES;
                 self.hungerImageView.hidden = NO;
+                self.hungerImageView.image = [UIImage imageNamed:@"完成提示气泡"];
                 self.eatBtn.hidden = NO;
                 self.locationView.hidden = NO;
                 self.RefrigeratorView.hidden = NO;
@@ -341,49 +470,52 @@
     if ([UIImagePNGRepresentation(self.bigImageView.image) isEqual:UIImagePNGRepresentation([UIImage imageNamed:@"0-熊"])]){
         NSLog(@"0-熊");
         //冰箱中是否有巧克力
-//        if (chocolate > 0) {
+        if (chocolate > 0) {
             self.eatBtn.hidden = YES;
             self.locationView.hidden = YES;
             self.RefrigeratorView.hidden = YES;
             self.imageView.hidden = NO;
             self.imageView.image = [UIImage imageNamed:@"合成 1_00001"];
-//        } else {
-//            [self setUpNoFoodView];
-//        }
+        } else {
+            [self setUpNoFoodView];
+        }
     } else if ([UIImagePNGRepresentation(self.bigImageView.image) isEqual:UIImagePNGRepresentation([UIImage imageNamed:@"1-熊"])]) {
-//        if (blueberry_cake > 0) {
+        if (blueberry_cake > 0) {
         
             self.eatBtn.hidden = YES;
             self.locationView.hidden = YES;
             self.RefrigeratorView.hidden = YES;
             self.imageView.hidden = NO;
             self.hungerImageView.hidden = YES;
-//        } else {
-//             [self setUpNoFoodView];
-//        }
+            self.imageView.image = [UIImage imageNamed:@"喂养02_00001"];
+        } else {
+             [self setUpNoFoodView];
+        }
         
     } else if ([UIImagePNGRepresentation(self.bigImageView.image) isEqual:UIImagePNGRepresentation([UIImage imageNamed:@"2-熊"])]) {
-//        if (strawberry_cake > 0 ) {
+        if (strawberry_cake > 0 ) {
         
             self.eatBtn.hidden = YES;
             self.locationView.hidden = YES;
             self.RefrigeratorView.hidden = YES;
             self.imageView.hidden = NO;
             self.hungerImageView.hidden = YES;
-//        } else {
-//             [self setUpNoFoodView];
-//        }
+            self.imageView.image = [UIImage imageNamed:@"喂养03_00001"];
+        } else {
+             [self setUpNoFoodView];
+        }
     } else if ([UIImagePNGRepresentation(self.bigImageView.image) isEqual:UIImagePNGRepresentation([UIImage imageNamed:@"3-熊"])]) {
-//        if (motcha_roll > 0) {
+        if (motcha_roll > 0) {
         
             self.eatBtn.hidden = YES;
             self.locationView.hidden = YES;
             self.RefrigeratorView.hidden = YES;
             self.imageView.hidden = NO;
             self.hungerImageView.hidden = YES;
-//        } else {
-//             [self setUpNoFoodView];
-//        }
+            self.imageView.image = [UIImage imageNamed:@"喂养04_00001"];
+        } else {
+             [self setUpNoFoodView];
+        }
     } else if ([UIImagePNGRepresentation(self.bigImageView.image) isEqual:UIImagePNGRepresentation([UIImage imageNamed:@"4-熊"])]) {
         
         
