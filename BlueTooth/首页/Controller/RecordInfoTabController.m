@@ -17,6 +17,10 @@
 @interface RecordInfoTabController ()< HealthScrollContentViewDelegate>
 
 @property (nonatomic, strong) HealthScrollContentView *contentView;
+
+@property (nonatomic, strong) UIImageView *energyView;
+@property (nonatomic, strong) UIImageView *smallImage;
+@property (nonatomic, strong) UILabel *label;
 @property (nonatomic, strong) UIView *moveView;
 
 @property (nonatomic, strong) UIButton *btn;
@@ -35,6 +39,35 @@
     return self;
 }
 
+- (UIImageView *)energyView {
+    if (!_energyView) {
+        _energyView = [[UIImageView alloc]init];
+        _energyView.image = [UIImage imageNamed:@"发光特效"];
+    }
+    return _energyView;
+}
+- (UIImageView *)smallImage {
+    if (!_smallImage) {
+        _smallImage = [[UIImageView alloc]init];
+        _smallImage.image = [UIImage imageNamed:@"能量"];
+    }
+    return _smallImage;
+}
+
+- (UILabel *)label {
+    if (!_label) {
+        _label = [[UILabel alloc]init];
+        _label.backgroundColor = [UIColor colorWithHex:@"f6b000"];
+        _label.textColor = [UIColor whiteColor];
+        _label.font = [UIFont systemFontOfSize:10];
+        _label.clipsToBounds = YES;
+        _label.layer.cornerRadius = 10;
+        _label.textAlignment = NSTextAlignmentCenter;
+    }
+    return _label;
+}
+
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.edgesForExtendedLayout = UIRectEdgeNone;
@@ -42,6 +75,27 @@
     UIView *cancelBackView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 147 * HeightNum)];
     cancelBackView.backgroundColor = [UIColor clearColor];
     [self.view addSubview:cancelBackView];
+    
+    [self.view addSubview:self.energyView];
+    self.energyView.hidden = YES;
+    WS(ws);
+    [self.energyView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(cancelBackView.mas_top).with.offset(55);
+        make.centerX.equalTo(cancelBackView.mas_centerX);
+        make.size.mas_equalTo(CGSizeMake(372 * WidthNum, 326 * HeightNum));
+    }];
+    [self.energyView addSubview:self.smallImage];
+    [self.smallImage mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(ws.energyView.mas_top).with.offset(0);
+        make.centerX.equalTo(ws.energyView.mas_centerX);
+        make.size.mas_equalTo(CGSizeMake(120 * WidthNum, 80 * HeightNum));
+    }];
+    [self.energyView addSubview:self.label];
+    [self.label mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(ws.energyView.mas_top).with.offset(65);
+        make.centerX.equalTo(ws.energyView.mas_centerX);
+        make.size.mas_equalTo(CGSizeMake(78 * WidthNum, 20 * HeightNum));
+    }];
     
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(dismisView)];
     [cancelBackView addGestureRecognizer:tap];
@@ -168,9 +222,27 @@
     [self.delegate RecordTabBackIndex:index];
 }
 
+- (void)weightBtnClick:(NSInteger )index {
+    self.label.text = @"能量 +300";
+    self.energyView.hidden = NO;
+    dispatch_time_t delayTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2.0/*延迟执行时间*/ * NSEC_PER_SEC));
+    dispatch_after(delayTime, dispatch_get_main_queue(), ^{
+        self.energyView.hidden = YES;
+    });
+}
+
 - (void)DrinkViewBackIndex:(NSInteger)index {
     [self dismissViewControllerAnimated:NO completion:nil];
     [self.delegate RecordTabBackIndex:index];
+}
+
+- (void)drinkBtnClick {
+    self.label.text = @"能量 +20";
+    self.energyView.hidden = NO;
+    dispatch_time_t delayTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2.0/*延迟执行时间*/ * NSEC_PER_SEC));
+    dispatch_after(delayTime, dispatch_get_main_queue(), ^{
+        self.energyView.hidden = YES;
+    });
 }
 
 - (void)SleepViewBackIndex:(NSInteger)index {

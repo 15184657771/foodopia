@@ -12,6 +12,8 @@
 
 - (void)DrinkViewBackIndex:(NSInteger )index;
 
+- (void)drinkBtnClick;
+
 @end
 
 @interface DrinkViewController : UIViewController

@@ -12,6 +12,8 @@
 
 - (void)SleepViewBackIndex:(NSInteger )index;
 
+- (void)sleepBtnClick;
+
 @end
 
 @interface SleepViewController : UIViewController

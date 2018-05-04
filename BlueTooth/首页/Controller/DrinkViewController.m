@@ -80,6 +80,7 @@
 }
 #pragma mark -- button click methods
 - (void)drinkBtnAction:(UIButton *)sender {
+    
     NSArray *arr = [self getDate];
     JQFMDB *db = [JQFMDB shareDatabase];
     self.lookForArr = [db jq_lookupTable:@"drink" dicOrModel:[DrinkModel class] whereFormat:@"where day = '%@'",arr[2]];
@@ -104,7 +105,10 @@
             }
         }
     }
-    
+    NSUserDefaults *user = [NSUserDefaults standardUserDefaults];
+    NSInteger percentNum = [[user objectForKey:@"percentNum"] integerValue];
+    [user setObject:[NSString stringWithFormat:@"%ld",percentNum + 20] forKey:@"percentNum"];
+    [self.delegate drinkBtnClick];
 }
 
 

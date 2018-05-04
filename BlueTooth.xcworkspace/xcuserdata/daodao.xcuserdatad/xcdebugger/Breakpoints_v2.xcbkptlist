@@ -26,54 +26,6 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "BlueTooth/&#x9996;&#x9875;/&#x5185;&#x5bb9;&#x8be6;&#x60c5;/WeightHighViewController.m"
-            timestampString = "545561949.113337"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "124"
-            endingLineNumber = "124"
-            landmarkName = "-creatView"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "BlueTooth/&#x9996;&#x9875;/&#x5185;&#x5bb9;&#x8be6;&#x60c5;/WeightHighViewController.m"
-            timestampString = "545561949.113806"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "153"
-            endingLineNumber = "153"
-            landmarkName = "-creatView"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "BlueTooth/&#x9996;&#x9875;/&#x5185;&#x5bb9;&#x8be6;&#x60c5;/WeightHighViewController.m"
-            timestampString = "545561949.114416"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "129"
-            endingLineNumber = "129"
-            landmarkName = "-creatView"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "BlueTooth/&#x9996;&#x9875;/&#x5185;&#x5bb9;&#x8be6;&#x60c5;/WeightHighViewController.m"
             timestampString = "547005468.566798"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
@@ -112,22 +64,6 @@
             startingLineNumber = "209"
             endingLineNumber = "209"
             landmarkName = "-changeTypeAction:"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "BlueTooth/&#x9996;&#x9875;/Controller/RecordInfoTabController.m"
-            timestampString = "547096535.511378"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "119"
-            endingLineNumber = "119"
-            landmarkName = "-segmentValue"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

@@ -112,6 +112,8 @@
 #pragma mark -- button click methods
 - (void)recordBtnAction:(UIButton *)sender {
     
+    [self.delegate weightBtnClick:0];
+    
     NSArray *arr = [self getDate];
     JQFMDB *db = [JQFMDB shareDatabase];
     

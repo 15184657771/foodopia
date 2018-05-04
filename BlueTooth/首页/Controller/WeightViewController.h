@@ -12,6 +12,8 @@
 
 - (void)WeightViewBackIndex:(NSInteger )index;
 
+- (void)weightBtnClick:(NSInteger )index;
+
 @end
 
 @interface WeightViewController : UIViewController
