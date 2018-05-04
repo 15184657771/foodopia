@@ -11,6 +11,7 @@
 #import "RecordSleepView.h"
 #import <JQFMDB/JQFMDB.h>
 #import "SleepModel.h"
+#import "NSString+Helper.h"
 
 @interface SleepViewController ()
 
@@ -29,6 +30,13 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.view.backgroundColor = [UIColor whiteColor];
+    JQFMDB *db = [JQFMDB shareDatabase];
+    SleepModel *model = [[SleepModel alloc]init];
+    if (![db jq_isExistTable:@"sleep"]) {
+        if ([db jq_createTable:@"sleep" dicOrModel:model]) {
+            NSLog(@"创建成功！！！");
+        }
+    }
     
     [self createUI];
     
@@ -41,7 +49,7 @@
     
     self.timeLabel = [[UILabel alloc]initWithFrame:CGRectMake(0, 38, SCREEN_WIDTH, 32)];
     
-    if ([arr[3] integerValue] >= 12) {
+    if ([arr[3] integerValue] >= 18) {
         self.timeLabel.text = [NSString stringWithFormat:@"%@:%@ pm",arr[3],arr[4]];
     } else {
         self.timeLabel.text = [NSString stringWithFormat:@"%@:%@ am",arr[3],arr[4]];
@@ -67,9 +75,19 @@
     if ([arr[3] integerValue] >= 18) {
         self.imageView.image = [UIImage imageNamed:@"睡觉"];
         [self.button setTitle:@"去 睡 觉" forState:UIControlStateNormal];
+        if ([[NSString notNullStr:[[NSUserDefaults standardUserDefaults] objectForKey:@"shuijiao"]] isEqualToString:[NSString stringWithFormat:@"%@-%@-%@",arr[0],arr[1],arr[2]]]) {
+            self.button.enabled = NO;
+        } else {
+            self.button.enabled = YES;
+        }
     } else {
         self.imageView.image = [UIImage imageNamed:@"起床"];
         [self.button setTitle:@"起 床 了" forState:UIControlStateNormal];
+        if ([[NSString notNullStr:[[NSUserDefaults standardUserDefaults] objectForKey:@"qichuang"]] isEqualToString:[NSString stringWithFormat:@"%@-%@-%@",arr[0],arr[1],arr[2]]]) {
+            self.button.enabled = NO;
+        } else {
+            self.button.enabled = YES;
+        }
     }
     
     
@@ -109,8 +127,11 @@
 }
 #pragma mark -- button click methods
 - (void)buttonAction:(UIButton *)sender {
-     JQFMDB *db = [JQFMDB shareDatabase];
+    [self.delegate sleepBtnClick];
+    NSArray *dateArr = [self getDate];
+    JQFMDB *db = [JQFMDB shareDatabase];
     if ([sender.currentTitle isEqualToString:@"起 床 了"]) {
+        [[NSUserDefaults standardUserDefaults] setObject:[NSString stringWithFormat:@"%@-%@-%@",dateArr[0],dateArr[1],dateArr[2]] forKey:@"qichuang"];
         //TODO:
         NSArray *arr = [db jq_lookupTable:@"sleep" dicOrModel:[SleepModel class] whereFormat:@"where isAll = 'NO'"];
         
@@ -129,12 +150,22 @@
             NSString *sleepStr = [NSString stringWithFormat:@"%ld-%ld-%ld %ld:%ld:%ld",cmps.year,cmps.month,cmps.day,cmps.hour,cmps.minute,cmps.second];
             [db jq_updateTable:@"sleep" dicOrModel:@{@"time":time,@"sleepTime":sleepStr,@"isAll":@"YES"} whereFormat:@"WHERE rowid = (SELECT max(rowid) FROM sleep)"];
             
+            NSArray *array = [db jq_lookupTable:@"sleep" dicOrModel:[SleepModel class] whereFormat:@"where isAll = 'YES'"];
+            
+            if (array.count > 0) {
+                SleepModel *model = array[array.count - 1];
+                NSArray *arr1 = [model.sleepTime componentsSeparatedByString:@" "];
+                NSArray *arr2 = [arr1[1] componentsSeparatedByString:@":"];
+                [self.recordView setText:[NSString stringWithFormat:@"%@时 %@分 %@秒",arr2[0],arr2[1],arr2[2]]];
+                
+            } else {
+                [self.recordView setText:@"00时 00分 00秒"];
+            }
+            
         }
-        
-        
-        
     } else {
         //TODO:
+        [[NSUserDefaults standardUserDefaults] setObject:[NSString stringWithFormat:@"%@-%@-%@",dateArr[0],dateArr[1],dateArr[2]] forKey:@"shuijiao"];
         SleepModel *model = [self getSleepModel];
         model.sleepTime = [NSString stringWithFormat:@"%@-%@-%@ %@:%@:%@",model.year,model.month,model.day,model.hour,model.min,model.second];
         model.isAll = @"NO";
@@ -142,25 +173,9 @@
         NSTimeInterval a=[dat timeIntervalSince1970]*1000;
         model.time = [NSString stringWithFormat:@"%f", a];
         
-        if (![db jq_isExistTable:@"sleep"]) {  //如果没有 drink 表  创建
-            dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-                [db jq_inDatabase:^{
-                    if ([db jq_createTable:@"sleep" dicOrModel:model]) {
-                        NSLog(@"创建成功！！！");
-                    }
-                }];
-            });
-        } else { //有表  直接插入
-            dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-                [db jq_inDatabase:^{
-                    if ([db jq_insertTable:@"sleep" dicOrModel:model]) {
-                        NSLog(@"插入成功！！！");
-                    }
-                }];
-            });
+        if ([db jq_insertTable:@"sleep" dicOrModel:model]) {
+            NSLog(@"插入成功！！！");
         }
-        
-        
     }
     
     
