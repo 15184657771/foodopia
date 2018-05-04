@@ -51,6 +51,14 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.view.backgroundColor = [UIColor whiteColor];
+    JQFMDB *db = [JQFMDB shareDatabase];
+    WeightModel *model = [[WeightModel alloc]init];
+    if (![db jq_isExistTable:@"weight"]) {
+        if ([db jq_createTable:@"weight" dicOrModel:model]) {
+            NSLog(@"创建成功！！！");
+        }
+    }
+    
     // 1.创建一个显示的标签
     self.showLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 36, SCREEN_WIDTH, 34)];
     self.showLabel.font = [UIFont systemFontOfSize:34.f];
@@ -78,7 +86,6 @@
     [self.view addSubview:self.weightView];
     
     NSArray *arr = [self getDate];
-    JQFMDB *db = [JQFMDB shareDatabase];
     
     //查询当天的数据
     self.lookForArr = [db jq_lookupTable:@"weight" dicOrModel:[WeightModel class] whereFormat:@"where day = '%@'",arr[2]];
@@ -86,7 +93,7 @@
     [self.weightView addSubview:self.baseView];
     if (self.lookForArr.count > 0) {
         for (WeightModel *model in self.lookForArr) {
-            [self.timeArr addObject:[NSString stringWithFormat:@"%@:%@",model.hour,model.second]];
+            [self.timeArr addObject:[NSString stringWithFormat:@"%@:%@",model.hour,model.min]];
             [self.weightArr addObject:[NSNumber numberWithFloat:[model.weight floatValue]]];
         }
         [self.baseView setVerticalDaySource:self.timeArr horizontalValueArray:self.weightArr];
@@ -113,41 +120,36 @@
 - (void)recordBtnAction:(UIButton *)sender {
     
     [self.delegate weightBtnClick:0];
-    
+
     NSArray *arr = [self getDate];
     JQFMDB *db = [JQFMDB shareDatabase];
-    
     WeightModel *model = [self getWeightModel];
     model.weight = [self.showLabel.text stringByReplacingOccurrencesOfString:@"kg" withString:@""];
-    if (![db jq_isExistTable:@"weight"]) {  //如果没有 weight 表  创建
-        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-            [db jq_inDatabase:^{
-                if ([db jq_createTable:@"weight" dicOrModel:model]) {
-                    NSLog(@"创建成功！！！");
-                }
-            }];
-        });
-    } else { //有表  直接插入
-        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-            [db jq_inDatabase:^{
-                if ([db jq_insertTable:@"weight" dicOrModel:model]) {
-                    NSLog(@"插入成功！！！");
-                }
-            }];
-        });
-    }
-    self.lookForArr = [db jq_lookupTable:@"weight" dicOrModel:[WeightModel class] whereFormat:@"where day = '%@'",arr[2]];
-    if (self.lookForArr.count > 0) {
-        for (WeightModel *model in self.lookForArr) {
-            [self.timeArr addObject:[NSString stringWithFormat:@"%@:%@",model.hour,model.second]];
-            [self.weightArr addObject:[NSNumber numberWithFloat:[model.weight floatValue]]];
+    if ([db jq_insertTable:@"weight" dicOrModel:model]) {
+        NSLog(@"插入成功！！！");
+        
+        self.lookForArr = [db jq_lookupTable:@"weight" dicOrModel:[WeightModel class] whereFormat:@"where day = '%@'",arr[2]];
+        if (self.lookForArr.count > 0) {
+            for (WeightModel *model in self.lookForArr) {
+                [self.timeArr addObject:[NSString stringWithFormat:@"%@:%@",model.hour,model.min]];
+                [self.weightArr addObject:[NSNumber numberWithFloat:[model.weight floatValue]]];
+            }
+            
+            if (self.timeArr.count > 7) {
+                [self.baseView setVerticalDaySource:[self.timeArr subarrayWithRange:NSMakeRange(0, 7)] horizontalValueArray:[self.weightArr subarrayWithRange:NSMakeRange(0, 7)]];
+                
+            } else {
+                [self.baseView setVerticalDaySource:self.timeArr horizontalValueArray:self.weightArr];
+            }
+            [self.baseView show];
+            [self.baseView layoutSubviews];
+        } else {
+            NSLog(@"无体重数据");
+            [self.baseView setVerticalDaySource:@[@"8:30",@"9:30",@"10:45"] horizontalValueArray:@[[NSNumber numberWithFloat:50],[NSNumber numberWithFloat:50.2],[NSNumber numberWithFloat:49.9]]];
+            [self.baseView show];
         }
-        [self.baseView setVerticalDaySource:self.timeArr horizontalValueArray:self.weightArr];
-        [self.baseView show];
-    } else {
-        [self.baseView setVerticalDaySource:@[@"8:30",@"9:30",@"10:45"] horizontalValueArray:@[[NSNumber numberWithFloat:50],[NSNumber numberWithFloat:50.2],[NSNumber numberWithFloat:49.9]]];
-        [self.baseView show];
     }
+    
 }
 
 - (WeightModel *)getWeightModel {

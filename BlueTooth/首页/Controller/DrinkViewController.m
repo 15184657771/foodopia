@@ -31,7 +31,13 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.view.backgroundColor = [UIColor whiteColor];
-    
+    JQFMDB *db = [JQFMDB shareDatabase];
+    DrinkModel *model = [[DrinkModel alloc]init];
+    if (![db jq_isExistTable:@"drink"]) {
+        if ([db jq_createTable:@"drink" dicOrModel:model]) {
+            NSLog(@"创建成功！！！");
+        }
+    }
     
     [self createUI];
     
@@ -95,15 +101,9 @@
         [self.drinkView layoutSubviews];
         DrinkModel *model = [self getDrinkModel];
         model.count = @"1";
-        if (![db jq_isExistTable:@"drink"]) {  //如果没有 drink 表  创建
-            if ([db jq_createTable:@"drink" dicOrModel:model]) {
-                NSLog(@"创建成功！！！");
-            }
-        } else { //有表  直接插入
-            if ([db jq_insertTable:@"drink" dicOrModel:model]) {
-                NSLog(@"插入成功！！！");
-            }
-        }
+        if ([db jq_insertTable:@"drink" dicOrModel:model]) {
+            NSLog(@"插入成功！！！");
+        }   
     }
     NSUserDefaults *user = [NSUserDefaults standardUserDefaults];
     NSInteger percentNum = [[user objectForKey:@"percentNum"] integerValue];

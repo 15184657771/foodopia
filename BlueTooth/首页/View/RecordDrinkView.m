@@ -35,48 +35,48 @@
 }
 
 - (void)setUpCount:(NSInteger )count {
-    
+    NSInteger  num;
     if (count > 8) {
-        
+        num = 7;
     } else {
-        for (UIView *subview in [self subviews]) {
-            if (subview.tag == 20 || subview.tag == 21) {
-                
-            } else {
-                [subview removeFromSuperview];
-            }
-        }
-        if (count > 0) {
-            self.textLabel.text = [NSString stringWithFormat:@"今天已喝%ld杯，共%ldml",count,count * 250];
-            //所有水杯的宽度     一个水杯宽度34      一个间隙 16
-            CGFloat totalWidth = 34 * count + 16 * (count - 1);
-            for (int i = 0; i < count; i++) {
-                self.drinkImage = [[UIImageView alloc]initWithFrame:CGRectMake((self.frame.size.width - totalWidth)/2 + (34 + 16) * i, CGRectGetMaxY(self.backImageView.frame) + 16, 34, 52)];
-                self.drinkImage.image = [UIImage imageNamed:@"满水杯"];
-                [self addSubview:self.drinkImage];
-                
-                self.drinkLabel = [[UILabel alloc]initWithFrame:CGRectMake((self.frame.size.width - totalWidth)/2 + (34 + 16) * i, CGRectGetMaxY(self.drinkImage.frame) + 10, 34, 13)];
-                self.drinkLabel.text = @"250ml";
-                self.drinkLabel.textColor = [UIColor colorWithHex:@"c1c1c3"];
-                self.drinkLabel.font = [UIFont systemFontOfSize:11];
-                self.drinkLabel.textAlignment = NSTextAlignmentCenter;
-                [self addSubview:self.drinkLabel];
-            }
-        } else {
-            self.textLabel.text = @"今天你还没喝水";
-            self.noDrinkimage = [[UIImageView alloc]initWithFrame:CGRectMake((self.frame.size.width - 34)/2, CGRectGetMaxY(self.backImageView.frame) + 16, 34, 52)];
-            self.noDrinkimage.image = [UIImage imageNamed:@"空水杯"];
-            [self addSubview:self.noDrinkimage];
+        num = count;
+    }
+    for (UIView *subview in [self subviews]) {
+        if (subview.tag == 20 || subview.tag == 21) {
             
-            self.noDrinklabel = [[UILabel alloc]initWithFrame:CGRectMake(0, CGRectGetMaxY(self.noDrinkimage.frame) + 10, self.frame.size.width, 13)];
-            self.noDrinklabel.text = @"去喝一杯吧";
-            self.noDrinklabel.textColor = [UIColor colorWithHex:@"c1c1c3"];
-            self.noDrinklabel.font = [UIFont systemFontOfSize:11];
-            self.noDrinklabel.textAlignment = NSTextAlignmentCenter;
-            [self addSubview:self.noDrinklabel];
+        } else {
+            [subview removeFromSuperview];
         }
     }
-    
+    if (count > 0) {
+        self.textLabel.text = [NSString stringWithFormat:@"今天已喝%ld杯，共%ldml",count,count * 250];
+        //所有水杯的宽度     一个水杯宽度34      一个间隙 16
+        CGFloat totalWidth = 34 * num + 16 * (num - 1);
+        for (int i = 0; i < num; i++) {
+            self.drinkImage = [[UIImageView alloc]initWithFrame:CGRectMake((self.frame.size.width - totalWidth)/2 + (34 + 16) * i, CGRectGetMaxY(self.backImageView.frame) + 16, 34, 52)];
+            self.drinkImage.image = [UIImage imageNamed:@"满水杯"];
+            [self addSubview:self.drinkImage];
+            
+            self.drinkLabel = [[UILabel alloc]initWithFrame:CGRectMake((self.frame.size.width - totalWidth)/2 + (34 + 16) * i, CGRectGetMaxY(self.drinkImage.frame) + 10, 34, 13)];
+            self.drinkLabel.text = @"250ml";
+            self.drinkLabel.textColor = [UIColor colorWithHex:@"c1c1c3"];
+            self.drinkLabel.font = [UIFont systemFontOfSize:11];
+            self.drinkLabel.textAlignment = NSTextAlignmentCenter;
+            [self addSubview:self.drinkLabel];
+        }
+    } else {
+        self.textLabel.text = @"今天你还没喝水";
+        self.noDrinkimage = [[UIImageView alloc]initWithFrame:CGRectMake((self.frame.size.width - 34)/2, CGRectGetMaxY(self.backImageView.frame) + 16, 34, 52)];
+        self.noDrinkimage.image = [UIImage imageNamed:@"空水杯"];
+        [self addSubview:self.noDrinkimage];
+        
+        self.noDrinklabel = [[UILabel alloc]initWithFrame:CGRectMake(0, CGRectGetMaxY(self.noDrinkimage.frame) + 10, self.frame.size.width, 13)];
+        self.noDrinklabel.text = @"去喝一杯吧";
+        self.noDrinklabel.textColor = [UIColor colorWithHex:@"c1c1c3"];
+        self.noDrinklabel.font = [UIFont systemFontOfSize:11];
+        self.noDrinklabel.textAlignment = NSTextAlignmentCenter;
+        [self addSubview:self.noDrinklabel];
+    }
     
      
 }
