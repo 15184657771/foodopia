@@ -17,9 +17,16 @@ typedef NS_ENUM(NSInteger, ToolType) {
     Cheeses,    //芝士
 };
 
+@protocol GetToolViewDelegate <NSObject>
+
+- (void)GetToolViewDelegate:(NSString *)type;
+
+@end
 
 @interface GetToolViewController : UIViewController
 
 - (void)setUpUI:(ToolType)toolType;
+
+@property (nonatomic, assign)id delegate;
 
 @end

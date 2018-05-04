@@ -10,8 +10,9 @@
 #import "RefrigeratorViewController.h"
 #import "UIViewController+XYSideCategory.h"
 #import "BlueTooth-Swift.h"
+#import "NoFoodViewController.h"
 
-@interface PetViewController ()
+@interface PetViewController ()<NoFoodViewDelegate>
 //背景
 @property (strong, nonatomic) IBOutlet UIImageView *backImageView;
 @property (strong, nonatomic) IBOutlet UIButton *leftTopBtn;
@@ -526,28 +527,29 @@
 
 - (void)setUpNoFoodView:(NSInteger)count {
     NSLog(@"没有食物");
-    
-    self.backImageView.image = [UIImage imageNamed:@"0-背景"];
-    self.bigImageView.image = [UIImage imageNamed:@"0-熊"];
-    [self.leftTopBtn setBackgroundImage:[UIImage imageNamed:@"返回icon"] forState:UIControlStateNormal];
-    self.eatBtn.hidden = YES;
-    self.locationView.hidden = YES;
-    self.RefrigeratorView.hidden = YES;
-    self.hungerImageView.hidden = YES;
-    
+    NoFoodViewController *noFoodVC = [[NoFoodViewController alloc]init];
+    noFoodVC.delegate = self;
     if (count == 1) {
-        [DSToast show:@"没有巧克力"];
+        [noFoodVC setUpUI:Chocolates];
     } else if (count == 2) {
-        [DSToast show:@"没有蓝莓慕斯"];
+        [noFoodVC setUpUI:Blueberry_Cake];
     } else if (count == 3) {
-        [DSToast show:@"没有草莓芝士"];
+        [noFoodVC setUpUI:Strawberry_Cake];
     } else if (count == 4) {
-        [DSToast show:@"没有抹茶卷"];
+        [noFoodVC setUpUI:Motcha_Roll];
     }
     
-    
+    noFoodVC.modalPresentationStyle = UIModalPresentationOverFullScreen;
+    self.definesPresentationContext = YES;
+    [self presentViewController:noFoodVC animated:NO completion:^ {
+        noFoodVC.view.superview.backgroundColor = [UIColor clearColor];
+    }];
 }
 
+- (void)NoFoodViewDelegate {
+    RefrigeratorViewController *refrigeratorVC = [[RefrigeratorViewController alloc]init];
+    [self.navigationController pushViewController:refrigeratorVC animated:YES];
+}
 
 
 @end
