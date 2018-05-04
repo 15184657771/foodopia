@@ -31,7 +31,7 @@
 		744DA4CE2084452D0041D9E7 /* ErectView.m in Sources */ = {isa = PBXBuildFile; fileRef = 744DA4CD2084452D0041D9E7 /* ErectView.m */; };
 		747D1DB52050DBA400CF0D2A /* Toast.m in Sources */ = {isa = PBXBuildFile; fileRef = 747D1DB32050DBA400CF0D2A /* Toast.m */; };
 		748B02AD2077297D00606719 /* BaseView.m in Sources */ = {isa = PBXBuildFile; fileRef = 748B02AC2077297D00606719 /* BaseView.m */; };
-		74F55597209AAB970089F6CD /* FoodShowViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 74F55596209AAB970089F6CD /* FoodShowViewController.m */; };
+		74F55597209AAB970089F6CD /* FoodShowView.m in Sources */ = {isa = PBXBuildFile; fileRef = 74F55596209AAB970089F6CD /* FoodShowView.m */; };
 		74F7712C209AFFE9006C5218 /* KitchenViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 74F7712B209AFFE9006C5218 /* KitchenViewController.m */; };
 		A646DE1B20720B77003A29D8 /* ChooseRecordController.m in Sources */ = {isa = PBXBuildFile; fileRef = A646DE1A20720B77003A29D8 /* ChooseRecordController.m */; };
 		A646DE2120722A84003A29D8 /* WeightViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A646DE2020722A84003A29D8 /* WeightViewController.m */; };
@@ -128,8 +128,8 @@
 		747D1DB42050DBA400CF0D2A /* Toast.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Toast.h; sourceTree = "<group>"; };
 		748B02AB2077297D00606719 /* BaseView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BaseView.h; sourceTree = "<group>"; };
 		748B02AC2077297D00606719 /* BaseView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BaseView.m; sourceTree = "<group>"; };
-		74F55595209AAB970089F6CD /* FoodShowViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FoodShowViewController.h; sourceTree = "<group>"; };
-		74F55596209AAB970089F6CD /* FoodShowViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FoodShowViewController.m; sourceTree = "<group>"; };
+		74F55595209AAB970089F6CD /* FoodShowView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FoodShowView.h; sourceTree = "<group>"; };
+		74F55596209AAB970089F6CD /* FoodShowView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FoodShowView.m; sourceTree = "<group>"; };
 		74F7712A209AFFE9006C5218 /* KitchenViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KitchenViewController.h; sourceTree = "<group>"; };
 		74F7712B209AFFE9006C5218 /* KitchenViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KitchenViewController.m; sourceTree = "<group>"; };
 		8F85FB0D744B688174D17C52 /* Pods-BlueTooth.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BlueTooth.debug.xcconfig"; path = "Pods/Target Support Files/Pods-BlueTooth/Pods-BlueTooth.debug.xcconfig"; sourceTree = "<group>"; };
@@ -495,10 +495,10 @@
 			children = (
 				A6EDEE8C20987A46000D0F88 /* RefrigeratorViewController.h */,
 				A6EDEE8D20987A46000D0F88 /* RefrigeratorViewController.m */,
+				74F55595209AAB970089F6CD /* FoodShowView.h */,
+				74F55596209AAB970089F6CD /* FoodShowView.m */,
 				74F7712A209AFFE9006C5218 /* KitchenViewController.h */,
 				74F7712B209AFFE9006C5218 /* KitchenViewController.m */,
-				74F55595209AAB970089F6CD /* FoodShowViewController.h */,
-				74F55596209AAB970089F6CD /* FoodShowViewController.m */,
 				743E8DE42098D3430005A3FF /* UIButton+Badge.h */,
 				743E8DE52098D3430005A3FF /* UIButton+Badge.m */,
 			);
@@ -713,7 +713,7 @@
 				A646DE2E20727E91003A29D8 /* TXHRrettyRuler.m in Sources */,
 				7439F1982054D7B900F3DCA5 /* MainView.m in Sources */,
 				A671E1AE20770F9F00072BAD /* InfoTableViewCell.m in Sources */,
-				74F55597209AAB970089F6CD /* FoodShowViewController.m in Sources */,
+				74F55597209AAB970089F6CD /* FoodShowView.m in Sources */,
 				7436B63A207378FC0029BA71 /* HealthScrollContentView.m in Sources */,
 				A646DE1B20720B77003A29D8 /* ChooseRecordController.m in Sources */,
 				7436B64020737BC10029BA71 /* DrinkHighViewController.m in Sources */,

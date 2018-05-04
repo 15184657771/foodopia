@@ -15,6 +15,7 @@
 #import "InforViewController.h"
 #import "LoginViewController.h"
 #import "PetViewController.h"
+#import "RefrigeratorViewController.h"
 
 @interface MainViewController ()<ChooseRecordDelegate,RecordTabDelegate,UIScrollViewDelegate>
 
@@ -122,6 +123,9 @@
             }];
         }
     }
+    
+    
+    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(goRefrigeratorView) name:@"goRefri" object:nil];
 //    else {
 //        LoginViewController *loginVC = [[LoginViewController alloc]init];
 //        loginVC.modalPresentationStyle = UIModalPresentationOverFullScreen;
@@ -130,6 +134,11 @@
 //            loginVC.view.superview.backgroundColor = [UIColor clearColor];
 //        }];
 //    }
+}
+
+- (void)goRefrigeratorView {
+    RefrigeratorViewController *refrigeratorVC = [[RefrigeratorViewController alloc]init];
+    [self.navigationController pushViewController:refrigeratorVC animated:YES];
 }
 
 - (void)viewWillDisappear:(BOOL)animated {

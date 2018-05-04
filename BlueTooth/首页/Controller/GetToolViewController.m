@@ -8,7 +8,6 @@
 
 #import "GetToolViewController.h"
 #import "UIColor+Hex.h"
-
 @interface GetToolViewController ()
 
 @property (nonatomic, strong)UIView *backView;
@@ -180,7 +179,8 @@
 }
 
 - (void)leftBtnAction:(UIButton *)sender {
-    
+    [[NSNotificationCenter defaultCenter]postNotificationName:@"goRefri" object:nil];
+    [self dismissViewControllerAnimated:NO completion:nil];
 }
 
 - (void)rightBtnAction:(UIButton *)sender {

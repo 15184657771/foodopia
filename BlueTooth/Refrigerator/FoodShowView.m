@@ -6,9 +6,9 @@
 //  Copyright © 2018年 Chen. All rights reserved.
 //
 
-#import "FoodShowViewController.h"
-
-@interface FoodShowViewController ()
+#import "FoodShowView.h"
+#import "KitchenViewController.h"
+@interface FoodShowView ()
 
 @property (nonatomic, strong) UIButton *composedBtn;
 @property (nonatomic, strong) UIView *composedView;
@@ -18,7 +18,7 @@
 
 @end
 
-@implementation FoodShowViewController
+@implementation FoodShowView
 - (UILabel *)numberFirstLabel {
     if (!_numberFirstLabel) {
         _numberFirstLabel = [[UILabel alloc] initWithFrame:CGRectMake(90 * WidthNum, 396 * WidthNum, 16 * WidthNum, 16 * WidthNum)];
@@ -90,17 +90,34 @@
     return _composedBtn;
 }
 
-- (void)viewDidLoad {
-    [super viewDidLoad];
-    [self.view setBackgroundColor:RGBA(0, 0, 0, 0.65)];
-    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(dismisView)];
-    [self.view addGestureRecognizer:tap];
+
+- (instancetype)init
+{
+    self = [super init];
+    if (self) {
+        [self setBackgroundColor:RGBA(0, 0, 0, 0.65)];
+        UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(dismisView)];
+        [self addGestureRecognizer:tap];    }
+    return self;
+}
+- (instancetype)initWithFrame:(CGRect)frame
+{
+    self = [super initWithFrame:frame];
+    if (self) {
+        [self setBackgroundColor:RGBA(0, 0, 0, 0.65)];
+        UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(dismisView)];
+        [self addGestureRecognizer:tap];    }
+    return self;
+}
+
+- (void)createView {
+
     WS(ws);
     UIImageView *imageView = [[UIImageView alloc]init];
-    [self.view addSubview:imageView];
+    [self addSubview:imageView];
     [imageView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.centerX.equalTo(ws.view.mas_centerX);
-        make.centerY.equalTo(ws.view.mas_centerY);
+        make.centerX.equalTo(ws.mas_centerX);
+        make.centerY.equalTo(ws.mas_centerY);
         make.size.mas_equalTo(CGSizeMake(317 * WidthNum, 504 * WidthNum));
     }];
     [imageView addSubview:self.numberFirstLabel];
@@ -108,16 +125,17 @@
     [imageView addSubview:self.numberThirdLabel];
 
     
-    [self.view addSubview:self.composedView];
+    [self addSubview:self.composedView];
     [self.composedView addSubview:self.composedBtn];
     [self.composedView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.centerX.equalTo(ws.view.mas_centerX);
+        make.centerX.equalTo(ws.mas_centerX);
         make.centerY.equalTo(imageView.mas_bottom).with.offset(-14 * WidthNum);
         make.size.mas_equalTo(CGSizeMake(180, 40));
     }];
     [self.composedBtn mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.centerX.equalTo(ws.composedView.mas_centerX);
-        make.centerY.equalTo(ws.composedView.mas_centerY);
+        make.centerX.equalTo(ws.mas_centerX);
+        make.centerY.equalTo(imageView.mas_bottom).with.offset(-14 * WidthNum);
+        make.size.mas_equalTo(CGSizeMake(180, 40));
     }];
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     switch (self.foodType) {
@@ -212,31 +230,27 @@
     
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
+
 - (void)dismisView {
-    [self dismissViewControllerAnimated:NO completion:nil];
+    [self removeFromSuperview];
 }
 - (void)composedAction:(UIButton *)btn {
-    [[NSNotificationCenter defaultCenter] postNotificationName:@"composed" object:[NSNumber numberWithInteger:self.foodType]];    //发送消息
-    [self dismissViewControllerAnimated:NO completion:nil];
+
+    KitchenViewController *kitchenViewController = [[KitchenViewController alloc]init];
+    kitchenViewController.foodType = self.foodType;
+    [[self getFartherController].navigationController pushViewController:kitchenViewController animated:YES];
+    
+    [self removeFromSuperview];
 }
 
-- (void)dealloc
-{
-    [[NSNotificationCenter defaultCenter]removeObserver:self name:@"composed" object:nil];
-
+- (UIViewController *)getFartherController {
+    for (UIView* next = [self superview]; next; next = next.superview) {
+        UIResponder* nextResponder = [next nextResponder];
+        if ([nextResponder isKindOfClass:[UIViewController class]]) {
+            return (UIViewController*)nextResponder;
+        }
+    }
+    return nil;
 }
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end

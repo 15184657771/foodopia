@@ -8,8 +8,10 @@
 
 #import <UIKit/UIKit.h>
 
-@interface FoodShowViewController : UIViewController
+@interface FoodShowView : UIView
 
 @property (nonatomic,assign)FoodEnum foodType;
+
+- (void)createView;
 
 @end
