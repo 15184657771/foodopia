@@ -334,7 +334,7 @@
     NSUserDefaults *user = [NSUserDefaults standardUserDefaults];
     NSInteger percentNum = [[user objectForKey:@"percentNum"] integerValue];
     
-    NSInteger chocolate = [[user objectForKey:@"chocolate"] integerValue];
+    NSInteger cupcake = [[user objectForKey:@"cupcake"] integerValue];
     NSInteger blueberry_cake = [[user objectForKey:@"blueberry_cake"] integerValue];
     NSInteger strawberry_cake = [[user objectForKey:@"strawberry_cake"] integerValue];
     NSInteger motcha_roll = [[user objectForKey:@"motcha_roll"] integerValue];
@@ -349,7 +349,7 @@
             self.toastView.hidden = YES;
             [user setObject:[NSString stringWithFormat:@"%ld",percentNum + 500] forKey:@"percentNum"];
             [user setObject:@"1" forKey:@"petprogress"];
-            [user setObject:[NSString stringWithFormat:@"%ld",chocolate - 1] forKey:@"chocolate"];
+            [user setObject:[NSString stringWithFormat:@"%ld",cupcake - 1] forKey:@"cupcake"];
             [self gifPlay];
         
             dispatch_after(delayTime, dispatch_get_main_queue(), ^{
@@ -462,7 +462,7 @@
 - (IBAction)eatBtnAction:(UIButton *)sender {
     
     NSUserDefaults *user = [NSUserDefaults standardUserDefaults];
-    NSInteger chocolate = [[user objectForKey:@"chocolate"] integerValue];
+    NSInteger cupcake = [[user objectForKey:@"cupcake"] integerValue];
     NSInteger blueberry_cake = [[user objectForKey:@"blueberry_cake"] integerValue];
     NSInteger strawberry_cake = [[user objectForKey:@"strawberry_cake"] integerValue];
     NSInteger motcha_roll = [[user objectForKey:@"motcha_roll"] integerValue];
@@ -471,7 +471,7 @@
     if ([UIImagePNGRepresentation(self.bigImageView.image) isEqual:UIImagePNGRepresentation([UIImage imageNamed:@"0-熊"])]){
         NSLog(@"0-熊");
         //冰箱中是否有巧克力
-        if (chocolate > 0) {
+        if (cupcake > 0) {
             self.eatBtn.hidden = YES;
             self.locationView.hidden = YES;
             self.RefrigeratorView.hidden = YES;
