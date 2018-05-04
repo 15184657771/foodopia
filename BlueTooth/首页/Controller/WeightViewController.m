@@ -118,8 +118,10 @@
 }
 #pragma mark -- button click methods
 - (void)recordBtnAction:(UIButton *)sender {
-    
-    [self.delegate weightBtnClick:0];
+    NSUserDefaults *user = [NSUserDefaults standardUserDefaults];
+    NSInteger percentNum = [[user objectForKey:@"percentNum"] integerValue];
+    [user setObject:[NSString stringWithFormat:@"%ld",percentNum + 20] forKey:@"percentNum"];
+    [self.delegate weightBtnClick:1];
 
     NSArray *arr = [self getDate];
     JQFMDB *db = [JQFMDB shareDatabase];
