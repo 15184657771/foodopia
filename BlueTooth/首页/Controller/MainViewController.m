@@ -16,7 +16,7 @@
 #import "LoginViewController.h"
 #import "PetViewController.h"
 #import "RefrigeratorViewController.h"
-
+#import "NSString+Helper.h"
 @interface MainViewController ()<ChooseRecordDelegate,RecordTabDelegate,UIScrollViewDelegate>
 
 @property (nonatomic, strong) MainView *mainView;
@@ -111,17 +111,13 @@
     
     [self createView];
     
-    if ([[NSUserDefaults standardUserDefaults] objectForKey:@"isLogin"]) {
-        if ([[[NSUserDefaults standardUserDefaults] objectForKey:@"isLogin"] isEqualToString:@"1"]) {
-
-        }else {
-            LoginViewController *loginVC = [[LoginViewController alloc]init];
-            loginVC.modalPresentationStyle = UIModalPresentationOverFullScreen;
-            self.definesPresentationContext = YES;
-            [self presentViewController:loginVC animated:NO completion:^ {
-                loginVC.view.superview.backgroundColor = [UIColor clearColor];
-            }];
-        }
+    if (![[NSString notNullStr:[[NSUserDefaults standardUserDefaults] objectForKey:@"isLogin"]] isEqualToString:@"1"]) {
+        LoginViewController *loginVC = [[LoginViewController alloc]init];
+        loginVC.modalPresentationStyle = UIModalPresentationOverFullScreen;
+        self.definesPresentationContext = YES;
+        [self presentViewController:loginVC animated:NO completion:^ {
+            loginVC.view.superview.backgroundColor = [UIColor clearColor];
+        }];
     }
     
     
