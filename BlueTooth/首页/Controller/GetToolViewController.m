@@ -179,11 +179,19 @@
 }
 
 - (void)leftBtnAction:(UIButton *)sender {
+<<<<<<< HEAD
     [[NSNotificationCenter defaultCenter]postNotificationName:@"goRefri" object:nil];
+=======
+    [self.delegate GetToolViewDelegate:@"left"];
+>>>>>>> master
     [self dismissViewControllerAnimated:NO completion:nil];
 }
 
 - (void)rightBtnAction:(UIButton *)sender {
+<<<<<<< HEAD
+=======
+    [self.delegate GetToolViewDelegate:@"right"];
+>>>>>>> master
     [self dismissViewControllerAnimated:NO completion:nil];
 }
 

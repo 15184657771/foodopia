@@ -19,9 +19,16 @@ typedef NS_ENUM(NSInteger, ToolType) {
     Map,//地图
 };
 
+@protocol GetToolViewDelegate <NSObject>
+
+- (void)GetToolViewDelegate:(NSString *)type;
+
+@end
 
 @interface GetToolViewController : UIViewController
 
 - (void)setUpUI:(ToolType)toolType;
+
+@property (nonatomic, assign)id delegate;
 
 @end
