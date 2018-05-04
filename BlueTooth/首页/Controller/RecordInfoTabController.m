@@ -45,7 +45,6 @@
     
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(dismisView)];
     [cancelBackView addGestureRecognizer:tap];
-    
     [self createView];
 }
 - (void)viewDidAppear:(BOOL)animated {

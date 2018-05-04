@@ -517,10 +517,7 @@
         } else {
             [self setUpNoFoodView:4];
         }
-    } else if ([UIImagePNGRepresentation(self.bigImageView.image) isEqual:UIImagePNGRepresentation([UIImage imageNamed:@"4-熊"])]) {
-        
-        
-        
+    } else if ([UIImagePNGRepresentation(self.bigImageView.image) isEqual:UIImagePNGRepresentation([UIImage imageNamed:@"4-熊"])]) {  
     }
     
 }

@@ -35,17 +35,17 @@
 }
 
 - (void)setUpCount:(NSInteger )count {
-    for (UIView *subview in [self subviews]) {
-        if (subview.tag == 20 || subview.tag == 21) {
-            
-        } else {
-            [subview removeFromSuperview];
-        }
-    }
     
     if (count > 8) {
         
     } else {
+        for (UIView *subview in [self subviews]) {
+            if (subview.tag == 20 || subview.tag == 21) {
+                
+            } else {
+                [subview removeFromSuperview];
+            }
+        }
         if (count > 0) {
             self.textLabel.text = [NSString stringWithFormat:@"今天已喝%ld杯，共%ldml",count,count * 250];
             //所有水杯的宽度     一个水杯宽度34      一个间隙 16
@@ -75,7 +75,10 @@
             self.noDrinklabel.textAlignment = NSTextAlignmentCenter;
             [self addSubview:self.noDrinklabel];
         }
-    }  
+    }
+    
+    
+     
 }
 
 - (void)creatView {
