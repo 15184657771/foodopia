@@ -7,6 +7,7 @@
 //
 
 #import "MainView.h"
+#import "GetToolViewController.h"
 
 @interface MainView()
 
@@ -17,6 +18,7 @@
 @property (nonatomic,strong) CAShapeLayer *circleLayer;
 @property (nonatomic,strong) UIImageView *locationImageView;
 @property (nonatomic,strong) NSArray *selectNumArray;
+@property (nonatomic,strong) NSMutableArray *bezierPoints;
 @end
 
 @implementation MainView
@@ -51,6 +53,14 @@
 
     }
     return _pointArray;
+}
+
+- (NSMutableArray *)bezierPoints {
+    if (!_bezierPoints) {
+        _bezierPoints = [NSMutableArray array];
+        CGPathApply(self.workPath.CGPath, (__bridge void *)(_bezierPoints), MyCGPathApplierFunc);
+    }
+    return _bezierPoints;
 }
 
 - (UIBezierPath *)workPath {
@@ -295,43 +305,102 @@ void MyCGPathApplierFunc (void *info, const CGPathElement *element) {
 }
 
 - (CGPoint)moveToPlace {
-    NSMutableArray *bezierPoints = [NSMutableArray array];
-    CGPathApply(self.workPath.CGPath, (__bridge void *)(bezierPoints), MyCGPathApplierFunc);
-    
     NSInteger num = [[[NSUserDefaults standardUserDefaults]objectForKey:@"percentNum"] integerValue];
-    NSInteger j = num/50 + 42 < bezierPoints.count?num/50 + 42:bezierPoints.count - 1;
-    NSValue *pointValue = bezierPoints[j];
+    NSInteger j = num/50 + 42 < self.bezierPoints.count?num/50 + 42:self.bezierPoints.count - 1;
+    NSValue *pointValue = self.bezierPoints[j];
     CGPoint point = [pointValue CGPointValue];
     return point;
 }
 
 - (void)placeMove:(NSInteger)moveNum {
-    NSInteger beforePlace = [self placeCount];
     NSInteger num = [[[NSUserDefaults standardUserDefaults]objectForKey:@"percentNum"] integerValue];
+    NSInteger beforePlace = [self placeCount:num];
     num+=moveNum;
     [[NSUserDefaults standardUserDefaults] setObject:[NSNumber numberWithInteger:num] forKey:@"percentNum"];
     [[NSUserDefaults standardUserDefaults] synchronize];
+    NSInteger nowPlace = [self placeCount:num];
     
-    NSInteger nowPlace = [self placeCount];
-    [UIView animateWithDuration:0.2 animations:^{
-        CGPoint movePoint = [self moveToPlace];
-        [self.locationImageView setFrame:CGRectMake(movePoint.x - 11, movePoint.y - 31, 22, 36)];
-    } completion:^(BOOL finished) {
+    CAKeyframeAnimation *anim = [CAKeyframeAnimation animation];
+    anim.keyPath = @"position";
+    NSMutableArray *array = [NSMutableArray array];
+    for (NSInteger i=beforePlace+1; i<=nowPlace; i++) {
+        CGPoint point = [self.bezierPoints[i] CGPointValue];
+        CGPoint newPoint = CGPointMake(point.x, point.y - 13);
+        [array addObject:[NSValue valueWithCGPoint:newPoint]];
+    }
+    // 设置position属性的每一帧要改变的值
+    anim.values = array;
+    // 设置动画持续时间
+    anim.duration = array.count * 0.05;
+    // 保持动画执行完毕后的状态
+    anim.removedOnCompletion = NO;
+    anim.fillMode = kCAFillModeForwards;
+    // 3,添加动画
+    [self.locationImageView.layer addAnimation:anim forKey:nil];
+    dispatch_time_t delayTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(array.count * 0.05 * NSEC_PER_SEC));
+    dispatch_after(delayTime, dispatch_get_main_queue(), ^{
         for (int i = 0; i < self.selectNumArray.count; i++) {
             if ([self.selectNumArray[i] integerValue] > beforePlace &&[self.selectNumArray[i] integerValue] <= nowPlace) {
-                
+                GetToolViewController *toolVC = [[GetToolViewController alloc]init];
+                NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+                if (i == 1||i == 9||i == 13) {//面粉
+                    [toolVC setUpUI:Flour];
+                    [defaults setValue:[NSNumber numberWithInt:[[defaults objectForKey:@"flour"] intValue] + 1] forKey:@"flour"];
+                }else if (i == 2||i == 6||i == 14) {//鸡蛋
+                    [toolVC setUpUI:Egg];
+                    [defaults setValue:[NSNumber numberWithInt:[[defaults objectForKey:@"egg"] intValue] + 1] forKey:@"egg"];
+                }else if (i == 3) {//巧克力
+                    [toolVC setUpUI:Chocolates];
+                    [defaults setValue:[NSNumber numberWithInt:[[defaults objectForKey:@"chocolate"] intValue] + 1] forKey:@"chocolate"];
+                }else if (i == 5||i == 10) {//芝士
+                    [toolVC setUpUI:Cheeses];
+                    [defaults setValue:[NSNumber numberWithInt:[[defaults objectForKey:@"cheese"] intValue] + 1] forKey:@"cheese"];
+                }else if (i == 7) {//蓝莓
+                    [toolVC setUpUI:Blueberry];
+                    [defaults setValue:[NSNumber numberWithInt:[[defaults objectForKey:@"blueberry"] intValue] + 1] forKey:@"blueberry"];
+                }else if (i == 11) {//草莓
+                    [toolVC setUpUI:Strawberry];
+                    [defaults setValue:[NSNumber numberWithInt:[[defaults objectForKey:@"strawberry"] intValue] + 1] forKey:@"strawberry"];
+                }else if (i == 15) {//抹茶粉
+                    [toolVC setUpUI:Motcha];
+                    [defaults setValue:[NSNumber numberWithInt:[[defaults objectForKey:@"motchaBtn"] intValue] + 1] forKey:@"motcha"];
+                } else {
+                    [toolVC setUpUI:Map];
+                }
+                [defaults synchronize];
+                toolVC.modalPresentationStyle = UIModalPresentationOverFullScreen;
+                UIViewController *fatherVC = [self getFartherController];
+                fatherVC.definesPresentationContext = YES;
+                [fatherVC presentViewController:toolVC animated:NO completion:^{
+                    toolVC.view.superview.backgroundColor = [UIColor clearColor];
+                }];
             }
         }
-    }];
+    });
+    
+    
 }
 
-- (NSInteger)placeCount {
-    NSMutableArray *bezierPoints = [NSMutableArray array];
-    CGPathApply(self.workPath.CGPath, (__bridge void *)(bezierPoints), MyCGPathApplierFunc);
-    
-    NSInteger num = [[[NSUserDefaults standardUserDefaults]objectForKey:@"percentNum"] integerValue];
-    NSInteger j = num/50 + 42 < bezierPoints.count?num/50 + 42:bezierPoints.count - 1;
+- (NSInteger)placeCount:(NSInteger)num {
+    NSInteger j = num/50 + 42 < self.bezierPoints.count?num/50 + 42:self.bezierPoints.count - 1;
     return j;
+}
+
+- (CGPoint)placePoint:(NSInteger)num {
+    NSInteger j = num/50 + 42 < self.bezierPoints.count?num/50 + 42:self.bezierPoints.count - 1;
+    NSValue *pointValue = self.bezierPoints[j];
+    CGPoint point = [pointValue CGPointValue];
+    return point;
+}
+
+- (UIViewController *)getFartherController {
+    for (UIView* next = [self superview]; next; next = next.superview) {
+        UIResponder* nextResponder = [next nextResponder];
+        if ([nextResponder isKindOfClass:[UIViewController class]]) {
+            return (UIViewController*)nextResponder;
+        }
+    }
+    return nil;
 }
 
 @end
