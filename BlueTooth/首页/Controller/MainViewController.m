@@ -110,7 +110,6 @@
     self.view.layer.masksToBounds = YES;
     
     [self createView];
-    
     if (![[NSString notNullStr:[[NSUserDefaults standardUserDefaults] objectForKey:@"isLogin"]] isEqualToString:@"1"]) {
         LoginViewController *loginVC = [[LoginViewController alloc]init];
         loginVC.modalPresentationStyle = UIModalPresentationOverFullScreen;

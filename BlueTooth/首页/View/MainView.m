@@ -346,24 +346,32 @@ void MyCGPathApplierFunc (void *info, const CGPathElement *element) {
                 if (i == 1||i == 9||i == 13) {//面粉
                     [toolVC setUpUI:Flour];
                     [defaults setValue:[NSNumber numberWithInt:[[defaults objectForKey:@"flour"] intValue] + 1] forKey:@"flour"];
+                    [defaults setValue:[NSNumber numberWithInt:1] forKey:@"flour_show"];
+
                 }else if (i == 2||i == 6||i == 14) {//鸡蛋
                     [toolVC setUpUI:Egg];
                     [defaults setValue:[NSNumber numberWithInt:[[defaults objectForKey:@"egg"] intValue] + 1] forKey:@"egg"];
+                    [defaults setValue:[NSNumber numberWithInt:1] forKey:@"egg_show"];
                 }else if (i == 3) {//巧克力
                     [toolVC setUpUI:Chocolates];
                     [defaults setValue:[NSNumber numberWithInt:[[defaults objectForKey:@"chocolate"] intValue] + 1] forKey:@"chocolate"];
+                    [defaults setValue:[NSNumber numberWithInt:1] forKey:@"chocolate_show"];
                 }else if (i == 5||i == 10) {//芝士
                     [toolVC setUpUI:Cheeses];
                     [defaults setValue:[NSNumber numberWithInt:[[defaults objectForKey:@"cheese"] intValue] + 1] forKey:@"cheese"];
+                    [defaults setValue:[NSNumber numberWithInt:1] forKey:@"cheese_show"];
                 }else if (i == 7) {//蓝莓
                     [toolVC setUpUI:Blueberry];
                     [defaults setValue:[NSNumber numberWithInt:[[defaults objectForKey:@"blueberry"] intValue] + 1] forKey:@"blueberry"];
+                    [defaults setValue:[NSNumber numberWithInt:1] forKey:@"blueberry_show"];
                 }else if (i == 11) {//草莓
                     [toolVC setUpUI:Strawberry];
                     [defaults setValue:[NSNumber numberWithInt:[[defaults objectForKey:@"strawberry"] intValue] + 1] forKey:@"strawberry"];
+                    [defaults setValue:[NSNumber numberWithInt:1] forKey:@"strawberry_show"];
                 }else if (i == 15) {//抹茶粉
                     [toolVC setUpUI:Motcha];
                     [defaults setValue:[NSNumber numberWithInt:[[defaults objectForKey:@"motchaBtn"] intValue] + 1] forKey:@"motcha"];
+                    [defaults setValue:[NSNumber numberWithInt:1] forKey:@"motcha_show"];
                 } else {
                     [toolVC setUpUI:Map];
                 }

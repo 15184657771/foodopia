@@ -204,17 +204,17 @@
     self.blueberry_cakeBtn.badgeValue = [NSString stringWithFormat:@"%ld",[[defaults objectForKey:@"blueberry_cake"] integerValue]];
     self.cupcakeBtn.badgeValue = [NSString stringWithFormat:@"%ld",[[defaults objectForKey:@"cupcake"] integerValue]];
     
-    [self.cheeseBtn setImage:[UIImage imageNamed:[[defaults objectForKey:@"cheese"] integerValue] > 0?@"cheese":@"cheese_none"] forState:UIControlStateNormal];
-    [self.flourBtn setImage:[UIImage imageNamed:[[defaults objectForKey:@"flour"] integerValue] > 0?@"flour":@"flour_none"] forState:UIControlStateNormal];
-    [self.eggBtn setImage:[UIImage imageNamed:[[defaults objectForKey:@"egg"] integerValue] > 0?@"egg":@"egg_none"] forState:UIControlStateNormal];
-    [self.motchaBtn setImage:[UIImage imageNamed:[[defaults objectForKey:@"motcha"] integerValue] > 0?@"motcha":@"motcha_none"] forState:UIControlStateNormal];
-    [self.strawberryBtn setImage:[UIImage imageNamed:[[defaults objectForKey:@"strawberry"] integerValue] > 0?@"strawberry":@"strawberry_none"] forState:UIControlStateNormal];
-    [self.blueberryBtn setImage:[UIImage imageNamed:[[defaults objectForKey:@"blueberry"] integerValue] > 0?@"blueberry":@"blueberry_none"] forState:UIControlStateNormal];
-    [self.chocolateBtn setImage:[UIImage imageNamed:[[defaults objectForKey:@"chocolate"] integerValue] > 0?@"chocolate":@"chocolate_none"] forState:UIControlStateNormal];
-    [self.strawberry_cakeBtn setImage:[UIImage imageNamed:[[defaults objectForKey:@"strawberry_cake"] integerValue] > 0?@"strawberry_cake":@"strawberry_cake_none"] forState:UIControlStateNormal];
-    [self.motcha_rollBtn setImage:[UIImage imageNamed:[[defaults objectForKey:@"motcha_roll"] integerValue] > 0?@"motcha_roll":@"motcha_roll_none"] forState:UIControlStateNormal];
-    [self.blueberry_cakeBtn setImage:[UIImage imageNamed:[[defaults objectForKey:@"blueberry_cake"] integerValue] > 0?@"blueberry_cake":@"blueberry_cake_none"] forState:UIControlStateNormal];
-    [self.cupcakeBtn setImage:[UIImage imageNamed:[[defaults objectForKey:@"cupcake"] integerValue] > 0?@"cupcake":@"cupcake_none"] forState:UIControlStateNormal];
+    [self.cheeseBtn setImage:[UIImage imageNamed:[[defaults objectForKey:@"cheese_show"] integerValue] > 0?@"cheese":@"cheese_none"] forState:UIControlStateNormal];
+    [self.flourBtn setImage:[UIImage imageNamed:[[defaults objectForKey:@"flour_show"] integerValue] > 0?@"flour":@"flour_none"] forState:UIControlStateNormal];
+    [self.eggBtn setImage:[UIImage imageNamed:[[defaults objectForKey:@"egg_show"] integerValue] > 0?@"egg":@"egg_none"] forState:UIControlStateNormal];
+    [self.motchaBtn setImage:[UIImage imageNamed:[[defaults objectForKey:@"motcha_show"] integerValue] > 0?@"motcha":@"motcha_none"] forState:UIControlStateNormal];
+    [self.strawberryBtn setImage:[UIImage imageNamed:[[defaults objectForKey:@"strawberry_show"] integerValue] > 0?@"strawberry":@"strawberry_none"] forState:UIControlStateNormal];
+    [self.blueberryBtn setImage:[UIImage imageNamed:[[defaults objectForKey:@"blueberry_show"] integerValue] > 0?@"blueberry":@"blueberry_none"] forState:UIControlStateNormal];
+    [self.chocolateBtn setImage:[UIImage imageNamed:[[defaults objectForKey:@"chocolate_show"] integerValue] > 0?@"chocolate":@"chocolate_none"] forState:UIControlStateNormal];
+    [self.strawberry_cakeBtn setImage:[UIImage imageNamed:[[defaults objectForKey:@"strawberry_cake_show"] integerValue] > 0?@"strawberry_cake":@"strawberry_cake_none"] forState:UIControlStateNormal];
+    [self.motcha_rollBtn setImage:[UIImage imageNamed:[[defaults objectForKey:@"motcha_roll_show"] integerValue] > 0?@"motcha_roll":@"motcha_roll_none"] forState:UIControlStateNormal];
+    [self.blueberry_cakeBtn setImage:[UIImage imageNamed:[[defaults objectForKey:@"blueberry_cake_show"] integerValue] > 0?@"blueberry_cake":@"blueberry_cake_none"] forState:UIControlStateNormal];
+    [self.cupcakeBtn setImage:[UIImage imageNamed:[[defaults objectForKey:@"cupcake_show"] integerValue] > 0?@"cupcake":@"cupcake_none"] forState:UIControlStateNormal];
 
     
 }

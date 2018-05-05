@@ -103,24 +103,28 @@
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     switch (self.foodType) {
         case CUPCAKE:
+            [defaults setValue:[NSNumber numberWithInt:1] forKey:@"cupcake_show"];
             [defaults setValue:[NSNumber numberWithInt:[[defaults objectForKey:@"cupcake"] intValue] + 1] forKey:@"cupcake"];
             [defaults setValue:[NSNumber numberWithInt:[[defaults objectForKey:@"flour"] intValue] - 1] forKey:@"flour"];
             [defaults setValue:[NSNumber numberWithInt:[[defaults objectForKey:@"egg"] intValue] - 1] forKey:@"egg"];
             [defaults setValue:[NSNumber numberWithInt:[[defaults objectForKey:@"chocolate"] intValue] - 1] forKey:@"chocolate"];
             break;
         case BLUEBERRY_CAKE:
+            [defaults setValue:[NSNumber numberWithInt:1] forKey:@"blueberry_cake_show"];
             [defaults setValue:[NSNumber numberWithInt:[[defaults objectForKey:@"blueberry_cake"] intValue] + 1] forKey:@"blueberry_cake"];
             [defaults setValue:[NSNumber numberWithInt:[[defaults objectForKey:@"cheese"] intValue] - 1] forKey:@"cheese"];
             [defaults setValue:[NSNumber numberWithInt:[[defaults objectForKey:@"egg"] intValue] - 1] forKey:@"egg"];
             [defaults setValue:[NSNumber numberWithInt:[[defaults objectForKey:@"blueberry"] intValue] - 1] forKey:@"blueberry"];
             break;
         case MOTCHA_ROLL:
+            [defaults setValue:[NSNumber numberWithInt:1] forKey:@"motcha_roll_show"];
             [defaults setValue:[NSNumber numberWithInt:[[defaults objectForKey:@"motcha_roll"] intValue] + 1] forKey:@"motcha_roll"];
             [defaults setValue:[NSNumber numberWithInt:[[defaults objectForKey:@"flour"] intValue] - 1] forKey:@"flour"];
             [defaults setValue:[NSNumber numberWithInt:[[defaults objectForKey:@"egg"] intValue] - 1] forKey:@"egg"];
             [defaults setValue:[NSNumber numberWithInt:[[defaults objectForKey:@"motcha"] intValue] - 1] forKey:@"motcha"];
             break;
         case STRAWBERRY_CAKE:
+            [defaults setValue:[NSNumber numberWithInt:1] forKey:@"strawberry_cake_show"];
             [defaults setValue:[NSNumber numberWithInt:[[defaults objectForKey:@"strawberry_cake"] intValue] + 1] forKey:@"strawberry_cake"];
             [defaults setValue:[NSNumber numberWithInt:[[defaults objectForKey:@"flour"] intValue] - 1] forKey:@"flour"];
             [defaults setValue:[NSNumber numberWithInt:[[defaults objectForKey:@"cheese"] intValue] - 1] forKey:@"cheese"];
