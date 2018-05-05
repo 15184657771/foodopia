@@ -12,7 +12,7 @@
 @interface RecordSleepView()
 
 @property (nonatomic, strong)UIImageView *backImageView;
-
+@property (nonatomic, strong)UILabel *timeLabel;
 @end
 
 @implementation RecordSleepView
@@ -57,23 +57,23 @@
         make.right.equalTo(self.backImageView.mas_right).with.offset(-15);
        
     }];
+    self.timeLabel = [[UILabel alloc]init];
     
-    
-}
-- (void)setText:(NSString *)str {
-    UILabel *timeLabel = [[UILabel alloc]init];
-    timeLabel.text = str;
-    timeLabel.textColor = [UIColor colorWithHex:@"ad77cd"];
-    timeLabel.font = [UIFont systemFontOfSize:35];
-    timeLabel.textAlignment = NSTextAlignmentCenter;
-    [self addSubview:timeLabel];
-    [timeLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+    self.timeLabel.textColor = [UIColor colorWithHex:@"ad77cd"];
+    self.timeLabel.font = [UIFont systemFontOfSize:35];
+    self.timeLabel.textAlignment = NSTextAlignmentCenter;
+    [self addSubview:self.timeLabel];
+    [self.timeLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(self.backImageView.mas_bottom).with.offset(20);
         make.bottom.equalTo(self.mas_bottom).with.offset(-30);
         make.left.equalTo(self.mas_left).with.offset(0);
         make.right.equalTo(self.mas_right).with.offset(0);
         
     }];
+    
+}
+- (void)setText:(NSString *)str {
+    self.timeLabel.text = str;
 }
 
 @end

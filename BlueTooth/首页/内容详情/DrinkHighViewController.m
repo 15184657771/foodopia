@@ -157,7 +157,7 @@
         DrinkModel *model2 = lookForArr2[0];  //最少
         
         arr2 = [NSArray arrayWithObjects:[NSString stringWithFormat:@"%@/%@/%@达成",model1.year,model1.month,model1.day],[NSString stringWithFormat:@"%@/%@/%@达成",model2.year,model2.month,model2.day],@"目标偏差+250ml", nil];
-        arr3 = [NSArray arrayWithObjects:[NSString stringWithFormat:@"%ldml",[model1.count integerValue] * 250],[NSString stringWithFormat:@"%ldml",[model2.count integerValue] * 250],@"500ml", nil];
+        arr3 = [NSArray arrayWithObjects:[NSString stringWithFormat:@"%ldml",[model1.count integerValue] * 250],[NSString stringWithFormat:@"%ldml",[model2.count integerValue] * 250],[NSString stringWithFormat:@"%@ml",[[NSUserDefaults standardUserDefaults] objectForKey:@"userDic"][@"drink"]], nil];
     } else {
         arr2 = [NSArray arrayWithObjects:@"2017/09/28达成",@"2018/01/14达成",@"目标偏差+250ml", nil];
         arr3 = [NSArray arrayWithObjects:@"2500ml",@"1000ml",@"1250ml", nil];

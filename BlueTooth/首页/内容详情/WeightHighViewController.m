@@ -35,6 +35,7 @@
     NSArray *arr1;
     NSArray *arr2;
     NSArray *arr3;
+    NSString *piancha;
 }
 
 - (NSMutableArray *)timeArr {
@@ -145,6 +146,12 @@
     }];
     
     arr1 = @[@"目前最重",@"目前最轻",@"我想变成"];
+    if (self.lookForDayArr.count > 0) {
+        WeightModel *model = self.lookForDayArr[self.lookForDayArr.count - 1];
+        piancha = [NSString stringWithFormat:@"%.1fkg",[[[NSUserDefaults standardUserDefaults] objectForKey:@"userDic"][@"weight"] floatValue] - [model.weight floatValue]];
+    } else {
+        piancha = @"目标偏差+5.1kg";
+    }
     
     NSArray *lookForArr = [db jq_lookupTable:@"weight" dicOrModel:[WeightModel class] whereFormat:@"where weight = (select max(weight) from weight)"];
     NSArray *lookForArr2 = [db jq_lookupTable:@"weight" dicOrModel:[WeightModel class] whereFormat:@"where weight = (select min(weight) from weight)"];
@@ -154,8 +161,8 @@
         WeightModel *model1 = lookForArr[0];  //最重
         WeightModel *model2 = lookForArr2[0]; //最轻
         
-        arr2 = [NSArray arrayWithObjects:[NSString stringWithFormat:@"%@/%@/%@达成",model1.year,model1.month,model1.day],[NSString stringWithFormat:@"%@/%@/%@达成",model2.year,model2.month,model2.day],@"目标偏差+5.1kg", nil];
-        arr3 = [NSArray arrayWithObjects:[NSString stringWithFormat:@"%@kg",model1.weight],[NSString stringWithFormat:@"%@kg",model2.weight],[NSString stringWithFormat:@"%@kg",[[NSUserDefaults standardUserDefaults] objectForKey:@"weight"]], nil];
+        arr2 = [NSArray arrayWithObjects:[NSString stringWithFormat:@"%@/%@/%@达成",model1.year,model1.month,model1.day],[NSString stringWithFormat:@"%@/%@/%@达成",model2.year,model2.month,model2.day],piancha, nil];
+        arr3 = [NSArray arrayWithObjects:[NSString stringWithFormat:@"%@kg",model1.weight],[NSString stringWithFormat:@"%@kg",model2.weight],[NSString stringWithFormat:@"%@kg",[[NSUserDefaults standardUserDefaults] objectForKey:@"userDic"][@"weight"]], nil];
         
     } else {
         arr2 = [NSArray arrayWithObjects:@"2017/09/28达成",@"2018/01/14达成",@"目标偏差+5.1kg", nil];

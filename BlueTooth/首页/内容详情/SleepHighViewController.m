@@ -148,7 +148,7 @@
         SleepModel *model1 = lookForArr[0];  //最多
         SleepModel *model2 = lookForArr2[0];  //最少
         arr2 = [NSArray arrayWithObjects:[NSString stringWithFormat:@"%@/%@/%@达成",model1.year,model1.month,model1.day],[NSString stringWithFormat:@"%@/%@/%@达成",model2.year,model2.month,model2.day],@"今天睡得太少啦", nil];
-        arr3 = [NSArray arrayWithObjects:[NSString stringWithFormat:@"%@h%@min",[model1.sleepTime substringWithRange:NSMakeRange(10, 2)],[model1.sleepTime substringWithRange:NSMakeRange(13, 2)]],[NSString stringWithFormat:@"%@h%@min",[model1.sleepTime substringWithRange:NSMakeRange(10, 2)],[model1.sleepTime substringWithRange:NSMakeRange(13, 2)]],@"8h/天", nil];
+        arr3 = [NSArray arrayWithObjects:[NSString stringWithFormat:@"%@h%@min",[model1.sleepTime substringWithRange:NSMakeRange(10, 2)],[model1.sleepTime substringWithRange:NSMakeRange(13, 2)]],[NSString stringWithFormat:@"%@h%@min",[model1.sleepTime substringWithRange:NSMakeRange(10, 2)],[model1.sleepTime substringWithRange:NSMakeRange(13, 2)]],[NSString stringWithFormat:@"%@h/天",[[NSUserDefaults standardUserDefaults] objectForKey:@"userDic"][@"sleep"]], nil];
     } else {
         arr2 = [NSArray arrayWithObjects:@"2017/09/28达成",@"2018/01/14达成",@"今天睡得太少啦", nil];
         arr3 = [NSArray arrayWithObjects:@"12h34min",@"4h28min",@"8h/天", nil];
