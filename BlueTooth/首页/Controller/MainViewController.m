@@ -34,7 +34,7 @@
 @property (nonatomic, strong) UIButton *goBtn;
 @property (nonatomic, strong) UIImageView *showImageView;//展示图片
 @property (nonatomic, strong) UILabel *showNumLabel;//分数
-
+@property (nonatomic, strong) UIImageView *backImageView;
 @end
 
 @implementation MainViewController
@@ -45,7 +45,7 @@
     if (!_menuBtn) {
         _menuBtn = [UIButton buttonWithType:UIButtonTypeCustom];
         _menuBtn.backgroundColor = [UIColor whiteColor];
-        [_menuBtn setImage:[UIImage imageNamed:@"goLeft"] forState:UIControlStateNormal];
+        [_menuBtn setImage:[UIImage imageNamed:@"菜单icon"] forState:UIControlStateNormal];
         [_menuBtn.layer setCornerRadius:20.0f];
         [_menuBtn.layer setMasksToBounds:YES];
     }
@@ -121,6 +121,7 @@
     
     
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(goRefrigeratorView) name:@"goRefri" object:nil];
+    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(powerChange) name:@"powerChange" object:nil];
 //    else {
 //        LoginViewController *loginVC = [[LoginViewController alloc]init];
 //        loginVC.modalPresentationStyle = UIModalPresentationOverFullScreen;
@@ -199,8 +200,8 @@
     }];
     
     WS(ws);
-    UIImageView *backImageView = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"pro2"]];
-    [self.view addSubview:backImageView];
+    self.backImageView = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"pro2"]];
+    [self.view addSubview:self.backImageView];
     self.showImageView = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"pro3"]];
     self.showImageView.contentMode = UIViewContentModeScaleAspectFill;
     [self.showImageView.layer setMasksToBounds:YES];
@@ -215,22 +216,39 @@
         make.bottom.equalTo(@(-15));
         make.size.mas_equalTo(CGSizeMake(78, 78));
     }];
-    [backImageView mas_makeConstraints:^(MASConstraintMaker *make) {
+    [self.backImageView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(ws.goBtn.mas_centerX).with.offset(-7);
         make.centerY.equalTo(ws.goBtn.mas_centerY);
         make.size.mas_equalTo(CGSizeMake(192, 54));
     }];
+    
+    CGFloat x = [[[NSUserDefaults standardUserDefaults]objectForKey:@"percentNum"] floatValue]/1500.0 * 170 > 170?170:[[[NSUserDefaults standardUserDefaults]objectForKey:@"percentNum"] floatValue]/1500.0 * 170;
+    
     [self.showImageView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(backImageView.mas_left).with.offset(11);
-        make.bottom.equalTo(backImageView.mas_bottom).with.offset(-7);
-        make.size.mas_equalTo(CGSizeMake(100, 20));
+        make.left.equalTo(ws.backImageView.mas_left).with.offset(11);
+        make.bottom.equalTo(ws.backImageView.mas_bottom).with.offset(-7);
+        make.size.mas_equalTo(CGSizeMake(x, 20));
     }];
     [self.showNumLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(backImageView.mas_top).with.offset(4);
-        make.left.equalTo(backImageView.mas_left).with.offset(59);
+        make.top.equalTo(ws.backImageView.mas_top).with.offset(4);
+        make.left.equalTo(ws.backImageView.mas_left).with.offset(59);
         make.height.equalTo(@17);
     }];
+    NSInteger valueMax = [[[NSUserDefaults standardUserDefaults]objectForKey:@"percentNum"] integerValue] > 1500?1500:[[[NSUserDefaults standardUserDefaults]objectForKey:@"percentNum"] integerValue];
+    [self.showNumLabel setText:[NSString stringWithFormat:@"%ld",valueMax]];
 
+}
+
+- (void)powerChange {
+    CGFloat x = [[[NSUserDefaults standardUserDefaults]objectForKey:@"percentNum"] floatValue]/1500.0 * 170 > 170?170:[[[NSUserDefaults standardUserDefaults]objectForKey:@"percentNum"] floatValue]/1500.0 * 170;
+    WS(ws);
+    [self.showImageView mas_remakeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(ws.backImageView.mas_left).with.offset(11);
+        make.bottom.equalTo(ws.backImageView.mas_bottom).with.offset(-7);
+        make.size.mas_equalTo(CGSizeMake(x, 20));
+    }];
+    NSInteger valueMax = [[[NSUserDefaults standardUserDefaults]objectForKey:@"percentNum"] integerValue] > 1500?1500:[[[NSUserDefaults standardUserDefaults]objectForKey:@"percentNum"] integerValue];
+    [self.showNumLabel setText:[NSString stringWithFormat:@"%ld",valueMax]];
 }
 
 #pragma mark -- button click methods
@@ -259,7 +277,22 @@
     [self.scrollView setZoomScale:1];
     CGPoint movePoint = [self.mainView moveToPlace];
     [self.scrollView setContentOffset:CGPointMake(movePoint.x - SCREEN_WIDTH/2,movePoint.y - SCREEN_HEIGHT/2) animated:YES];
-    [self.mainView placeMove:1300];
+    NSInteger valueMax = [[[NSUserDefaults standardUserDefaults]objectForKey:@"percentNum"] integerValue] > 1500?1500:[[[NSUserDefaults standardUserDefaults]objectForKey:@"percentNum"] integerValue];
+    [self.mainView placeMove:valueMax];
+    [[NSUserDefaults standardUserDefaults] setObject:@"0" forKey:@"percentNum"];
+    [[NSUserDefaults standardUserDefaults] synchronize];
+    WS(ws);
+    [self.showNumLabel setText:@"0"];
+    [UIView animateWithDuration:0.5 animations:^{
+        [self.showImageView mas_remakeConstraints:^(MASConstraintMaker *make) {
+            make.left.equalTo(ws.backImageView.mas_left).with.offset(11);
+            make.bottom.equalTo(ws.backImageView.mas_bottom).with.offset(-7);
+            make.size.mas_equalTo(CGSizeMake(0, 20));
+        }];
+        [self.view.superview layoutIfNeeded];//强制绘制
+    } completion:^(BOOL finished) {
+        
+    }];
     
 }
 

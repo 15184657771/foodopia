@@ -305,7 +305,7 @@ void MyCGPathApplierFunc (void *info, const CGPathElement *element) {
 }
 
 - (CGPoint)moveToPlace {
-    NSInteger num = [[[NSUserDefaults standardUserDefaults]objectForKey:@"percentNum"] integerValue];
+    NSInteger num = [[[NSUserDefaults standardUserDefaults]objectForKey:@"percentTotalNum"] integerValue];
     NSInteger j = num/50 + 42 < self.bezierPoints.count?num/50 + 42:self.bezierPoints.count - 1;
     NSValue *pointValue = self.bezierPoints[j];
     CGPoint point = [pointValue CGPointValue];
@@ -313,10 +313,10 @@ void MyCGPathApplierFunc (void *info, const CGPathElement *element) {
 }
 
 - (void)placeMove:(NSInteger)moveNum {
-    NSInteger num = [[[NSUserDefaults standardUserDefaults]objectForKey:@"percentNum"] integerValue];
+    NSInteger num = [[[NSUserDefaults standardUserDefaults]objectForKey:@"percentTotalNum"] integerValue];
     NSInteger beforePlace = [self placeCount:num];
     num+=moveNum;
-    [[NSUserDefaults standardUserDefaults] setObject:[NSNumber numberWithInteger:num] forKey:@"percentNum"];
+    [[NSUserDefaults standardUserDefaults] setObject:[NSNumber numberWithInteger:num] forKey:@"percentTotalNum"];
     [[NSUserDefaults standardUserDefaults] synchronize];
     NSInteger nowPlace = [self placeCount:num];
     
