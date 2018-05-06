@@ -9,12 +9,12 @@
 #import "SleepHighViewController.h"
 #import "UIColor+Hex.h"
 #import "InfoTableViewCell.h"
-#import "ErectView.h"
+#import "SleepErectView.h"
 #import "SleepModel.h"
 #import <JQFMDB/JQFMDB.h>
 #import "NSString+Helper.h"
 
-@interface SleepHighViewController ()<UITableViewDelegate,UITableViewDataSource>
+@interface SleepHighViewController ()<UITableViewDelegate,UITableViewDataSource,SleepErectViewDelegate>
 
 @property (nonatomic, strong) UIView *topView;
 
@@ -22,7 +22,7 @@
 
 @property (nonatomic, strong) UISegmentedControl *segmentedControl;
 
-@property (nonatomic, strong) ErectView *erectView;
+@property (nonatomic, strong) SleepErectView *erectView;
 
 @property (nonatomic, strong) NSArray *lookForDayArr;
 
@@ -90,26 +90,43 @@
         make.height.equalTo(@(285 * HeightNum));
     }];
     
-    self.erectView = [[ErectView alloc]initWithFrame:CGRectMake(0, 85 * HeightNum, SCREEN_WIDTH, 200 * HeightNum)];
+    self.erectView = [[SleepErectView alloc]initWithFrame:CGRectMake(0, 85 * HeightNum, SCREEN_WIDTH, 200 * HeightNum)];
     [self.topView addSubview:self.erectView];
-    self.erectView.maxValue = 12;
+    self.erectView.maxValue = 14;
+    self.erectView.delegate = self;
     
     NSArray *arr = [self getDate];
     JQFMDB *db = [JQFMDB shareDatabase];
     //查询当月的数据
-    self.lookForDayArr = [db jq_lookupTable:@"sleep" dicOrModel:[SleepModel class] whereFormat:@"where month = '%@'",arr[1]];
-    if (self.lookForDayArr.count > 0) {
-        for (SleepModel *model in self.lookForDayArr) {
-            [self.timeArr addObject:[NSString stringWithFormat:@"%@日",model.day]];
-            [self.sleepArr addObject:[NSNumber numberWithFloat:[model.time floatValue] / 60 * 60]];
-        }
-        [self.erectView setVerticalDaySource:self.timeArr horizontalValueArray:self.sleepArr];
-        [self.erectView show];
-    } else {
-        [self.erectView setVerticalDaySource:@[@"2日",@"3日",@"5日"] horizontalValueArray:@[[NSNumber numberWithFloat:9.1],[NSNumber numberWithFloat:7.2],[NSNumber numberWithFloat:10.2]]];
-        [self.erectView show];
-    }
+//    self.lookForDayArr = [db jq_lookupTable:@"sleep" dicOrModel:[SleepModel class] whereFormat:@"where month = '%@'",arr[1]];
+//    if (self.lookForDayArr.count > 0) {
+//        for (SleepModel *model in self.lookForDayArr) {
+//            [self.timeArr addObject:[NSString stringWithFormat:@"%@日",model.day]];
+//            [self.sleepArr addObject:[NSNumber numberWithFloat:[model.time floatValue] / 60 * 60]];
+//        }
+//        [self.erectView setVerticalDaySource:self.timeArr horizontalValueArray:self.sleepArr];
+//        [self.erectView show];
+//    } else {
+//        [self.erectView setVerticalDaySource:@[@"2日",@"3日",@"5日"] horizontalValueArray:@[[NSNumber numberWithFloat:9.1],[NSNumber numberWithFloat:7.2],[NSNumber numberWithFloat:10.2]]];
+//        [self.erectView show];
+//    }
     
+    NSDate *date = [NSDate date];
+    date = [[NSDate alloc] initWithTimeIntervalSinceReferenceDate:([date timeIntervalSinceReferenceDate] - 24*3600)];
+    for (int i = 0;i < 7;i ++) {
+        NSDictionary *dic = [[NSUserDefaults standardUserDefaults]objectForKey:@"userDic"];
+        float weightNum = [dic[@"sleep"] floatValue];
+        float value=(float)arc4random()/0x100000000;
+        float y = weightNum - 2 +  (arc4random() % 4) + value;
+        [self.timeArr insertObject:[NSString stringWithFormat:@"%@日",[NSString standFromDate:date]] atIndex:0];
+        [self.sleepArr insertObject:[NSNumber numberWithFloat:y] atIndex:0];
+        
+        date = [[NSDate alloc] initWithTimeIntervalSinceReferenceDate:([date timeIntervalSinceReferenceDate] - 24*3600)];
+        
+    }
+    [self.erectView setVerticalDaySource:self.timeArr horizontalValueArray:self.sleepArr];
+    [self.erectView show];
+
     _segmentedControl = [[UISegmentedControl alloc] initWithItems:@[@"月",@"年"]];
     _segmentedControl.backgroundColor = [UIColor clearColor];
     _segmentedControl.momentary = NO;
@@ -158,19 +175,20 @@
     
 }
 - (void)changeTypeAction:(UISegmentedControl *)sgc{
-    NSArray *dateArr = [self getDate];
-    JQFMDB *db = [JQFMDB shareDatabase];
+//    NSArray *dateArr = [self getDate];
+//    JQFMDB *db = [JQFMDB shareDatabase];
       //1.当年所有数据
     [self.timeArr removeAllObjects];
     [self.sleepArr removeAllObjects];
     NSDate *date = [NSDate date];
+    date = [[NSDate alloc] initWithTimeIntervalSinceReferenceDate:([date timeIntervalSinceReferenceDate] - 24*3600)];
     switch (sgc.selectedSegmentIndex) {
         case 0:
             for (int i = 0;i < 7;i ++) {
                 NSDictionary *dic = [[NSUserDefaults standardUserDefaults]objectForKey:@"userDic"];
-                float weightNum = [dic[@"drink"] floatValue];
+                float weightNum = [dic[@"sleep"] floatValue];
                 float value=(float)arc4random()/0x100000000;
-                float y = weightNum +  (arc4random() % 3) + value;
+                float y = weightNum - 2 +  (arc4random() % 4) + value;
                 [self.timeArr insertObject:[NSString stringWithFormat:@"%@日",[NSString standFromDate:date]] atIndex:0];
                 [self.sleepArr insertObject:[NSNumber numberWithFloat:y] atIndex:0];
                 
@@ -184,9 +202,9 @@
         case 1:
             for (int i = 0;i < 7;i ++) {
                 NSDictionary *dic = [[NSUserDefaults standardUserDefaults]objectForKey:@"userDic"];
-                float weightNum = [dic[@"drink"] floatValue];
+                float weightNum = [dic[@"sleep"] floatValue];
                 float value=(float)arc4random()/0x100000000;
-                float y = weightNum +  (arc4random() % 3) + value;
+                float y = weightNum - 2 +  (arc4random() % 4) + value;
                 [self.timeArr insertObject:[NSString stringWithFormat:@"%@年",[NSString yearDate:date]] atIndex:0];
                 [self.sleepArr insertObject:[NSNumber numberWithFloat:y] atIndex:0];
                 
@@ -266,6 +284,11 @@
     
     //返回 年、月、日、时、分、秒
     return arrAll;
+}
+
+- (void)tapShowNum:(NSNumber *)num {
+    float percent = ([num floatValue] - [num integerValue]) * 60;
+    [self.erectView setText:[NSString stringWithFormat:@"%ld",[num integerValue]] andLast:[NSString stringWithFormat:@"%ld",(int)percent]];
 }
 
 @end

@@ -34,6 +34,7 @@
 		74F55597209AAB970089F6CD /* FoodShowView.m in Sources */ = {isa = PBXBuildFile; fileRef = 74F55596209AAB970089F6CD /* FoodShowView.m */; };
 		74F7712C209AFFE9006C5218 /* KitchenViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 74F7712B209AFFE9006C5218 /* KitchenViewController.m */; };
 		74F7712F209C1318006C5218 /* NSString+Helper.m in Sources */ = {isa = PBXBuildFile; fileRef = 74F7712E209C1318006C5218 /* NSString+Helper.m */; };
+		74FCB3C2209F489B0011E8E3 /* SleepErectView.m in Sources */ = {isa = PBXBuildFile; fileRef = 74FCB3C1209F489B0011E8E3 /* SleepErectView.m */; };
 		A646DE1B20720B77003A29D8 /* ChooseRecordController.m in Sources */ = {isa = PBXBuildFile; fileRef = A646DE1A20720B77003A29D8 /* ChooseRecordController.m */; };
 		A646DE2120722A84003A29D8 /* WeightViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A646DE2020722A84003A29D8 /* WeightViewController.m */; };
 		A646DE2420722A96003A29D8 /* DrinkViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A646DE2320722A96003A29D8 /* DrinkViewController.m */; };
@@ -136,6 +137,8 @@
 		74F7712B209AFFE9006C5218 /* KitchenViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KitchenViewController.m; sourceTree = "<group>"; };
 		74F7712D209C1318006C5218 /* NSString+Helper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+Helper.h"; sourceTree = "<group>"; };
 		74F7712E209C1318006C5218 /* NSString+Helper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+Helper.m"; sourceTree = "<group>"; };
+		74FCB3C0209F489B0011E8E3 /* SleepErectView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SleepErectView.h; sourceTree = "<group>"; };
+		74FCB3C1209F489B0011E8E3 /* SleepErectView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SleepErectView.m; sourceTree = "<group>"; };
 		8F85FB0D744B688174D17C52 /* Pods-BlueTooth.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BlueTooth.debug.xcconfig"; path = "Pods/Target Support Files/Pods-BlueTooth/Pods-BlueTooth.debug.xcconfig"; sourceTree = "<group>"; };
 		A646DE1920720B77003A29D8 /* ChooseRecordController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ChooseRecordController.h; sourceTree = "<group>"; };
 		A646DE1A20720B77003A29D8 /* ChooseRecordController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ChooseRecordController.m; sourceTree = "<group>"; };
@@ -342,6 +345,8 @@
 				748B02AC2077297D00606719 /* BaseView.m */,
 				744DA4CC2084452D0041D9E7 /* ErectView.h */,
 				744DA4CD2084452D0041D9E7 /* ErectView.m */,
+				74FCB3C0209F489B0011E8E3 /* SleepErectView.h */,
+				74FCB3C1209F489B0011E8E3 /* SleepErectView.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -748,6 +753,7 @@
 				A671E1A52074B82300072BAD /* WeightModel.m in Sources */,
 				7439F1852052314900F3DCA5 /* SideViewController.m in Sources */,
 				7439F18E205232C400F3DCA5 /* UIViewController+XYSideCategory.m in Sources */,
+				74FCB3C2209F489B0011E8E3 /* SleepErectView.m in Sources */,
 				A671E19D2073335F00072BAD /* RecordSleepView.m in Sources */,
 				74F7712F209C1318006C5218 /* NSString+Helper.m in Sources */,
 			);

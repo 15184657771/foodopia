@@ -14,7 +14,7 @@
 #import "ErectView.h"
 #import "NSString+Helper.h"
 
-@interface DrinkHighViewController ()<UITableViewDelegate,UITableViewDataSource>
+@interface DrinkHighViewController ()<UITableViewDelegate,UITableViewDataSource,ErectViewDelegate>
 
 @property (nonatomic, strong) UIView *topView;
 
@@ -98,23 +98,34 @@
     self.erectView = [[ErectView alloc]initWithFrame:CGRectMake(0, 85 * HeightNum, SCREEN_WIDTH, 200 * HeightNum)];
     [self.topView addSubview:self.erectView];
     self.erectView.maxValue = 3000;
+    self.erectView.delegate = self;
     
-    
-    NSArray *arr = [self getDate];
-    JQFMDB *db = [JQFMDB shareDatabase];
-    //查询当月的数据
-    self.lookForDayArr = [db jq_lookupTable:@"weight" dicOrModel:[DrinkModel class] whereFormat:@"where month = '%@'",arr[1]];
-    if (self.lookForDayArr.count > 0) {
-        for (DrinkModel *model in self.lookForDayArr) {
-            [self.timeArr addObject:[NSString stringWithFormat:@"%@:%@",model.hour,model.second]];
-            [self.countArr addObject:[NSNumber numberWithFloat:[model.count floatValue]]];
-        }
-        [self.erectView setVerticalDaySource:self.timeArr horizontalValueArray:self.countArr];
-        [self.erectView show];
-    } else {
-        [self.erectView setVerticalDaySource:@[@"2日",@"3日",@"5日"] horizontalValueArray:@[[NSNumber numberWithFloat:1000],[NSNumber numberWithFloat:1250],[NSNumber numberWithFloat:2000]]];
-        [self.erectView show];
+    NSDate *date = [NSDate date];
+
+    for (int i = 0;i < 7;i ++) {
+        NSDictionary *dic = [[NSUserDefaults standardUserDefaults]objectForKey:@"userDic"];
+        float drinkNum = [dic[@"drink"] floatValue];
+        int y = drinkNum - 1000 + (arc4random() % 5) * 500 > 0?drinkNum - 1000 +  (arc4random() % 5) * 500:1000;
+        [self.timeArr insertObject:[NSString stringWithFormat:@"%@日",[NSString standFromDate:date]] atIndex:0];
+        [self.countArr insertObject:[NSNumber numberWithFloat:y] atIndex:0];
+        
+        date = [[NSDate alloc] initWithTimeIntervalSinceReferenceDate:([date timeIntervalSinceReferenceDate] - 24*3600)];
+        
     }
+    [self.erectView setVerticalDaySource:self.timeArr horizontalValueArray:self.countArr];
+    [self.erectView show];
+    
+    JQFMDB *db = [JQFMDB shareDatabase];
+//    //查询当月的数据
+//    self.lookForDayArr = [db jq_lookupTable:@"weight" dicOrModel:[DrinkModel class] whereFormat:@"where month = '%@'",arr[1]];
+//    if (self.lookForDayArr.count > 0) {
+//        for (DrinkModel *model in self.lookForDayArr) {
+//            [self.timeArr addObject:[NSString stringWithFormat:@"%@:%@",model.hour,model.second]];
+//            [self.countArr addObject:[NSNumber numberWithFloat:[model.count floatValue]]];
+//        }
+//        [self.erectView setVerticalDaySource:self.timeArr horizontalValueArray:self.countArr];
+//        [self.erectView show];
+//    }
     
     _segmentedControl = [[UISegmentedControl alloc] initWithItems:@[@"月",@"年"]];
     _segmentedControl.backgroundColor = [UIColor clearColor];
@@ -176,12 +187,11 @@
         case 0:
             for (int i = 0;i < 7;i ++) {
                 NSDictionary *dic = [[NSUserDefaults standardUserDefaults]objectForKey:@"userDic"];
-                float weightNum = [dic[@"drink"] floatValue];
-                float value=(float)arc4random()/0x100000000;
-                float y = weightNum +  (arc4random() % 3) + value;
+                int drinkNum = [dic[@"drink"] intValue];
+                int y = drinkNum - 1000 + (arc4random() % 5) * 500 > 0?drinkNum - 1000 +  (arc4random() % 5) * 500:1000;
                 [self.timeArr insertObject:[NSString stringWithFormat:@"%@日",[NSString standFromDate:date]] atIndex:0];
                 [self.countArr insertObject:[NSNumber numberWithFloat:y] atIndex:0];
-                
+
                 date = [[NSDate alloc] initWithTimeIntervalSinceReferenceDate:([date timeIntervalSinceReferenceDate] - 24*3600)];
                 
             }
@@ -193,9 +203,8 @@
         case 1:
             for (int i = 0;i < 7;i ++) {
                 NSDictionary *dic = [[NSUserDefaults standardUserDefaults]objectForKey:@"userDic"];
-                float weightNum = [dic[@"drink"] floatValue];
-                float value=(float)arc4random()/0x100000000;
-                float y = weightNum +  (arc4random() % 3) + value;
+                int drinkNum = [dic[@"drink"] intValue];
+                int y = drinkNum - 1000 + (arc4random() % 5) * 500 > 0?drinkNum - 1000 +  (arc4random() % 5) * 500:1000;
                 [self.timeArr insertObject:[NSString stringWithFormat:@"%@年",[NSString yearDate:date]] atIndex:0];
                 [self.countArr insertObject:[NSNumber numberWithFloat:y] atIndex:0];
                 
@@ -277,6 +286,11 @@
     
     //返回 年、月、日、时、分、秒
     return arrAll;
+}
+
+- (void)tapShowNum:(NSNumber *)num {
+    [self.erectView setText:[NSString stringWithFormat:@"%ld",[num integerValue]/500] andLast:[NSString stringWithFormat:@"杯\n%ldml",[num integerValue]]];
+
 }
 
 @end

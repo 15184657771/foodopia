@@ -34,7 +34,7 @@
     if (!_backBtn) {
         _backBtn = [UIButton buttonWithType:UIButtonTypeCustom];
         _backBtn.backgroundColor = [UIColor whiteColor];
-        [_backBtn setImage:[UIImage imageNamed:@"goLeft"] forState:UIControlStateNormal];
+        [_backBtn setImage:[UIImage imageNamed:@"返回icon"] forState:UIControlStateNormal];
         [_backBtn.layer setCornerRadius:20.0f];
         [_backBtn.layer setMasksToBounds:YES];
     }
@@ -45,13 +45,13 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.needRefresh = NO;
-    [self.view setBackgroundColor:[UIColor whiteColor]];
-    CAGradientLayer *gradientLayer = [[CAGradientLayer alloc] init];
-    gradientLayer.colors = @[(__bridge id)RGB(128, 98, 156).CGColor,(__bridge id)RGB(103, 68, 137).CGColor];
-    gradientLayer.startPoint = CGPointMake(0, 0);
-    gradientLayer.endPoint = CGPointMake(0, 1);
-    gradientLayer.frame = CGRectMake(0, 0, CGRectGetWidth(self.view.frame), CGRectGetHeight(self.view.frame));
-    [self.view.layer addSublayer:gradientLayer];
+    [self.view setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"冰箱背景"]]];
+//    CAGradientLayer *gradientLayer = [[CAGradientLayer alloc] init];
+//    gradientLayer.colors = @[(__bridge id)RGB(128, 98, 156).CGColor,(__bridge id)RGB(103, 68, 137).CGColor];
+//    gradientLayer.startPoint = CGPointMake(0, 0);
+//    gradientLayer.endPoint = CGPointMake(0, 1);
+//    gradientLayer.frame = CGRectMake(0, 0, CGRectGetWidth(self.view.frame), CGRectGetHeight(self.view.frame));
+//    [self.view.layer addSublayer:gradientLayer];
     [self createView];
     [self setValue];
     
@@ -74,36 +74,36 @@
     [self.view addSubview:self.backBtn];
     [self.backBtn mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(@(20));
-        make.top.equalTo(@(20));
+        make.top.equalTo(@(40));
         make.size.mas_equalTo(CGSizeMake(40, 40));
     }];
     
-    UILabel *engTextLabel = [[UILabel alloc]init];
-    engTextLabel.textColor = [UIColor whiteColor];
-    engTextLabel.font = [UIFont boldSystemFontOfSize:22];
-    engTextLabel.textAlignment = NSTextAlignmentRight;
-    engTextLabel.text = @"Refrigerator";
-    [self.view addSubview:engTextLabel];
-    [engTextLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.right.equalTo(@(-30));
-        if (@available(iOS 11.0, *)) {
-            make.top.equalTo(ws.view.mas_safeAreaLayoutGuideTop).with.offset(26);
-        } else {
-            make.top.equalTo(@26);
-        }
-        make.height.equalTo(@30);
-    }];
-    UILabel *chiTextLabel = [[UILabel alloc]init];
-    chiTextLabel.textColor = [UIColor whiteColor];
-    chiTextLabel.font = [UIFont boldSystemFontOfSize:20];
-    chiTextLabel.textAlignment = NSTextAlignmentRight;
-    chiTextLabel.text = @"储物冰箱";
-    [self.view addSubview:chiTextLabel];
-    [chiTextLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.right.equalTo(@(-30));
-        make.top.equalTo(engTextLabel.mas_bottom).with.offset(5);
-    }];
-    
+//    UILabel *engTextLabel = [[UILabel alloc]init];
+//    engTextLabel.textColor = [UIColor whiteColor];
+//    engTextLabel.font = [UIFont boldSystemFontOfSize:22];
+//    engTextLabel.textAlignment = NSTextAlignmentRight;
+//    engTextLabel.text = @"Refrigerator";
+//    [self.view addSubview:engTextLabel];
+//    [engTextLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+//        make.right.equalTo(@(-30));
+//        if (@available(iOS 11.0, *)) {
+//            make.top.equalTo(ws.view.mas_safeAreaLayoutGuideTop).with.offset(26);
+//        } else {
+//            make.top.equalTo(@26);
+//        }
+//        make.height.equalTo(@30);
+//    }];
+//    UILabel *chiTextLabel = [[UILabel alloc]init];
+//    chiTextLabel.textColor = [UIColor whiteColor];
+//    chiTextLabel.font = [UIFont boldSystemFontOfSize:20];
+//    chiTextLabel.textAlignment = NSTextAlignmentRight;
+//    chiTextLabel.text = @"储物冰箱";
+//    [self.view addSubview:chiTextLabel];
+//    [chiTextLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+//        make.right.equalTo(@(-30));
+//        make.top.equalTo(engTextLabel.mas_bottom).with.offset(5);
+//    }];
+//
     
     UIImageView *imageView = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"fridge"]];
     imageView.userInteractionEnabled = YES;
@@ -111,7 +111,7 @@
     [self.view addSubview:imageView];
     [imageView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.size.mas_equalTo(CGSizeMake(330 * WidthNum, 450 * WidthNum));
-        make.top.equalTo(chiTextLabel.mas_bottom).with.offset(20);
+        make.centerY.equalTo(ws.view.mas_centerY).with.offset(15);
         make.centerX.equalTo(ws.view.mas_centerX);
     }];
     
