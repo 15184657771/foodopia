@@ -74,7 +74,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "BlueTooth/&#x9996;&#x9875;/Controller/WeightViewController.m"
-            timestampString = "547113731.8747981"
+            timestampString = "547314659.681383"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "132"
@@ -90,7 +90,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "BlueTooth/&#x9996;&#x9875;/Controller/WeightViewController.m"
-            timestampString = "547113731.8749681"
+            timestampString = "547314659.681477"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "134"
@@ -176,6 +176,22 @@
             startingLineNumber = "222"
             endingLineNumber = "222"
             landmarkName = "-repeatShowTime"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "BlueTooth/Menu/Controller/SideViewController.m"
+            timestampString = "547314618.267609"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "92"
+            endingLineNumber = "92"
+            landmarkName = "-upPic"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

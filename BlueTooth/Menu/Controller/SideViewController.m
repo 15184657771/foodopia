@@ -12,6 +12,7 @@
 #import "UIViewController+XYSideCategory.h"
 #import "InforViewController.h"
 #import "RefrigeratorViewController.h"
+#import "LoginViewController.h"
 
 @interface SideViewController ()<UITableViewDelegate, UITableViewDataSource>
 
@@ -40,7 +41,7 @@
     NSString *fullPath = [[NSHomeDirectory() stringByAppendingPathComponent:@"Documents"] stringByAppendingPathComponent:@"userPic.png"];
     UIImage *savedImage = [[UIImage alloc] initWithContentsOfFile:fullPath];
     self.headImage.image = savedImage;
-    self.nameLabel.text = [[NSUserDefaults standardUserDefaults]objectForKey:@"name"];
+    self.nameLabel.text = [[NSUserDefaults standardUserDefaults]objectForKey:@"userDic"][@"name"];
     
     self.headImage.userInteractionEnabled = YES;
     [self.headImage.layer setCornerRadius:45];
@@ -48,8 +49,8 @@
     self.headImage.layer.borderWidth = 2;
     self.headImage.layer.borderColor = [UIColor whiteColor].CGColor;
     self.headImage.contentMode = UIViewContentModeScaleAspectFill;
-//    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(upPic)];
-//    [self.headImage addGestureRecognizer:tap];
+    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(upPic)];
+    [self.headImage addGestureRecognizer:tap];
     
     
     return _headerView;
@@ -86,6 +87,16 @@
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(receiveUserInfo) name:@"userInfo" object:nil];
     
     [self createView];
+}
+
+- (void)upPic {
+    LoginViewController *loginVC = [[LoginViewController alloc]init];
+    loginVC.modalPresentationStyle = UIModalPresentationOverFullScreen;
+    self.definesPresentationContext = YES;
+    [self presentViewController:loginVC animated:NO completion:^ {
+        loginVC.view.superview.backgroundColor = [UIColor clearColor];
+    }];
+
 }
 
 - (void)receiveUserInfo {
