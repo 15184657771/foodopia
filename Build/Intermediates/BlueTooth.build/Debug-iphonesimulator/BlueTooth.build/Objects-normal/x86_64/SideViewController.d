@@ -6,4 +6,5 @@ dependencies: \
   /Users/daodao/Desktop/foodopia/BlueTooth/Menu/Model/SlideModel.h \
   /Users/daodao/Desktop/foodopia/BlueTooth/Tools/Nav+LeftMenu/UIViewController+XYSideCategory.h \
   /Users/daodao/Desktop/foodopia/BlueTooth/首页/内容详情/InforViewController.h \
-  /Users/daodao/Desktop/foodopia/BlueTooth/Refrigerator/RefrigeratorViewController.h
+  /Users/daodao/Desktop/foodopia/BlueTooth/Refrigerator/RefrigeratorViewController.h \
+  /Users/daodao/Desktop/foodopia/BlueTooth/Login/LoginViewController.h
