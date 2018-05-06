@@ -253,9 +253,17 @@
     float x = point.x;
     float y = point.y;
     CGFloat everyY = (self.viewHigh - 16 * HeightNum)/(self.maxValue - self.minValue);
-    CGFloat everyX = (self.viewWidth - 80 * WidthNum) / (self.horizontalValueArray.count - 1);
+    CGFloat everyX;
+    if (self.horizontalValueArray.count == 1) {
+        everyX = (self.viewWidth - 80 * WidthNum) / 2;
+    } else {
+        everyX = (self.viewWidth - 80 * WidthNum) / (self.horizontalValueArray.count - 1);
+    }
     CGFloat edgeX = 40 * WidthNum;
     NSInteger num = (x - edgeX + everyX / 2) / everyX;
+    if (self.horizontalValueArray.count == 1) {
+        num = 0;
+    }
 
     CGFloat minMarkNum = self.minValue;
     CGFloat percentNum = 1.0;
@@ -271,7 +279,9 @@
             self.showImageView.hidden = NO;
 
             CGFloat pointX = num * everyX + edgeX;
-
+            if (self.horizontalValueArray.count == 1) {
+                pointX = everyX + edgeX;
+            }
             [self.showLabel mas_remakeConstraints:^(MASConstraintMaker *make) {
                 make.centerX.equalTo(ws.mas_left).with.offset(pointX);
                 make.bottom.equalTo(ws.mas_top).with.offset(selectpointY - 25 * HeightNum);
