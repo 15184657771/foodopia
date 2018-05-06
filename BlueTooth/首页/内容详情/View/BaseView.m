@@ -20,6 +20,10 @@
 @property (nonatomic,assign) CGFloat viewWidth;
 @property (nonatomic,assign) CGFloat viewHigh;
 
+@property (nonatomic,strong) UILabel *showLabel;
+@property (nonatomic,strong) UIImageView *showImageView;
+
+
 @end
 
 @implementation BaseView
@@ -44,8 +48,27 @@
         [self initValueAndView];
         self.viewWidth = SCREEN_WIDTH;
         self.viewHigh = 200 * HeightNum;
+        self.userInteractionEnabled = YES;
     }
     return self;
+}
+
+- (UILabel *)showLabel {
+    if (!_showLabel) {
+        _showLabel = [[UILabel alloc] init];
+        [_showLabel setBackgroundColor:[UIColor clearColor]];
+        [_showLabel setTextAlignment:NSTextAlignmentCenter];
+        _showLabel.hidden = YES;
+    }
+    return _showLabel;
+}
+
+- (UIImageView *)showImageView {
+    if (_showImageView) {
+        _showImageView = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"qipao"]];
+        _showImageView.hidden = YES;
+    }
+    return _showImageView;
 }
 
 - (instancetype)initWithFrame:(CGRect)frame
@@ -55,6 +78,21 @@
         [self initValueAndView];
         self.viewWidth = self.bounds.size.width;
         self.viewHigh = self.bounds.size.height;
+        WS(ws);
+
+        [self addSubview:self.showImageView];
+        [self addSubview:self.showLabel];
+
+        [self.showImageView mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.centerX.equalTo(ws.showLabel.mas_centerX);
+            make.centerY.equalTo(ws.showLabel.mas_centerY);
+            make.size.mas_equalTo(CGSizeMake(78,42));
+        }];
+        [self.showLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.top.equalTo(@15);
+            make.left.equalTo(@10);
+            make.size.mas_equalTo(CGSizeMake(78,22));
+        }];
     }
     return self;
 }
@@ -164,6 +202,8 @@
 }
 
 - (void)setVerticalDaySource:(NSArray *)dayArray horizontalValueArray:(NSArray *)valueArray {
+    self.showLabel.hidden = YES;
+    self.showImageView.hidden = YES;
     [self.verticalDayArray removeAllObjects];
     [self.horizontalValueArray removeAllObjects];
     if (dayArray.count > 7) {
@@ -203,6 +243,60 @@
     }
     [self.layer setNeedsDisplay];
 
+}
+
+-(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
+{
+    NSSet *allTouches = [event allTouches];    //返回与当前接收者有关的所有的触摸对象
+    UITouch *touch = [allTouches anyObject];   //视图中的所有对象
+    CGPoint point = [touch locationInView:[touch view]]; //返回触摸点在视图中的当前坐标
+    float x = point.x;
+    float y = point.y;
+    CGFloat everyY = (self.viewHigh - 16 * HeightNum)/(self.maxValue - self.minValue);
+    CGFloat everyX = (self.viewWidth - 80 * WidthNum) / (self.horizontalValueArray.count - 1);
+    CGFloat edgeX = 40 * WidthNum;
+    NSInteger num = (x - edgeX + everyX / 2) / everyX;
+
+    CGFloat minMarkNum = self.minValue;
+    CGFloat percentNum = 1.0;
+    CGFloat edeY = self.viewHigh;
+    if (num < self.horizontalValueArray.count) {
+        CGFloat selectpointY = edeY - ([self.horizontalValueArray[num] floatValue] - minMarkNum) / percentNum * everyY;
+        if (y < 20 + selectpointY && y > selectpointY - 20) {
+            if ([_delegate respondsToSelector:@selector(tapShowNum:)]) {
+                [_delegate tapShowNum:self.horizontalValueArray[num]];
+            }
+            WS(ws);
+            self.showLabel.hidden = NO;
+            self.showImageView.hidden = NO;
+
+            CGFloat pointX = num * everyX + edgeX;
+
+            [self.showLabel mas_remakeConstraints:^(MASConstraintMaker *make) {
+                make.centerX.equalTo(ws.mas_left).with.offset(pointX);
+                make.bottom.equalTo(ws.mas_top).with.offset(selectpointY - 25 * HeightNum);
+                make.size.mas_equalTo(CGSizeMake(78,22));
+            }];
+            [self.showImageView mas_remakeConstraints:^(MASConstraintMaker *make) {
+                make.centerX.equalTo(ws.showLabel.mas_centerX);
+                make.centerY.equalTo(ws.showLabel.mas_centerY);
+                make.size.mas_equalTo(CGSizeMake(78,42));
+            }];
+            [self bringSubviewToFront:self.showImageView];
+            [self bringSubviewToFront:self.showLabel];
+        }
+    }
+    
+}
+
+- (void)setText:(NSString *)str andLast:(NSString *)danweiStr{
+    NSMutableAttributedString *attrStr = [[NSMutableAttributedString alloc] initWithString:[NSString stringWithFormat:@"%@%@",str,danweiStr]];
+    [attrStr addAttribute:NSFontAttributeName value:[UIFont systemFontOfSize:12]
+                    range:NSMakeRange(0, [attrStr length])];
+    [attrStr addAttribute:NSFontAttributeName value:[UIFont systemFontOfSize:16]
+                    range:NSMakeRange(0, [danweiStr length])];
+    [attrStr addAttribute:NSForegroundColorAttributeName value:[UIColor whiteColor] range:NSMakeRange(0, [attrStr length])]; //设置字体颜色
+    self.showLabel.attributedText = attrStr;
 }
 
 
