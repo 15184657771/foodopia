@@ -96,17 +96,26 @@
     [self.view addSubview:self.recordView];
     
     JQFMDB *db = [JQFMDB shareDatabase];
-    NSArray *array = [db jq_lookupTable:@"sleep" dicOrModel:[SleepModel class] whereFormat:@"where isAll = 'YES'"];
+    NSArray *array = [db jq_lookupTable:@"sleep" dicOrModel:[SleepModel class] whereFormat:@"WHERE rowid = (SELECT min(rowid) FROM sleep)"];
     
     if (array.count > 0) {
-        SleepModel *model = array[array.count - 1];
-        NSArray *arr = [model.sleepTime componentsSeparatedByString:@" "];
-        NSArray *arr2 = [arr[1] componentsSeparatedByString:@":"];
-        [self.recordView setText:[NSString stringWithFormat:@"%@时 %@分 %@秒",arr2[0],arr2[1],arr2[2]]];
-
+        SleepModel *model = array[0];
+        if ([model.isAll isEqualToString:@"NO"]) {
+            NSArray *dateArr = [self getDate]; //点起床的时间
+            NSString *endStr = [NSString stringWithFormat:@"%@-%@-%@ %@:%@:%@",dateArr[0],dateArr[1],dateArr[2],dateArr[3],dateArr[4],dateArr[5]];
+            //记录的睡觉的时间
+            NSString *startStr = [NSString stringWithFormat:@"%@-%@-%@ %@:%@:%@",model.year,model.month,model.day,model.hour,model.min,model.second];
+            
+            NSDateComponents *cmps = [self pleaseInsertStarTimeo:startStr andInsertEndTime:endStr];
+            [self.recordView setText:[NSString stringWithFormat:@"%ld时 %ld分 %ld秒",cmps.hour,cmps.minute,cmps.second]];
+        } else {
+            [self.recordView setText:@"00时 00分 00秒"];
+        }
     } else {
         [self.recordView setText:@"00时 00分 00秒"];
     }
+    
+    
 
     UITapGestureRecognizer *recordTap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(recordTapAction)];
     [self.recordView addGestureRecognizer:recordTap];
