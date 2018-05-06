@@ -16,6 +16,9 @@
 @interface SleepViewController ()
 
 
+@property (nonatomic, strong) NSTimer *timer;
+@property (nonatomic, assign) int count;
+
 @property (nonatomic, strong)UILabel *timeLabel;
 
 @property (nonatomic, strong)UIImageView *imageView;
@@ -40,6 +43,13 @@
     
     [self createUI];
     
+}
+
+- (void)viewDidDisappear:(BOOL)animated {
+    if (self.timer) {
+        [self.timer invalidate];
+        self.timer = nil;
+    }
 }
 
 - (void)createUI {
@@ -107,7 +117,18 @@
             NSString *startStr = [NSString stringWithFormat:@"%@-%@-%@ %@:%@:%@",model.year,model.month,model.day,model.hour,model.min,model.second];
             
             NSDateComponents *cmps = [self pleaseInsertStarTimeo:startStr andInsertEndTime:endStr];
-            [self.recordView setText:[NSString stringWithFormat:@"%ld时 %ld分 %ld秒",cmps.hour,cmps.minute,cmps.second]];
+            
+            if (self.timer) {
+                [self.timer invalidate];
+                self.timer = nil;
+            }
+            self.count = cmps.hour * 3600 + cmps.minute * 60 + cmps.second;
+            self.timer = [NSTimer scheduledTimerWithTimeInterval:1.0f target:self selector:@selector(repeatShowTime) userInfo:@"admin" repeats:YES];
+            
+            [self.recordView setText:[NSString stringWithFormat:@"%.2ld时 %.2ld分 %.2ld秒",cmps.hour,cmps.minute,cmps.second]];
+            
+            
+            
         } else {
             [self.recordView setText:@"00时 00分 00秒"];
         }
@@ -173,6 +194,14 @@
             
         }
     } else {
+        
+        if (self.timer) {
+            [self.timer invalidate];
+            self.timer = nil;
+        }
+        self.count = 0;
+        self.timer = [NSTimer scheduledTimerWithTimeInterval:1.0f target:self selector:@selector(repeatShowTime) userInfo:@"admin" repeats:YES];
+        
         //TODO:
         [[NSUserDefaults standardUserDefaults] setObject:[NSString stringWithFormat:@"%@-%@-%@",dateArr[0],dateArr[1],dateArr[2]] forKey:@"shuijiao"];
         SleepModel *model = [self getSleepModel];
@@ -186,8 +215,11 @@
             NSLog(@"插入成功！！！");
         }
     }
-    
-    
+}
+
+- (void)repeatShowTime {
+    self.count++;
+    [self.recordView setText:[NSString stringWithFormat:@"%02d时 %02d分 %02d秒",self.count/3600,self.count/60,self.count%60]];
 }
 
 - (NSDateComponents *)pleaseInsertStarTimeo:(NSString *)time1 andInsertEndTime:(NSString *)time2{

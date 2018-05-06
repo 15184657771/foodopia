@@ -34,13 +34,22 @@
         [_headerView addSubview:self.nameLabel];
         
     }
-    if ([[NSUserDefaults standardUserDefaults] objectForKey:@"userDic"]) {
-        self.headImage.image = [[NSUserDefaults standardUserDefaults]objectForKey:@"headImage"];
-        self.nameLabel.text = [[NSUserDefaults standardUserDefaults]objectForKey:@"name"];
-    } else {
-        self.headImage.image = [UIImage imageNamed:@"添加头像"];
-        self.nameLabel.text = @"李李李阿鹿";
-    }
+    
+    NSString *fullPath = [[NSHomeDirectory() stringByAppendingPathComponent:@"Documents"] stringByAppendingPathComponent:@"userPic.png"];
+    UIImage *savedImage = [[UIImage alloc] initWithContentsOfFile:fullPath];
+    self.headImage.image = savedImage;
+    self.nameLabel.text = [[NSUserDefaults standardUserDefaults]objectForKey:@"name"];
+    
+    self.headImage.userInteractionEnabled = YES;
+    [self.headImage.layer setCornerRadius:46];
+    [self.headImage.layer setMasksToBounds:YES];
+    self.headImage.layer.borderWidth = 2;
+    self.headImage.layer.borderColor = [UIColor whiteColor].CGColor;
+    self.headImage.contentMode = UIViewContentModeScaleAspectFill;
+//    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(upPic)];
+//    [self.headImage addGestureRecognizer:tap];
+    
+    
     return _headerView;
 }
 
