@@ -38,8 +38,6 @@
 
 @property (nonatomic, strong) IBOutlet UIImageView *imageView;
 
-@property (strong, nonatomic) IBOutlet UIImageView *finishFoodImage;
-
 
 @property (strong, nonatomic) IBOutlet NSLayoutConstraint *toastViewTop;
 
@@ -252,7 +250,6 @@
     self.energyView.hidden = YES;
     self.hungerImageView.hidden = YES;
     self.imageView.hidden = YES;
-    self.finishFoodImage.hidden = YES;
     self.eatBtn.hidden = NO;
     self.locationView.hidden = NO;
     self.RefrigeratorView.hidden = NO;
@@ -356,9 +353,7 @@
             dispatch_after(delayTime, dispatch_get_main_queue(), ^{
                 self.energyView.hidden = NO;
                 self.hungerImageView.hidden = YES;
-                self.finishFoodImage.hidden = NO;
-                self.finishFoodImage.image = [UIImage imageNamed:@"0-旋转飞起"];
-                self.imageView.image = [UIImage imageNamed:@"合成 1_00024"];
+                self.imageView.hidden = YES;
             });
             dispatch_after(delayTime2, dispatch_get_main_queue(), ^{
                 self.backImageView.image = [UIImage imageNamed:@"1-背景"];
@@ -369,7 +364,7 @@
                 self.eatBtn.hidden = NO;
                 self.locationView.hidden = NO;
                 self.RefrigeratorView.hidden = NO;
-                self.finishFoodImage.hidden = YES;
+                
             });
             
         } else if ([[[NSUserDefaults standardUserDefaults] objectForKey:@"petprogress"] isEqualToString:@"1"]) {  //喂完巧克力
@@ -382,9 +377,7 @@
             dispatch_after(delayTime, dispatch_get_main_queue(), ^{
                 self.energyView.hidden = NO;
                 self.hungerImageView.hidden = YES;
-                self.finishFoodImage.hidden = NO;
-                self.finishFoodImage.image = [UIImage imageNamed:@"1-旋转飞起"];
-                self.imageView.image = [UIImage imageNamed:@"喂养02_00024"];
+                self.imageView.hidden = YES;
             });
             dispatch_after(delayTime2, dispatch_get_main_queue(), ^{
                 self.backImageView.image = [UIImage imageNamed:@"2-背景"];
@@ -395,7 +388,6 @@
                 self.eatBtn.hidden = NO;
                 self.locationView.hidden = NO;
                 self.RefrigeratorView.hidden = NO;
-                self.finishFoodImage.hidden = YES;
             });
         } else if ([[[NSUserDefaults standardUserDefaults] objectForKey:@"petprogress"] isEqualToString:@"2"]) { //喂完蓝莓蛋糕
             self.toastView.hidden = YES;
@@ -407,9 +399,7 @@
             dispatch_after(delayTime, dispatch_get_main_queue(), ^{
                 self.energyView.hidden = NO;
                 self.hungerImageView.hidden = YES;
-                self.finishFoodImage.hidden = NO;
-                self.finishFoodImage.image = [UIImage imageNamed:@"2-旋转飞起"];
-                self.imageView.image = [UIImage imageNamed:@"喂养03_00024"];
+                self.imageView.hidden = YES;
             });
             dispatch_after(delayTime2, dispatch_get_main_queue(), ^{
                 self.backImageView.image = [UIImage imageNamed:@"3-背景"];
@@ -420,7 +410,6 @@
                 self.eatBtn.hidden = NO;
                 self.locationView.hidden = NO;
                 self.RefrigeratorView.hidden = NO;
-                self.finishFoodImage.hidden = YES;
             });
         } else if ([[[NSUserDefaults standardUserDefaults] objectForKey:@"petprogress"] isEqualToString:@"3"]) { //喂完草莓蛋糕
             self.toastView.hidden = YES;
@@ -432,9 +421,8 @@
             dispatch_after(delayTime, dispatch_get_main_queue(), ^{
                 self.energyView.hidden = NO;
                 self.hungerImageView.hidden = YES;
-                self.finishFoodImage.hidden = NO;
-                self.finishFoodImage.image = [UIImage imageNamed:@"3-旋转飞起"];
-                self.imageView.image = [UIImage imageNamed:@"喂养04_00024"];
+                self.imageView.hidden = YES;
+                
             });
             dispatch_after(delayTime2, dispatch_get_main_queue(), ^{
                 self.backImageView.image = [UIImage imageNamed:@"4-背景"];
@@ -446,7 +434,6 @@
                 self.eatBtn.hidden = NO;
                 self.locationView.hidden = NO;
                 self.RefrigeratorView.hidden = NO;
-                self.finishFoodImage.hidden = YES;
             });
         }
 

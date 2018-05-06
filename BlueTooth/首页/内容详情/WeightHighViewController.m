@@ -179,8 +179,7 @@
     NSArray *dateArr = [self getDate];
     JQFMDB *db = [JQFMDB shareDatabase];
     NSArray *dayArr = [db jq_lookupTable:@"weight" dicOrModel:[WeightModel class] whereFormat:@"where day = '%@'",dateArr[2]];   //1.当日所有数据
-    NSArray *monthArr = [db jq_lookupTable:@"weight" dicOrModel:[WeightModel class] whereFormat:@"where month = '%@'",dateArr[1]]; //1.当月所有数据
-    NSArray *yearArr = [db jq_lookupTable:@"weight" dicOrModel:[WeightModel class] whereFormat:@"where year = '%@'",dateArr[0]];  //1.当年所有数据
+    
     
     
     [self.timeArr removeAllObjects];

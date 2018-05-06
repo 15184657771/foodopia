@@ -18,8 +18,6 @@
                 <outlet property="eatBtn" destination="2k8-7c-P1G" id="Zlo-Px-73C"/>
                 <outlet property="eatBtnBottom" destination="FrW-Zm-QUg" id="wti-hT-4ec"/>
                 <outlet property="energyView" destination="XOC-82-6IN" id="hho-da-AI3"/>
-                <outlet property="finishFoodImage" destination="L78-M5-4km" id="hZW-PQ-Wdi"/>
-                <outlet property="finishFoodTop" destination="Nng-pS-Vd8" id="oOn-LT-Wru"/>
                 <outlet property="hungerImageView" destination="kaH-8O-0sM" id="OCT-VN-3MV"/>
                 <outlet property="imageView" destination="AJE-G9-HBa" id="MVK-IV-JzS"/>
                 <outlet property="leftTopBtn" destination="i6A-yk-Mjk" id="r2k-Gk-hao"/>
@@ -151,9 +149,6 @@
                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="合成 1_00000" translatesAutoresizingMaskIntoConstraints="NO" id="AJE-G9-HBa">
                     <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                 </imageView>
-                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="0-旋转飞起" translatesAutoresizingMaskIntoConstraints="NO" id="L78-M5-4km">
-                    <rect key="frame" x="163.66666666666666" y="418" width="87" height="108"/>
-                </imageView>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
@@ -167,9 +162,7 @@
                 <constraint firstItem="i6A-yk-Mjk" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="40" id="C1v-td-6gM"/>
                 <constraint firstAttribute="bottom" secondItem="2k8-7c-P1G" secondAttribute="bottom" constant="45" id="FrW-Zm-QUg"/>
                 <constraint firstItem="caS-2P-F96" firstAttribute="centerY" secondItem="2k8-7c-P1G" secondAttribute="centerY" id="IVi-RQ-1Ff"/>
-                <constraint firstItem="L78-M5-4km" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="418" id="Nng-pS-Vd8"/>
                 <constraint firstItem="i6A-yk-Mjk" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="20" id="OWq-2u-bP0"/>
-                <constraint firstItem="L78-M5-4km" firstAttribute="centerX" secondItem="0Dv-au-gMa" secondAttribute="centerX" id="PbT-xp-2TB"/>
                 <constraint firstItem="2k8-7c-P1G" firstAttribute="top" secondItem="kaH-8O-0sM" secondAttribute="bottom" constant="5" id="R85-bd-s6W"/>
                 <constraint firstAttribute="bottom" secondItem="0Dv-au-gMa" secondAttribute="bottom" id="TGR-YN-5hU"/>
                 <constraint firstItem="AJE-G9-HBa" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="YyV-vS-dao"/>
@@ -188,7 +181,6 @@
         </view>
     </objects>
     <resources>
-        <image name="0-旋转飞起" width="87" height="108"/>
         <image name="0-背景" width="375" height="667"/>
         <image name="冰箱icon" width="42" height="42"/>
         <image name="原始形态" width="155" height="191"/>
@@ -198,7 +190,7 @@
         <image name="地图icon" width="42" height="42"/>
         <image name="提示气泡01" width="142" height="70"/>
         <image name="获得能量气泡" width="87" height="50"/>
-        <image name="菜单icon" width="80" height="82"/>
+        <image name="菜单icon" width="40" height="40"/>
         <image name="饥饿提示气泡" width="52" height="40"/>
     </resources>
 </document>
