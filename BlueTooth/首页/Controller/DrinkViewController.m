@@ -47,7 +47,7 @@
     self.imageView = [[UIImageView alloc]initWithFrame:CGRectMake(50, 58, SCREEN_WIDTH - 50 * 2, 134 * HeightNum)];
     self.imageView.image = [UIImage imageNamed:@"水杯"];
     [self.view addSubview:self.imageView];
-    
+    [self gifPlay];
     self.drinkBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     self.drinkBtn.frame = CGRectMake(50, CGRectGetMaxY(self.imageView.frame) + 28, SCREEN_WIDTH - 50 * 2, 40);
     self.drinkBtn.backgroundColor = [UIColor colorWithHex:@"ad77cd"];
@@ -86,6 +86,15 @@
 }
 #pragma mark -- button click methods
 - (void)drinkBtnAction:(UIButton *)sender {
+    
+    [self.imageView startAnimating];
+    
+    dispatch_time_t delayTime2 = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2.0/*延迟执行时间*/ * NSEC_PER_SEC));
+    dispatch_after(delayTime2, dispatch_get_main_queue(), ^{
+        [self.imageView stopAnimating];
+        
+        
+    });
     
     NSArray *arr = [self getDate];
     JQFMDB *db = [JQFMDB shareDatabase];
@@ -152,6 +161,37 @@
     
     //返回 年、月、日、时、分、秒
     return arrAll;
+}
+
+- (void)gifPlay {
+    self.imageView.animationImages = @[
+                                       [UIImage imageNamed:@"喝水动画_00000"],
+                                       [UIImage imageNamed:@"喝水动画_00001"],
+                                       [UIImage imageNamed:@"喝水动画_00002"],
+                                       [UIImage imageNamed:@"喝水动画_00003"],
+                                       [UIImage imageNamed:@"喝水动画_00004"],
+                                       [UIImage imageNamed:@"喝水动画_00005"],
+                                       [UIImage imageNamed:@"喝水动画_00006"],
+                                       [UIImage imageNamed:@"喝水动画_00007"],
+                                       [UIImage imageNamed:@"喝水动画_00008"],
+                                       [UIImage imageNamed:@"喝水动画_00009"],
+                                       [UIImage imageNamed:@"喝水动画_00010"],
+                                       [UIImage imageNamed:@"喝水动画_00011"],
+                                       [UIImage imageNamed:@"喝水动画_00012"],
+                                       [UIImage imageNamed:@"喝水动画_00013"],
+                                       [UIImage imageNamed:@"喝水动画_00014"],
+                                       [UIImage imageNamed:@"喝水动画_00015"],
+                                       [UIImage imageNamed:@"喝水动画_00016"],
+                                       [UIImage imageNamed:@"喝水动画_00017"],
+                                       [UIImage imageNamed:@"喝水动画_00018"],
+                                       [UIImage imageNamed:@"喝水动画_00019"],
+                                       
+                                       ];
+    
+    self.imageView.animationDuration = 2.0f;
+    self.imageView.animationRepeatCount = 1;
+    [self.view addSubview: self.imageView];
+    
 }
 
 @end

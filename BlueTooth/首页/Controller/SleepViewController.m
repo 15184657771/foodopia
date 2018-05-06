@@ -16,6 +16,9 @@
 @interface SleepViewController ()
 
 
+@property (nonatomic, strong) NSTimer *timer;
+@property (nonatomic, assign) int count;
+
 @property (nonatomic, strong)UILabel *timeLabel;
 
 @property (nonatomic, strong)UIImageView *imageView;
@@ -40,6 +43,13 @@
     
     [self createUI];
     
+}
+
+- (void)viewDidDisappear:(BOOL)animated {
+    if (self.timer) {
+        [self.timer invalidate];
+        self.timer = nil;
+    }
 }
 
 - (void)createUI {
@@ -96,17 +106,37 @@
     [self.view addSubview:self.recordView];
     
     JQFMDB *db = [JQFMDB shareDatabase];
-    NSArray *array = [db jq_lookupTable:@"sleep" dicOrModel:[SleepModel class] whereFormat:@"where isAll = 'YES'"];
+    NSArray *array = [db jq_lookupTable:@"sleep" dicOrModel:[SleepModel class] whereFormat:@"WHERE rowid = (SELECT min(rowid) FROM sleep)"];
     
     if (array.count > 0) {
-        SleepModel *model = array[array.count - 1];
-        NSArray *arr = [model.sleepTime componentsSeparatedByString:@" "];
-        NSArray *arr2 = [arr[1] componentsSeparatedByString:@":"];
-        [self.recordView setText:[NSString stringWithFormat:@"%@时 %@分 %@秒",arr2[0],arr2[1],arr2[2]]];
-
+        SleepModel *model = array[0];
+        if ([model.isAll isEqualToString:@"NO"]) {
+            NSArray *dateArr = [self getDate]; //点起床的时间
+            NSString *endStr = [NSString stringWithFormat:@"%@-%@-%@ %@:%@:%@",dateArr[0],dateArr[1],dateArr[2],dateArr[3],dateArr[4],dateArr[5]];
+            //记录的睡觉的时间
+            NSString *startStr = [NSString stringWithFormat:@"%@-%@-%@ %@:%@:%@",model.year,model.month,model.day,model.hour,model.min,model.second];
+            
+            NSDateComponents *cmps = [self pleaseInsertStarTimeo:startStr andInsertEndTime:endStr];
+            
+            if (self.timer) {
+                [self.timer invalidate];
+                self.timer = nil;
+            }
+            self.count = cmps.hour * 3600 + cmps.minute * 60 + cmps.second;
+            self.timer = [NSTimer scheduledTimerWithTimeInterval:1.0f target:self selector:@selector(repeatShowTime) userInfo:@"admin" repeats:YES];
+            
+            [self.recordView setText:[NSString stringWithFormat:@"%.2ld时 %.2ld分 %.2ld秒",cmps.hour,cmps.minute,cmps.second]];
+            
+            
+            
+        } else {
+            [self.recordView setText:@"00时 00分 00秒"];
+        }
     } else {
         [self.recordView setText:@"00时 00分 00秒"];
     }
+    
+    
 
     UITapGestureRecognizer *recordTap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(recordTapAction)];
     [self.recordView addGestureRecognizer:recordTap];
@@ -164,6 +194,14 @@
             
         }
     } else {
+        
+        if (self.timer) {
+            [self.timer invalidate];
+            self.timer = nil;
+        }
+        self.count = 0;
+        self.timer = [NSTimer scheduledTimerWithTimeInterval:1.0f target:self selector:@selector(repeatShowTime) userInfo:@"admin" repeats:YES];
+        
         //TODO:
         [[NSUserDefaults standardUserDefaults] setObject:[NSString stringWithFormat:@"%@-%@-%@",dateArr[0],dateArr[1],dateArr[2]] forKey:@"shuijiao"];
         SleepModel *model = [self getSleepModel];
@@ -177,8 +215,11 @@
             NSLog(@"插入成功！！！");
         }
     }
-    
-    
+}
+
+- (void)repeatShowTime {
+    self.count++;
+    [self.recordView setText:[NSString stringWithFormat:@"%02d时 %02d分 %02d秒",self.count/3600,self.count/60,self.count%60]];
 }
 
 - (NSDateComponents *)pleaseInsertStarTimeo:(NSString *)time1 andInsertEndTime:(NSString *)time2{

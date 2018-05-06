@@ -30,7 +30,7 @@
         [_titleLabel setBackgroundColor:[UIColor clearColor]];
         [_titleLabel setTextColor:[UIColor whiteColor]];
         [_titleLabel setTextAlignment:NSTextAlignmentLeft];
-        [_titleLabel setFont:[UIFont systemFontOfSize:20]];
+        [_titleLabel setFont:[UIFont systemFontOfSize:16]];
     }
     return _titleLabel;
 }
