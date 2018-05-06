@@ -92,7 +92,7 @@
     NSString *fullPath = [[NSHomeDirectory() stringByAppendingPathComponent:@"Documents"] stringByAppendingPathComponent:@"userPic.png"];
     UIImage *savedImage = [[UIImage alloc] initWithContentsOfFile:fullPath];
     self.headImage.image = savedImage;
-    self.nameLabel.text = [[NSUserDefaults standardUserDefaults]objectForKey:@"name"];
+    self.nameLabel.text = [[NSUserDefaults standardUserDefaults]objectForKey:@"userDic"][@"name"];
 }
 
 - (void)createView {
