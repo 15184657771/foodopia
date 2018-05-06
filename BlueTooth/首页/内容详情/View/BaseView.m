@@ -127,7 +127,17 @@
             [path moveToPoint:CGPointMake(edgX,edgY - ([self.horizontalValueArray[0] floatValue] - self.minValue) * everyY)];
             for (int i = 1; i < self.horizontalValueArray.count; i ++) {
                 CGFloat controlX = edgX + i * everyX - everyX/2;
-                CGFloat controlY = edgY - (([self.horizontalValueArray[i - 1] floatValue] - self.minValue) - ([self.horizontalValueArray[i] floatValue] - [self.horizontalValueArray[i - 1] floatValue])/2) * everyY;
+                CGFloat controlY = edgY - (([self.horizontalValueArray[i - 1] floatValue] - self.minValue) + ([self.horizontalValueArray[i] floatValue] - [self.horizontalValueArray[i - 1] floatValue])/4*3) * everyY;
+//                CGFloat controlY;
+//                if ([self.horizontalValueArray[i] floatValue] > [self.horizontalValueArray[i - 1] floatValue]) {
+////                    controlX = edgX + i * everyX;
+//                    controlY = edgY - ([self.horizontalValueArray[i] floatValue] - self.minValue) * everyY;
+//                } else {
+////                    controlX = edgX + (i - 1) * everyX;
+//                    controlY = edgY - ([self.horizontalValueArray[i - 1] floatValue] - self.minValue) * everyY;
+//                }
+                
+                
                 [path addQuadCurveToPoint:CGPointMake(edgX + i * everyX, edgY - ([self.horizontalValueArray[i] floatValue] - self.minValue) * everyY) controlPoint:CGPointMake(controlX, controlY)];
             }
             if ([self.horizontalValueArray[self.horizontalValueArray.count - 1] floatValue] > [self.horizontalValueArray[self.horizontalValueArray.count - 2] floatValue]) {
