@@ -35,6 +35,9 @@
 @property (nonatomic, strong) UIImageView *showImageView;//展示图片
 @property (nonatomic, strong) UILabel *showNumLabel;//分数
 @property (nonatomic, strong) UIImageView *backImageView;
+@property (nonatomic, strong) UILabel *petLabel;
+@property (nonatomic, strong) UILabel *writeLabel;
+
 @end
 
 @implementation MainViewController
@@ -100,6 +103,28 @@
         _showNumLabel.text = @"0";
     }
     return _showNumLabel;
+}
+
+- (UILabel *)petLabel {
+    if (!_petLabel) {
+        _petLabel = [[UILabel alloc]init];
+        _petLabel.text = @"宠物";
+        _petLabel.textColor = RGB(102, 102, 102);
+        _petLabel.font = [UIFont systemFontOfSize:12];
+        _petLabel.textAlignment = NSTextAlignmentCenter;
+    }
+    return _petLabel;
+}
+
+- (UILabel *)writeLabel {
+    if (!_writeLabel) {
+        _writeLabel = [[UILabel alloc]init];
+        _writeLabel.text = @"记录";
+        _writeLabel.textColor = RGB(102, 102, 102);
+        _writeLabel.font = [UIFont systemFontOfSize:12];
+        _writeLabel.textAlignment = NSTextAlignmentCenter;
+    }
+    return _writeLabel;
 }
 
 
@@ -181,25 +206,36 @@
     [self.view addSubview:self.menuBtn];
     [self.menuBtn mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(@(20));
-        make.top.equalTo(@(20));
+        make.top.equalTo(@(40));
         make.size.mas_equalTo(CGSizeMake(40, 40));
     }];
     
     [self.view addSubview:self.recordBtn];
     [self.recordBtn mas_makeConstraints:^(MASConstraintMaker *make) {
         make.right.equalTo(@(-20));
-        make.bottom.equalTo(@(-20));
+        make.bottom.equalTo(@(-43));
         make.size.mas_equalTo(CGSizeMake(40, 40));
     }];
     
     [self.view addSubview:self.petBtn];
     [self.petBtn mas_makeConstraints:^(MASConstraintMaker *make) {
         make.right.equalTo(self.recordBtn.mas_left).with.offset(-20);
-        make.bottom.equalTo(@(-20));
+        make.bottom.equalTo(@(-43));
         make.size.mas_equalTo(CGSizeMake(40, 40));
     }];
-    
     WS(ws);
+    [self.view addSubview:self.petLabel];
+    [self.view addSubview:self.writeLabel];
+    [self.petLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(ws.petBtn.mas_bottom).with.offset(5);
+        make.centerX.equalTo(ws.petBtn.mas_centerX);
+    }];
+    [self.writeLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(ws.recordBtn.mas_bottom).with.offset(5);
+        make.centerX.equalTo(ws.recordBtn.mas_centerX);
+    }];
+    
+    
     self.backImageView = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"pro2"]];
     [self.view addSubview:self.backImageView];
     self.showImageView = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"pro3"]];

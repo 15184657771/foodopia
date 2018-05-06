@@ -8,10 +8,19 @@
 
 #import <UIKit/UIKit.h>
 
+@protocol BaseViewDelegate <NSObject>
+
+@optional
+
+- (void)editTag:(NSInteger)showTag;
+- (void)tapShowNum:(NSNumber *)num;
+
+@end
+
 @interface BaseView : UIView
+@property (weak, nonatomic) id<BaseViewDelegate> delegate;
 
 - (void)setVerticalDaySource:(NSArray *)dayArray horizontalValueArray:(NSArray *)valueArray;
-
 - (void)show;
-
+- (void)setText:(NSString *)str andLast:(NSString *)danweiStr;
 @end

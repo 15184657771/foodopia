@@ -8,11 +8,13 @@
 
 #import "TXHRrettyRuler.h"
 
-#define SHEIGHT 8 // 中间指示器顶部闭合三角形高度
-#define INDICATORCOLOR [UIColor redColor].CGColor // 中间指示器颜色
+//#define SHEIGHT 8 // 中间指示器顶部闭合三角形高度
+//#define INDICATORCOLOR [UIColor redColor].CGColor // 中间指示器颜色
 
 @implementation TXHRrettyRuler {
     TXHRulerScrollView * rulerScrollView;
+    UIImageView * zhenImageView;
+
 }
 
 - (instancetype)initWithFrame:(CGRect)frame {
@@ -22,6 +24,16 @@
         rulerScrollView = [self rulerScrollView];
         rulerScrollView.rulerHeight = frame.size.height;
         rulerScrollView.rulerWidth = frame.size.width;
+        
+        WS(ws);
+        zhenImageView = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"arrow"]];
+        [self addSubview:zhenImageView];
+        [zhenImageView mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.centerX.equalTo(ws.mas_centerX);
+            make.centerY.equalTo(ws.mas_centerY).with.offset(-20);
+            make.size.mas_equalTo(CGSizeMake(12.6, 72.2));
+        }];
+        
     }
     return self;
 }
@@ -38,6 +50,7 @@
     rulerScrollView.mode = mode;
     [rulerScrollView drawRuler];
     [self addSubview:rulerScrollView];
+    
     [self drawRacAndLine];
 }
 
@@ -81,7 +94,7 @@
     NSLog(@"ago*****************ago:oX:%f",oX);
 #endif
     if ([self valueIsInteger:scrollView.rulerAverage]) {
-        oX = [self notRounding:oX afterPoint:0];
+        oX = [self notRounding:oX afterPoint:1];
     }
     else {
         oX = [self notRounding:oX afterPoint:1];
@@ -89,10 +102,10 @@
 #ifdef DEBUG
     NSLog(@"after*****************after:oX:%.1f",oX);
 #endif
-    CGFloat offX = (oX / ([scrollView.rulerAverage floatValue])) * DISTANCEVALUE + DISTANCELEFTANDRIGHT - self.frame.size.width / 2;
-    [UIView animateWithDuration:.2f animations:^{
-        scrollView.contentOffset = CGPointMake(offX, 0);
-    }];
+//    CGFloat offX = (oX / ([scrollView.rulerAverage floatValue])) * DISTANCEVALUE + DISTANCELEFTANDRIGHT - self.frame.size.width / 2;
+//    [UIView animateWithDuration:.2f animations:^{
+//        scrollView.contentOffset = CGPointMake(offX, 0);
+//    }];
 }
 
 - (void)drawRacAndLine {
@@ -128,23 +141,23 @@
 //    [self.layer addSublayer:gradient];
     
     // 红色指示器
-    CAShapeLayer *shapeLayerLine = [CAShapeLayer layer];
-    shapeLayerLine.strokeColor = [UIColor redColor].CGColor;
-    shapeLayerLine.fillColor = INDICATORCOLOR;
-    shapeLayerLine.lineWidth = 1.f;
-    shapeLayerLine.lineCap = kCALineCapSquare;
-    
-    NSUInteger ruleHeight = 20; // 文字高度
-    CGMutablePathRef pathLine = CGPathCreateMutable();
-    CGPathMoveToPoint(pathLine, NULL, self.frame.size.width / 2, self.frame.size.height - DISTANCETOPANDBOTTOM - ruleHeight);
-    CGPathAddLineToPoint(pathLine, NULL, self.frame.size.width / 2, DISTANCETOPANDBOTTOM + SHEIGHT);
-    
-    CGPathAddLineToPoint(pathLine, NULL, self.frame.size.width / 2 - SHEIGHT / 2, DISTANCETOPANDBOTTOM);
-    CGPathAddLineToPoint(pathLine, NULL, self.frame.size.width / 2 + SHEIGHT / 2, DISTANCETOPANDBOTTOM);
-    CGPathAddLineToPoint(pathLine, NULL, self.frame.size.width / 2, DISTANCETOPANDBOTTOM + SHEIGHT);
-    
-    shapeLayerLine.path = pathLine;
-    [self.layer addSublayer:shapeLayerLine];
+//    CAShapeLayer *shapeLayerLine = [CAShapeLayer layer];
+//    shapeLayerLine.strokeColor = [UIColor redColor].CGColor;
+//    shapeLayerLine.fillColor = INDICATORCOLOR;
+//    shapeLayerLine.lineWidth = 1.f;
+//    shapeLayerLine.lineCap = kCALineCapSquare;
+//    
+//    NSUInteger ruleHeight = 20; // 文字高度
+//    CGMutablePathRef pathLine = CGPathCreateMutable();
+//    CGPathMoveToPoint(pathLine, NULL, self.frame.size.width / 2, self.frame.size.height - DISTANCETOPANDBOTTOM - ruleHeight);
+//    CGPathAddLineToPoint(pathLine, NULL, self.frame.size.width / 2, DISTANCETOPANDBOTTOM + SHEIGHT);
+//    
+//    CGPathAddLineToPoint(pathLine, NULL, self.frame.size.width / 2 - SHEIGHT / 2, DISTANCETOPANDBOTTOM);
+//    CGPathAddLineToPoint(pathLine, NULL, self.frame.size.width / 2 + SHEIGHT / 2, DISTANCETOPANDBOTTOM);
+//    CGPathAddLineToPoint(pathLine, NULL, self.frame.size.width / 2, DISTANCETOPANDBOTTOM + SHEIGHT);
+//    
+//    shapeLayerLine.path = pathLine;
+//    [self.layer addSublayer:shapeLayerLine];
 }
 
 #pragma mark - tool method
