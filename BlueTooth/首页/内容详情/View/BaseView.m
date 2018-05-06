@@ -64,7 +64,7 @@
 }
 
 - (UIImageView *)showImageView {
-    if (_showImageView) {
+    if (!_showImageView) {
         _showImageView = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"qipao"]];
         _showImageView.hidden = YES;
     }
@@ -294,7 +294,7 @@
     [attrStr addAttribute:NSFontAttributeName value:[UIFont systemFontOfSize:12]
                     range:NSMakeRange(0, [attrStr length])];
     [attrStr addAttribute:NSFontAttributeName value:[UIFont systemFontOfSize:16]
-                    range:NSMakeRange(0, [danweiStr length])];
+                    range:NSMakeRange(0, [str length])];
     [attrStr addAttribute:NSForegroundColorAttributeName value:[UIColor whiteColor] range:NSMakeRange(0, [attrStr length])]; //设置字体颜色
     self.showLabel.attributedText = attrStr;
 }
