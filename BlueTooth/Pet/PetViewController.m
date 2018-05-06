@@ -462,17 +462,17 @@
     if ([UIImagePNGRepresentation(self.bigImageView.image) isEqual:UIImagePNGRepresentation([UIImage imageNamed:@"0-熊"])]){
         NSLog(@"0-熊");
         //冰箱中是否有巧克力
-//        if (cupcake > 0) {
+        if (cupcake > 0) {
             self.eatBtn.hidden = YES;
             self.locationView.hidden = YES;
             self.RefrigeratorView.hidden = YES;
             self.imageView.hidden = NO;
             self.imageView.image = [UIImage imageNamed:@"合成 1_00001"];
-//        } else {
-//            [self setUpNoFoodView:1];
-//        }
+        } else {
+            [self setUpNoFoodView:1];
+        }
     } else if ([UIImagePNGRepresentation(self.bigImageView.image) isEqual:UIImagePNGRepresentation([UIImage imageNamed:@"1-熊"])]) {
-//        if (blueberry_cake > 0) {
+        if (blueberry_cake > 0) {
         
             self.eatBtn.hidden = YES;
             self.locationView.hidden = YES;
@@ -480,9 +480,9 @@
             self.imageView.hidden = NO;
             self.hungerImageView.hidden = YES;
             self.imageView.image = [UIImage imageNamed:@"喂养02_00001"];
-//        } else {
-//            [self setUpNoFoodView:2];
-//        }
+        } else {
+            [self setUpNoFoodView:2];
+        }
         
     } else if ([UIImagePNGRepresentation(self.bigImageView.image) isEqual:UIImagePNGRepresentation([UIImage imageNamed:@"2-熊"])]) {
         if (strawberry_cake > 0 ) {
