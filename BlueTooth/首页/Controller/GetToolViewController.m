@@ -16,6 +16,7 @@
 @property (nonatomic, strong)UILabel *smallLabel;
 @property (nonatomic, strong)UIButton *leftBtn;
 @property (nonatomic, strong)UIButton *rightBtn;
+@property (nonatomic, strong)UIImageView *allImageView;
 
 @end
 
@@ -38,11 +39,19 @@
     return _imageView;
 }
 
+- (UIImageView *)allImageView {
+    if (!_allImageView) {
+        _allImageView = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"wallpaper"]];
+        _allImageView.hidden = YES;
+    }
+    return _allImageView;
+}
+
 - (UILabel *)titleLabel {
     if (!_titleLabel) {
         _titleLabel = [[UILabel alloc]init];
-        _titleLabel.textColor = [UIColor colorWithHex:@"333333"];
-        _titleLabel.font = [UIFont systemFontOfSize:30];
+        _titleLabel.textColor = RGB(51, 51, 51);
+        _titleLabel.font = [UIFont systemFontOfSize:24];
         _titleLabel.textAlignment = NSTextAlignmentCenter;
     }
     return _titleLabel;
@@ -51,9 +60,15 @@
 - (UILabel *)smallLabel {
     if (!_smallLabel) {
         _smallLabel = [[UILabel alloc]init];
-        _smallLabel.text = @"一定数量的食材可以合成小蛋糕哦\n快去地图探索吧！";
-        _smallLabel.textColor = [UIColor colorWithHex:@"b2b2b2"];
-        _smallLabel.font = [UIFont systemFontOfSize:12];
+        NSMutableAttributedString *attributedString = [[NSMutableAttributedString alloc] initWithString:@"一定数量的食材可以合成小蛋糕哦\n快去地图探索吧！"];
+        NSMutableParagraphStyle *paragraphStyle = [[NSMutableParagraphStyle alloc] init];
+        [paragraphStyle setLineSpacing:10];//调整行间距
+        [attributedString addAttribute:NSParagraphStyleAttributeName value:paragraphStyle range:NSMakeRange(0, [attributedString length])];
+        [attributedString addAttribute:NSFontAttributeName value:[UIFont systemFontOfSize:12]
+                        range:NSMakeRange(0, [attributedString length])];
+        [attributedString addAttribute:NSForegroundColorAttributeName value:[UIColor colorWithHex:@"b2b2b2"] range:NSMakeRange(0, [attributedString length])]; //设置字体颜色
+        _smallLabel.attributedText = attributedString;
+    
         _smallLabel.textAlignment = NSTextAlignmentCenter;
         _smallLabel.numberOfLines = 0;
         [_smallLabel sizeToFit];
@@ -146,6 +161,11 @@
         make.width.equalTo(ws.leftBtn.mas_width);
         make.height.equalTo(@50);
     }];
+    
+    [self.view addSubview:self.allImageView];
+    [self.allImageView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.edges.equalTo(ws.view);
+    }];
     if (toolType == 0) {
         self.imageView.image = [UIImage imageNamed:@"草莓"];
         self.titleLabel.text = @"获得新草莓啦！";
@@ -166,10 +186,12 @@
         self.imageView.image = [UIImage imageNamed:@"芝士"];
         self.titleLabel.text = @"获得新芝士啦！";
     } else if (toolType == 6) {
-        self.imageView.image = [UIImage imageNamed:@"motchax"];
+        self.imageView.image = [UIImage imageNamed:@"抹茶粉"];
         self.titleLabel.text = @"获得新抹茶粉啦！";
     } else {
         self.titleLabel.text = @"获得新壁纸啦！";
+        self.allImageView.hidden = NO;
+        self.backView.hidden = YES;
     }
 }
 
