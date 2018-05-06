@@ -226,7 +226,7 @@
     if (index == 0) {
         self.label.text = @"能量 +300";
     } else {
-        self.label.text = @"能量 +20";
+        self.label.text = @"能量 +30";
     }
     
     

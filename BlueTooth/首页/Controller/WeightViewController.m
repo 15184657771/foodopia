@@ -125,14 +125,16 @@
     if (self.lookForArr.count > 0) {
         if (self.lookForArr.count < 6) {
             [user setObject:[NSString stringWithFormat:@"%ld",percentNum + 30] forKey:@"percentNum"];
+            [self.delegate weightBtnClick:1];
         }
     } else {
         [user setObject:[NSString stringWithFormat:@"%ld",percentNum + 300] forKey:@"percentNum"];
+        [self.delegate weightBtnClick:0];
     }
     
     
     [[NSNotificationCenter defaultCenter]postNotificationName:@"powerChange" object:nil];
-    [self.delegate weightBtnClick:1];
+    
 
     NSArray *arr = [self getDate];
     JQFMDB *db = [JQFMDB shareDatabase];
