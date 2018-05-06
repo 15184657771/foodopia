@@ -121,7 +121,7 @@
 - (void)recordBtnAction:(UIButton *)sender {
     NSUserDefaults *user = [NSUserDefaults standardUserDefaults];
     NSInteger percentNum = [[user objectForKey:@"percentNum"] integerValue];
-    [user setObject:[NSString stringWithFormat:@"%ld",percentNum + 20] forKey:@"percentNum"];
+    [user setObject:[NSString stringWithFormat:@"%ld",percentNum + 300] forKey:@"percentNum"];
     [[NSNotificationCenter defaultCenter]postNotificationName:@"powerChange" object:nil];
     [self.delegate weightBtnClick:1];
 
