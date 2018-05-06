@@ -37,9 +37,9 @@
 - (UILabel *)titleLabel {
     if (!_titleLabel) {
         _titleLabel = [[UILabel alloc]init];
-        _titleLabel.textColor = [UIColor colorWithHex:@"333333"];
+        _titleLabel.textColor = RGB(51, 51, 51);
         _titleLabel.text = @"还没获得这个食材";
-        _titleLabel.font = [UIFont systemFontOfSize:30];
+        _titleLabel.font = [UIFont systemFontOfSize:24];
         _titleLabel.textAlignment = NSTextAlignmentCenter;
     }
     return _titleLabel;
@@ -122,7 +122,7 @@
     }];
     [self.backView addSubview:self.smallLabel];
     [self.smallLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(ws.titleLabel.mas_bottom).with.offset(25);
+        make.top.equalTo(ws.titleLabel.mas_bottom).with.offset(20);
         make.left.equalTo(ws.backView.mas_left).with.offset(50);
         make.right.equalTo(ws.backView.mas_right).with.offset(-50);
     }];
@@ -189,6 +189,12 @@
         [headPart appendAttributedString:forthPart];
     }
     [headPart appendAttributedString:lastPart];
+    NSMutableParagraphStyle *paragraphStyle = [[NSMutableParagraphStyle alloc]init];
+    [paragraphStyle setLineSpacing:10];
+    [headPart addAttribute:NSParagraphStyleAttributeName value:paragraphStyle range:NSMakeRange(0,headPart.length)];
+    [headPart addAttribute:NSFontAttributeName value:[UIFont systemFontOfSize:12]
+                             range:NSMakeRange(0, [headPart length])];
+
     self.smallLabel.attributedText = headPart;
 }
 

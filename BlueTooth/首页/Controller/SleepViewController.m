@@ -82,7 +82,7 @@
     
    
     
-    if ([arr[3] integerValue] >= 18) {
+//    if ([arr[3] integerValue] >= 18) {
         self.imageView.image = [UIImage imageNamed:@"睡觉"];
         [self.button setTitle:@"去 睡 觉" forState:UIControlStateNormal];
         if ([[NSString notNullStr:[[NSUserDefaults standardUserDefaults] objectForKey:@"shuijiao"]] isEqualToString:[NSString stringWithFormat:@"%@-%@-%@",arr[0],arr[1],arr[2]]]) {
@@ -90,15 +90,15 @@
         } else {
             self.button.enabled = YES;
         }
-    } else {
-        self.imageView.image = [UIImage imageNamed:@"起床"];
-        [self.button setTitle:@"起 床 了" forState:UIControlStateNormal];
-        if ([[NSString notNullStr:[[NSUserDefaults standardUserDefaults] objectForKey:@"qichuang"]] isEqualToString:[NSString stringWithFormat:@"%@-%@-%@",arr[0],arr[1],arr[2]]]) {
-            self.button.enabled = NO;
-        } else {
-            self.button.enabled = YES;
-        }
-    }
+//    } else {
+//        self.imageView.image = [UIImage imageNamed:@"起床"];
+//        [self.button setTitle:@"起 床 了" forState:UIControlStateNormal];
+//        if ([[NSString notNullStr:[[NSUserDefaults standardUserDefaults] objectForKey:@"qichuang"]] isEqualToString:[NSString stringWithFormat:@"%@-%@-%@",arr[0],arr[1],arr[2]]]) {
+//            self.button.enabled = NO;
+//        } else {
+//            self.button.enabled = YES;
+//        }
+//    }
     
     
     
