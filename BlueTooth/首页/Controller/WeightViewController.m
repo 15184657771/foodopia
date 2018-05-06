@@ -99,8 +99,8 @@
         [self.baseView setVerticalDaySource:self.timeArr horizontalValueArray:self.weightArr];
         [self.baseView show];
     } else {
-        [self.baseView setVerticalDaySource:@[@"8:30",@"9:30",@"10:45"] horizontalValueArray:@[[NSNumber numberWithFloat:50],[NSNumber numberWithFloat:50.2],[NSNumber numberWithFloat:49.9]]];
-        [self.baseView show];
+//        [self.baseView setVerticalDaySource:@[@"8:30",@"9:30",@"10:45"] horizontalValueArray:@[[NSNumber numberWithFloat:50],[NSNumber numberWithFloat:50.2],[NSNumber numberWithFloat:49.9]]];
+//        [self.baseView show];
     }
     UITapGestureRecognizer *weightTap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(weightTapAction)];
     [self.weightView addGestureRecognizer:weightTap];
@@ -121,6 +121,7 @@
     NSUserDefaults *user = [NSUserDefaults standardUserDefaults];
     NSInteger percentNum = [[user objectForKey:@"percentNum"] integerValue];
     [user setObject:[NSString stringWithFormat:@"%ld",percentNum + 20] forKey:@"percentNum"];
+    [[NSNotificationCenter defaultCenter]postNotificationName:@"powerChange" object:nil];
     [self.delegate weightBtnClick:1];
 
     NSArray *arr = [self getDate];
@@ -136,19 +137,14 @@
                 [self.timeArr addObject:[NSString stringWithFormat:@"%@:%@",model.hour,model.min]];
                 [self.weightArr addObject:[NSNumber numberWithFloat:[model.weight floatValue]]];
             }
-            
-            if (self.timeArr.count > 7) {
-                [self.baseView setVerticalDaySource:[self.timeArr subarrayWithRange:NSMakeRange(0, 7)] horizontalValueArray:[self.weightArr subarrayWithRange:NSMakeRange(0, 7)]];
-                
-            } else {
-                [self.baseView setVerticalDaySource:self.timeArr horizontalValueArray:self.weightArr];
-            }
+            [self.baseView setVerticalDaySource:self.timeArr horizontalValueArray:self.weightArr];
+
             [self.baseView show];
             [self.baseView layoutSubviews];
         } else {
-            NSLog(@"无体重数据");
-            [self.baseView setVerticalDaySource:@[@"8:30",@"9:30",@"10:45"] horizontalValueArray:@[[NSNumber numberWithFloat:50],[NSNumber numberWithFloat:50.2],[NSNumber numberWithFloat:49.9]]];
-            [self.baseView show];
+//            NSLog(@"无体重数据");
+//            [self.baseView setVerticalDaySource:@[@"8:30",@"9:30",@"10:45"] horizontalValueArray:@[[NSNumber numberWithFloat:50],[NSNumber numberWithFloat:50.2],[NSNumber numberWithFloat:49.9]]];
+//            [self.baseView show];
         }
     }
     

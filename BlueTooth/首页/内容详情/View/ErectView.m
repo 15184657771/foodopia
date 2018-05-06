@@ -121,9 +121,17 @@
 - (void)setVerticalDaySource:(NSArray *)dayArray horizontalValueArray:(NSArray *)valueArray {
     if (dayArray.count == valueArray.count) {
         [self.verticalDayArray removeAllObjects];
-        [self.verticalDayArray addObjectsFromArray:dayArray];
         [self.horizontalValueArray removeAllObjects];
-        [self.horizontalValueArray addObjectsFromArray:valueArray];
+        if (dayArray.count > 7) {
+            for (int i = 7; i >= 1; i--) {
+                [self.verticalDayArray addObject:dayArray[dayArray.count - i]];
+                [self.horizontalValueArray addObject:valueArray[dayArray.count - i]];
+            }
+        } else {
+            [self.verticalDayArray addObjectsFromArray:dayArray];
+            [self.horizontalValueArray addObjectsFromArray:valueArray];
+        }
+        
     }
 }
 

@@ -348,6 +348,7 @@
         if ([[[NSUserDefaults standardUserDefaults] objectForKey:@"petprogress"] isEqualToString:@"0"]) {  //
             self.toastView.hidden = YES;
             [user setObject:[NSString stringWithFormat:@"%ld",percentNum + 500] forKey:@"percentNum"];
+            [[NSNotificationCenter defaultCenter]postNotificationName:@"powerChange" object:nil];
             [user setObject:@"1" forKey:@"petprogress"];
             [user setObject:[NSString stringWithFormat:@"%ld",cupcake - 1] forKey:@"cupcake"];
             [self gifPlay];
@@ -374,6 +375,7 @@
         } else if ([[[NSUserDefaults standardUserDefaults] objectForKey:@"petprogress"] isEqualToString:@"1"]) {  //喂完巧克力
             self.toastView.hidden = YES;
             [user setObject:[NSString stringWithFormat:@"%ld",percentNum + 500] forKey:@"percentNum"];
+            [[NSNotificationCenter defaultCenter]postNotificationName:@"powerChange" object:nil];
             [user setObject:@"2" forKey:@"petprogress"];
             [user setObject:[NSString stringWithFormat:@"%ld",blueberry_cake - 1] forKey:@"blueberry_cake"];
             [self gifPlayTwo];
@@ -398,6 +400,7 @@
         } else if ([[[NSUserDefaults standardUserDefaults] objectForKey:@"petprogress"] isEqualToString:@"2"]) { //喂完蓝莓蛋糕
             self.toastView.hidden = YES;
             [user setObject:[NSString stringWithFormat:@"%ld",percentNum + 500] forKey:@"percentNum"];
+            [[NSNotificationCenter defaultCenter]postNotificationName:@"powerChange" object:nil];
             [user setObject:@"3" forKey:@"petprogress"];
             [user setObject:[NSString stringWithFormat:@"%ld",strawberry_cake - 1] forKey:@"strawberry_cake"];
             [self gifPlayThree];
@@ -422,6 +425,7 @@
         } else if ([[[NSUserDefaults standardUserDefaults] objectForKey:@"petprogress"] isEqualToString:@"3"]) { //喂完草莓蛋糕
             self.toastView.hidden = YES;
             [user setObject:[NSString stringWithFormat:@"%ld",percentNum + 500] forKey:@"percentNum"];
+            [[NSNotificationCenter defaultCenter]postNotificationName:@"powerChange" object:nil];
             [user setObject:@"4" forKey:@"petprogress"];
             [user setObject:[NSString stringWithFormat:@"%ld",motcha_roll - 1] forKey:@"motcha_roll"];
             [self gifPlayFour];

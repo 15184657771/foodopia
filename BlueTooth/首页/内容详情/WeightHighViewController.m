@@ -12,7 +12,7 @@
 #import "BaseView.h"
 #import <JQFMDB/JQFMDB.h>
 #import "WeightModel.h"
-
+#import "NSString+Helper.h"
 @interface WeightHighViewController ()<UITableViewDelegate,UITableViewDataSource>
 
 @property (nonatomic, strong) UIView *topView;
@@ -185,6 +185,7 @@
     [self.timeArr removeAllObjects];
     [self.weightArr removeAllObjects];
     
+    NSDate *date = [NSDate date];
     switch (sgc.selectedSegmentIndex) {
         case 0:
             if (dayArr.count > 0) {
@@ -200,30 +201,34 @@
             }
             break;
         case 1:
-            if (monthArr.count > 0) {
-                for (WeightModel *model in monthArr) {
-                    [self.timeArr addObject:[NSString stringWithFormat:@"%@日",model.day]];
-                    [self.weightArr addObject:[NSNumber numberWithFloat:[model.weight floatValue]]];
-                }
-                [self.baseView setVerticalDaySource:self.timeArr horizontalValueArray:self.weightArr];
-                [self.baseView show];
-            } else {
-                [self.baseView setVerticalDaySource:@[@"08日",@"09日",@"10日"] horizontalValueArray:@[[NSNumber numberWithFloat:50],[NSNumber numberWithFloat:50.2],[NSNumber numberWithFloat:49.9]]];
-                [self.baseView show];
+            for (int i = 0;i < 7;i ++) {
+                NSDictionary *dic = [[NSUserDefaults standardUserDefaults]objectForKey:@"userDic"];
+                float weightNum = [dic[@"weight"] floatValue];
+                float value=(float)arc4random()/0x100000000;
+                float y = weightNum +  (arc4random() % 3) + value;
+                [self.timeArr insertObject:[NSString stringWithFormat:@"%@日",[NSString standFromDate:date]] atIndex:0];
+                [self.weightArr insertObject:[NSNumber numberWithFloat:y] atIndex:0];
+
+                date = [[NSDate alloc] initWithTimeIntervalSinceReferenceDate:([date timeIntervalSinceReferenceDate] - 24*3600)];
+                
             }
+            [self.baseView setVerticalDaySource:self.timeArr horizontalValueArray:self.weightArr];
+            [self.baseView show];
             break;
         case 2:
-            if (yearArr.count > 0) {
-                for (WeightModel *model in yearArr) {
-                    [self.timeArr addObject:[NSString stringWithFormat:@"%@月",model.month]];
-                    [self.weightArr addObject:[NSNumber numberWithFloat:[model.weight floatValue]]];
-                }
-                [self.baseView setVerticalDaySource:self.timeArr horizontalValueArray:self.weightArr];
-                [self.baseView show];
-            } else {
-                [self.baseView setVerticalDaySource:@[@"06月",@"07月",@"08月"] horizontalValueArray:@[[NSNumber numberWithFloat:50],[NSNumber numberWithFloat:50.2],[NSNumber numberWithFloat:49.9]]];
-                [self.baseView show];
+            for (int i = 0;i < 7;i ++) {
+                NSDictionary *dic = [[NSUserDefaults standardUserDefaults]objectForKey:@"userDic"];
+                float weightNum = [dic[@"weight"] floatValue];
+                float value=(float)arc4random()/0x100000000;
+                float y = weightNum +  (arc4random() % 3) + value;
+                [self.timeArr insertObject:[NSString stringWithFormat:@"%@年",[NSString yearDate:date]] atIndex:0];
+                [self.weightArr insertObject:[NSNumber numberWithFloat:y] atIndex:0];
+                
+                date = [[NSDate alloc] initWithTimeIntervalSinceReferenceDate:([date timeIntervalSinceReferenceDate] - 24*3600 * 365)];
+                
             }
+            [self.baseView setVerticalDaySource:self.timeArr horizontalValueArray:self.weightArr];
+            [self.baseView show];
             break;
         default:
             break;

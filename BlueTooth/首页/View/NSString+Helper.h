@@ -14,5 +14,7 @@
 //判断是否为空字符串
 + (BOOL) stringIsBlankString:(NSString *)string;
 + (NSString *)notNullStr:(NSString *)string;
++ (NSString *)standFromDate:(NSDate *)date;
++ (NSString *)yearDate:(NSDate *)date;
 
 @end

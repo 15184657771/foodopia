@@ -37,5 +37,18 @@
     return string;
 }
 
++ (NSString *)standFromDate:(NSDate *)date {
+    NSCalendar *calendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSCalendarIdentifierGregorian];
+    NSInteger unitFlags = NSCalendarUnitYear | NSCalendarUnitMonth | NSCalendarUnitDay | NSCalendarUnitWeekday;
+    NSDateComponents *comps = [calendar components:unitFlags fromDate:date];
+    return [NSString stringWithFormat:@"%02ld-%02ld",(long)[comps month],(long)[comps day]];
+}
+
++ (NSString *)yearDate:(NSDate *)date {
+    NSCalendar *calendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSCalendarIdentifierGregorian];
+    NSInteger unitFlags = NSCalendarUnitYear | NSCalendarUnitMonth | NSCalendarUnitDay | NSCalendarUnitWeekday;
+    NSDateComponents *comps = [calendar components:unitFlags fromDate:date];
+    return [NSString stringWithFormat:@"%02ld",(long)[comps year]];
+}
 
 @end
