@@ -23,10 +23,60 @@
 @property (nonatomic,strong) UILabel *showLabel;
 @property (nonatomic,strong) UIImageView *showImageView;
 
-
+@property (nonatomic,strong) CAShapeLayer *circleLayer;
 @end
 
 @implementation BaseView
+
+- (CAShapeLayer *)circleLayer {
+    if (!_circleLayer) {
+        NSMutableArray *pointArray = [NSMutableArray array];
+        CGFloat everyY = (self.viewHigh - 16 * HeightNum)/(self.maxValue - self.minValue);
+        CGFloat everyX = (self.viewWidth - 80 * WidthNum) / (self.horizontalValueArray.count - 1);
+        CGFloat edgY = self.viewHigh;
+        CGFloat edgX = 40 * WidthNum;
+        if (self.horizontalValueArray.count == 1) {
+            [pointArray addObject:[NSValue valueWithCGPoint:CGPointMake(SCREEN_WIDTH/2, edgY - ([self.horizontalValueArray[0] floatValue] - self.minValue) * everyY)]];
+        } else {
+            
+            for (int i = 0; i < self.horizontalValueArray.count; i ++) {
+                [pointArray addObject:[NSValue valueWithCGPoint:CGPointMake(edgX + i * everyX, edgY - ([self.horizontalValueArray[i] floatValue] - self.minValue) * everyY)]];
+            }
+        }
+        
+        CAShapeLayer *layer = [CAShapeLayer layer];
+        layer.frame = CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
+        layer.fillColor = RGB(173, 119, 205).CGColor;
+        layer.strokeColor = RGB(173, 119, 205).CGColor;
+        layer.lineWidth = 0;
+        UIBezierPath *path = [[UIBezierPath alloc] init];
+        for (int i = 0; i < pointArray.count; i++) {
+            NSValue *selectPointValue = pointArray[i];
+            CGPoint selectPoint = [selectPointValue CGPointValue];
+            [path moveToPoint:CGPointMake(selectPoint.x,selectPoint.y)];
+            [path addArcWithCenter:CGPointMake(selectPoint.x,selectPoint.y) radius:4 startAngle:0 endAngle:2*M_PI clockwise:YES];
+        }
+        layer.path = path.CGPath;
+        CAShapeLayer *whiteLayer = [CAShapeLayer layer];
+        [whiteLayer addSublayer:layer];
+        whiteLayer.frame = CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
+        whiteLayer.fillColor = [UIColor whiteColor].CGColor;
+        whiteLayer.strokeColor = [UIColor whiteColor].CGColor;
+        whiteLayer.lineWidth = 0;
+        UIBezierPath *whitePath = [[UIBezierPath alloc] init];
+        for (int i = 0; i < pointArray.count; i++) {
+            NSValue *selectPointValue = pointArray[i];
+            CGPoint selectPoint = [selectPointValue CGPointValue];
+            [whitePath moveToPoint:CGPointMake(selectPoint.x,selectPoint.y)];
+            [whitePath addArcWithCenter:CGPointMake(selectPoint.x,selectPoint.y) radius:7 startAngle:0 endAngle:2*M_PI clockwise:YES];
+        }
+        whiteLayer.path = whitePath.CGPath;
+        
+        
+        _circleLayer = whiteLayer;
+    }
+    return _circleLayer;
+}
 
 - (NSMutableArray *)verticalDayArray {
     if (!_verticalDayArray) {
@@ -104,6 +154,7 @@
     if (self.horizontalValueArray.count > 0) {
         [self.layer addSublayer:self.lineLayer];
         [self.layer addSublayer:self.curveLayer];
+        [self.layer addSublayer:self.circleLayer];
     }
 }
 
@@ -235,11 +286,14 @@
 - (void)show {
     [self.curveLayer removeFromSuperlayer];
     [self.lineLayer removeFromSuperlayer];
+    [self.circleLayer removeFromSuperlayer];
     self.lineLayer = nil;
     self.curveLayer = nil;
+    self.circleLayer = nil;
     if (self.horizontalValueArray.count > 0) {
         [self.layer addSublayer:self.lineLayer];
         [self.layer addSublayer:self.curveLayer];
+        [self.layer addSublayer:self.circleLayer];
     }
     [self.layer setNeedsDisplay];
 
@@ -308,6 +362,8 @@
     [attrStr addAttribute:NSForegroundColorAttributeName value:[UIColor whiteColor] range:NSMakeRange(0, [attrStr length])]; //设置字体颜色
     self.showLabel.attributedText = attrStr;
 }
+
+
 
 
 @end
