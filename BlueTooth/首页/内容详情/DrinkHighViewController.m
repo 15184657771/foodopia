@@ -12,7 +12,7 @@
 #import <JQFMDB/JQFMDB.h>
 #import "DrinkModel.h"
 #import "ErectView.h"
-
+#import "NSString+Helper.h"
 
 @interface DrinkHighViewController ()<UITableViewDelegate,UITableViewDataSource>
 
@@ -168,40 +168,42 @@
 }
 - (void)changeTypeAction:(UISegmentedControl *)sgc{
     
-    NSArray *dateArr = [self getDate];
-    JQFMDB *db = [JQFMDB shareDatabase];
-    NSArray *monthArr = [db jq_lookupTable:@"drink" dicOrModel:[DrinkModel class] whereFormat:@"where month = '%@'",dateArr[1]]; //1.当月所有数据
-    NSArray *yearArr = [db jq_lookupTable:@"drink" dicOrModel:[DrinkModel class] whereFormat:@"where year = '%@'",dateArr[0]];  //1.当年所有数据
+     //1.当年所有数据
     [self.timeArr removeAllObjects];
     [self.countArr removeAllObjects];
+    NSDate *date = [NSDate date];
     switch (sgc.selectedSegmentIndex) {
         case 0:
-            
-            if (monthArr.count > 0) {
-                for (DrinkModel *model in monthArr) {
-                    [self.timeArr addObject:[NSString stringWithFormat:@"%@日",model.day]];
-                    [self.countArr addObject:[NSNumber numberWithFloat:[model.count floatValue] * 250]];
-                }
-                [self.erectView setVerticalDaySource:self.timeArr horizontalValueArray:self.countArr];
-                [self.erectView show];
-            } else {
-                [self.erectView setVerticalDaySource:@[@"2日",@"3日",@"5日"] horizontalValueArray:@[[NSNumber numberWithFloat:1000],[NSNumber numberWithFloat:1250],[NSNumber numberWithFloat:2000]]];
-                [self.erectView show];
+            for (int i = 0;i < 7;i ++) {
+                NSDictionary *dic = [[NSUserDefaults standardUserDefaults]objectForKey:@"userDic"];
+                float weightNum = [dic[@"drink"] floatValue];
+                float value=(float)arc4random()/0x100000000;
+                float y = weightNum +  (arc4random() % 3) + value;
+                [self.timeArr insertObject:[NSString stringWithFormat:@"%@日",[NSString standFromDate:date]] atIndex:0];
+                [self.countArr insertObject:[NSNumber numberWithFloat:y] atIndex:0];
+                
+                date = [[NSDate alloc] initWithTimeIntervalSinceReferenceDate:([date timeIntervalSinceReferenceDate] - 24*3600)];
+                
             }
+            [self.erectView setVerticalDaySource:self.timeArr horizontalValueArray:self.countArr];
+            [self.erectView show];
+            
             
             break;
         case 1:
-            if (yearArr.count > 0) {
-                for (DrinkModel *model in monthArr) {
-                    [self.timeArr addObject:[NSString stringWithFormat:@"%@月",model.month]];
-                    [self.countArr addObject:[NSNumber numberWithFloat:[model.count floatValue] * 250]];
-                }
-                [self.erectView setVerticalDaySource:self.timeArr horizontalValueArray:self.countArr];
-                [self.erectView show];
-            } else {
-                [self.erectView setVerticalDaySource:@[@"2月",@"3月",@"5月"] horizontalValueArray:@[[NSNumber numberWithFloat:1000],[NSNumber numberWithFloat:1250],[NSNumber numberWithFloat:2000]]];
-                [self.erectView show];
+            for (int i = 0;i < 7;i ++) {
+                NSDictionary *dic = [[NSUserDefaults standardUserDefaults]objectForKey:@"userDic"];
+                float weightNum = [dic[@"drink"] floatValue];
+                float value=(float)arc4random()/0x100000000;
+                float y = weightNum +  (arc4random() % 3) + value;
+                [self.timeArr insertObject:[NSString stringWithFormat:@"%@年",[NSString yearDate:date]] atIndex:0];
+                [self.countArr insertObject:[NSNumber numberWithFloat:y] atIndex:0];
+                
+                date = [[NSDate alloc] initWithTimeIntervalSinceReferenceDate:([date timeIntervalSinceReferenceDate] - 24*3600 * 365)];
+                
             }
+            [self.erectView setVerticalDaySource:self.timeArr horizontalValueArray:self.countArr];
+            [self.erectView show];
             
             break;
         default:

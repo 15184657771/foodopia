@@ -12,6 +12,7 @@
 #import "ErectView.h"
 #import "SleepModel.h"
 #import <JQFMDB/JQFMDB.h>
+#import "NSString+Helper.h"
 
 @interface SleepHighViewController ()<UITableViewDelegate,UITableViewDataSource>
 
@@ -159,37 +160,41 @@
 - (void)changeTypeAction:(UISegmentedControl *)sgc{
     NSArray *dateArr = [self getDate];
     JQFMDB *db = [JQFMDB shareDatabase];
-    NSArray *monthArr = [db jq_lookupTable:@"sleep" dicOrModel:[SleepModel class] whereFormat:@"where month = '%@'",dateArr[1]]; //1.当月所有数据
-    NSArray *yearArr = [db jq_lookupTable:@"sleep" dicOrModel:[SleepModel class] whereFormat:@"where year = '%@'",dateArr[0]];  //1.当年所有数据
+      //1.当年所有数据
     [self.timeArr removeAllObjects];
     [self.sleepArr removeAllObjects];
+    NSDate *date = [NSDate date];
     switch (sgc.selectedSegmentIndex) {
         case 0:
-            if (monthArr.count > 0) {
-                for (SleepModel *model in monthArr) {
-                    [self.timeArr addObject:[NSString stringWithFormat:@"%@日",model.day]];
-                    [self.sleepArr addObject:[NSNumber numberWithFloat:[model.time floatValue] / 60 * 60]];
-                }
-                [self.erectView setVerticalDaySource:self.timeArr horizontalValueArray:self.sleepArr];
-                [self.erectView show];
-            } else {
-                [self.erectView setVerticalDaySource:@[@"2日",@"3日",@"5日"] horizontalValueArray:@[[NSNumber numberWithFloat:9.1],[NSNumber numberWithFloat:7.2],[NSNumber numberWithFloat:10.2]]];
-                [self.erectView show];
+            for (int i = 0;i < 7;i ++) {
+                NSDictionary *dic = [[NSUserDefaults standardUserDefaults]objectForKey:@"userDic"];
+                float weightNum = [dic[@"drink"] floatValue];
+                float value=(float)arc4random()/0x100000000;
+                float y = weightNum +  (arc4random() % 3) + value;
+                [self.timeArr insertObject:[NSString stringWithFormat:@"%@日",[NSString standFromDate:date]] atIndex:0];
+                [self.sleepArr insertObject:[NSNumber numberWithFloat:y] atIndex:0];
+                
+                date = [[NSDate alloc] initWithTimeIntervalSinceReferenceDate:([date timeIntervalSinceReferenceDate] - 24*3600)];
+                
             }
+            [self.erectView setVerticalDaySource:self.timeArr horizontalValueArray:self.sleepArr];
+            [self.erectView show];
             
             break;
         case 1:
-            if (yearArr.count > 0) {
-                for (SleepModel *model in yearArr) {
-                    [self.timeArr addObject:[NSString stringWithFormat:@"%@日",model.day]];
-                    [self.sleepArr addObject:[NSNumber numberWithFloat:[model.time floatValue] / 60 * 60]];
-                }
-                [self.erectView setVerticalDaySource:self.timeArr horizontalValueArray:self.sleepArr];
-                [self.erectView show];
-            } else {
-                [self.erectView setVerticalDaySource:@[@"2月",@"3月",@"5月"] horizontalValueArray:@[[NSNumber numberWithFloat:9.1],[NSNumber numberWithFloat:7.2],[NSNumber numberWithFloat:10.2]]];
-                [self.erectView show];
+            for (int i = 0;i < 7;i ++) {
+                NSDictionary *dic = [[NSUserDefaults standardUserDefaults]objectForKey:@"userDic"];
+                float weightNum = [dic[@"drink"] floatValue];
+                float value=(float)arc4random()/0x100000000;
+                float y = weightNum +  (arc4random() % 3) + value;
+                [self.timeArr insertObject:[NSString stringWithFormat:@"%@年",[NSString yearDate:date]] atIndex:0];
+                [self.sleepArr insertObject:[NSNumber numberWithFloat:y] atIndex:0];
+                
+                date = [[NSDate alloc] initWithTimeIntervalSinceReferenceDate:([date timeIntervalSinceReferenceDate] - 24*3600 * 365)];
+                
             }
+            [self.erectView setVerticalDaySource:self.timeArr horizontalValueArray:self.sleepArr];
+            [self.erectView show];
             break;
         default:
             break;
