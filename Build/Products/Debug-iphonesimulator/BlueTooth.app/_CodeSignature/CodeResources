@@ -6,7 +6,7 @@
 	<dict>
 		<key>Assets.car</key>
 		<data>
-		/DSnzxmS5+Mu3M77F1Z9OBe5dO4=
+		CR3dPX6IZMi4QKFncmBwho3I8XM=
 		</data>
 		<key>Frameworks/libswiftCore.dylib</key>
 		<data>
@@ -130,7 +130,7 @@
 		</data>
 		<key>Info.plist</key>
 		<data>
-		UzfS9UfxHTRbiYStWIkRXEYXEZY=
+		rw+0EDsxt1y9QcKxidkhkQN3EjU=
 		</data>
 		<key>LaunchImage-1100-Portrait-2436h@3x.png</key>
 		<data>
@@ -154,11 +154,11 @@
 		</data>
 		<key>LoginViewController.nib</key>
 		<data>
-		tJYdOizggoYf4HPvgeNeZWmdE8U=
+		6EaFcQjFPgvosa2inQ1UwbW18aA=
 		</data>
 		<key>PetViewController.nib</key>
 		<data>
-		XNO26ww5bQ3+RANG2jHaVH/EAOA=
+		uKQ3U4F8RMbFpJMJZ+LttEt8pJI=
 		</data>
 		<key>PkgInfo</key>
 		<data>
@@ -175,11 +175,11 @@
 		<dict>
 			<key>hash</key>
 			<data>
-			/DSnzxmS5+Mu3M77F1Z9OBe5dO4=
+			CR3dPX6IZMi4QKFncmBwho3I8XM=
 			</data>
 			<key>hash2</key>
 			<data>
-			KiXF0CdrTVduKPnwTRmBS4Aj94NR1AbPkad1NaK3mGo=
+			8sKEsVExUnCA3UovqPjscuxzW1NVKTuQOCayU8E6TZ4=
 			</data>
 		</dict>
 		<key>Frameworks/libswiftCore.dylib</key>
@@ -524,22 +524,22 @@
 		<dict>
 			<key>hash</key>
 			<data>
-			tJYdOizggoYf4HPvgeNeZWmdE8U=
+			6EaFcQjFPgvosa2inQ1UwbW18aA=
 			</data>
 			<key>hash2</key>
 			<data>
-			FWZrleCsMMPXjvjltORMBOLB402GTYF8VqO9I7o3jX0=
+			6LxrZ3sqMs8MzIM3SCPmMc2noFZAjA0pxdlcU+bdoQ8=
 			</data>
 		</dict>
 		<key>PetViewController.nib</key>
 		<dict>
 			<key>hash</key>
 			<data>
-			XNO26ww5bQ3+RANG2jHaVH/EAOA=
+			uKQ3U4F8RMbFpJMJZ+LttEt8pJI=
 			</data>
 			<key>hash2</key>
 			<data>
-			DAhfEzN2nTCP/FDri+cN1htLEhCrNLn0x8Vl4RJ/kzA=
+			Gpxam++v6ManquxjXdxWmwP5VymZXTGpH6qTamZnE0w=
 			</data>
 		</dict>
 		<key>libswiftRemoteMirror.dylib</key>
