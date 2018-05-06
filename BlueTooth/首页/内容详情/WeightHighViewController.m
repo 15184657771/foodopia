@@ -13,7 +13,7 @@
 #import <JQFMDB/JQFMDB.h>
 #import "WeightModel.h"
 #import "NSString+Helper.h"
-@interface WeightHighViewController ()<UITableViewDelegate,UITableViewDataSource>
+@interface WeightHighViewController ()<UITableViewDelegate,UITableViewDataSource,BaseViewDelegate>
 
 @property (nonatomic, strong) UIView *topView;
 
@@ -116,6 +116,7 @@
     }];
     
     self.baseView = [[BaseView alloc]initWithFrame:CGRectMake(0, 85 * HeightNum, SCREEN_WIDTH, 200 * HeightNum)];
+    self.baseView.delegate = self;
     [self.topView addSubview:self.baseView];
     
     NSArray *arr = [self getDate];
@@ -299,6 +300,10 @@
     
     //返回 年、月、日、时、分、秒
     return arrAll;
+}
+#pragma mark - BaseViewDelegate
+- (void)tapShowNum:(NSNumber *)num {
+    [self.baseView setText:[NSString stringWithFormat:@"%.1f",[num floatValue]] andLast:@"kg"];
 }
 
 @end

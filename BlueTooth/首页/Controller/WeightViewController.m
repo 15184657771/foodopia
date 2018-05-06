@@ -61,7 +61,8 @@
     
     // 1.创建一个显示的标签
     self.showLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 36, SCREEN_WIDTH, 34)];
-    self.showLabel.font = [UIFont systemFontOfSize:34.f];
+    self.showLabel.font = [UIFont systemFontOfSize:38.f];
+    self.showLabel.textColor = RGB(173, 119, 205);
     self.showLabel.text = @"55kg";
     self.showLabel.textAlignment = NSTextAlignmentCenter;
     [self.view addSubview:self.showLabel];
@@ -73,10 +74,10 @@
     [self.view addSubview:ruler];
     
     self.recordBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    self.recordBtn.frame = CGRectMake(50, CGRectGetMaxY(ruler.frame) + 24, SCREEN_WIDTH - 50 * 2, 40);
-    self.recordBtn.backgroundColor = [UIColor colorWithHex:@"ad77cd"];
+    self.recordBtn.frame = CGRectMake(50, CGRectGetMaxY(ruler.frame) + 24, SCREEN_WIDTH - 50 * 2, 44);
+    self.recordBtn.backgroundColor = RGB(173, 119, 205);
     [self.recordBtn setTitle:@"记录" forState:UIControlStateNormal];
-    self.recordBtn.layer.cornerRadius = 20;
+    self.recordBtn.layer.cornerRadius = 22;
     self.recordBtn.clipsToBounds = YES;
     [self.recordBtn addTarget:self action:@selector(recordBtnAction:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:self.recordBtn];
