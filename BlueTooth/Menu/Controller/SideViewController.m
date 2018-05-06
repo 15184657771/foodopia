@@ -29,9 +29,10 @@
         _headerView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 210)];
         self.headImage = [[UIImageView alloc]initWithFrame:CGRectMake(95, 70, 90, 90)];
         [_headerView addSubview:self.headImage];
-        self.nameLabel = [[UILabel alloc]initWithFrame:CGRectMake(96, CGRectGetMaxY(self.headImage.frame) + 5, 200, 20)];
+        self.nameLabel = [[UILabel alloc]initWithFrame:CGRectMake(95, CGRectGetMaxY(self.headImage.frame) + 5, 90, 20)];
         self.nameLabel.font = [UIFont systemFontOfSize:20];
         self.nameLabel.textColor = [UIColor whiteColor];
+        self.nameLabel.textAlignment = NSTextAlignmentCenter;
         [_headerView addSubview:self.nameLabel];
         
     }
