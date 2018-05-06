@@ -49,8 +49,8 @@
     [self.view addSubview:self.imageView];
     [self gifPlay];
     self.drinkBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    self.drinkBtn.frame = CGRectMake(50, CGRectGetMaxY(self.imageView.frame) + 28, SCREEN_WIDTH - 50 * 2, 40);
-    self.drinkBtn.backgroundColor = [UIColor colorWithHex:@"ad77cd"];
+    self.drinkBtn.frame = CGRectMake(50, CGRectGetMaxY(self.imageView.frame) + 28, SCREEN_WIDTH - 50 * 2, 44 * HeightNum);
+    self.drinkBtn.backgroundColor = RGB(173, 119, 205);
     [self.drinkBtn setTitle:@"喝一杯" forState:UIControlStateNormal];
     self.drinkBtn.layer.cornerRadius = 20;
     self.drinkBtn.clipsToBounds = YES;
@@ -116,7 +116,7 @@
     }
     NSUserDefaults *user = [NSUserDefaults standardUserDefaults];
     NSInteger percentNum = [[user objectForKey:@"percentNum"] integerValue];
-    [user setObject:[NSString stringWithFormat:@"%ld",percentNum + 20] forKey:@"percentNum"];
+    [user setObject:[NSString stringWithFormat:@"%ld",percentNum + 200] forKey:@"percentNum"];
     [[NSNotificationCenter defaultCenter]postNotificationName:@"powerChange" object:nil];
     [self.delegate drinkBtnClick];
 }

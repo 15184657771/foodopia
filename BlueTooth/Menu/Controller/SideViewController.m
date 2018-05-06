@@ -161,13 +161,16 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [tableView deselectRowAtIndexPath:indexPath animated:NO];
     
-    if (indexPath.row == 0) {
-        InforViewController *inforViewController = [[InforViewController alloc]init];
-        inforViewController.showTag = 0;
-        [self XYSidePushViewController:inforViewController animated:YES];
-    } else if (indexPath.row == 1) {
-        RefrigeratorViewController *refrigeratorVC = [[RefrigeratorViewController alloc]init];
-        [self.navigationController pushViewController:refrigeratorVC animated:YES];
+    if (indexPath.section == 0) {
+        if (indexPath.row == 0) {
+            InforViewController *inforViewController = [[InforViewController alloc]init];
+            inforViewController.showTag = 0;
+            [self XYSidePushViewController:inforViewController animated:YES];
+        }
+    } else if (indexPath.section == 1) {
+        if (indexPath.row == 0) {
+            RefrigeratorViewController *refrigeratorVC = [[RefrigeratorViewController alloc]init];
+            [self XYSidePushViewController:refrigeratorVC animated:YES];        }
     }
     
 }

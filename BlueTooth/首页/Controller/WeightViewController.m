@@ -74,7 +74,7 @@
     [self.view addSubview:ruler];
     
     self.recordBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    self.recordBtn.frame = CGRectMake(50, CGRectGetMaxY(ruler.frame) + 24, SCREEN_WIDTH - 50 * 2, 44);
+    self.recordBtn.frame = CGRectMake(50, CGRectGetMaxY(ruler.frame) + 24,  274 * WidthNum, 44 * HeightNum);
     self.recordBtn.backgroundColor = RGB(173, 119, 205);
     [self.recordBtn setTitle:@"记录" forState:UIControlStateNormal];
     self.recordBtn.layer.cornerRadius = 22;

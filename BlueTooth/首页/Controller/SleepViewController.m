@@ -73,8 +73,8 @@
     [self.view addSubview:self.imageView];
     
     self.button = [UIButton buttonWithType:UIButtonTypeCustom];
-    self.button.frame = CGRectMake(40, CGRectGetMaxY(self.imageView.frame) + 28, SCREEN_WIDTH - 40 * 2, 40);
-    self.button.backgroundColor = [UIColor colorWithHex:@"ad77cd"];
+    self.button.frame = CGRectMake(50, CGRectGetMaxY(self.imageView.frame) + 28, SCREEN_WIDTH - 50 * 2, 44 * HeightNum);
+    self.button.backgroundColor = RGB(173, 119, 205);
     self.button.layer.cornerRadius = 20;
     self.button.clipsToBounds = YES;
     [self.button addTarget:self action:@selector(buttonAction:) forControlEvents:UIControlEventTouchUpInside];
