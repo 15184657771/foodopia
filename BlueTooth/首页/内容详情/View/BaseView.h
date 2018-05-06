@@ -12,7 +12,6 @@
 
 @optional
 
-- (void)editTag:(NSInteger)showTag;
 - (void)tapShowNum:(NSNumber *)num;
 
 @end

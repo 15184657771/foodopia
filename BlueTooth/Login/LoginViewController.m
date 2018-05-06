@@ -36,6 +36,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    [self.view setBackgroundColor:RGBA(255, 255, 255, 0.4)];
     self.picAddress = @"";
     self.nameField.returnKeyType = UIReturnKeyDone;
     self.nameField.delegate = (id)self;
@@ -46,6 +47,27 @@
     self.sleepField.returnKeyType = UIReturnKeyDone;
     self.sleepField.delegate = (id)self;
     
+    self.nameField.attributedPlaceholder = [[NSAttributedString alloc] initWithString:@"给自己想个昵称？" attributes:@{NSForegroundColorAttributeName: RGB(222, 222, 222)}];
+    self.weightField.attributedPlaceholder = [[NSAttributedString alloc] initWithString:@"你想成为多重？" attributes:@{NSForegroundColorAttributeName: RGB(222, 222, 222)}];
+    self.drinkField.attributedPlaceholder = [[NSAttributedString alloc] initWithString:@"你想每天喝多少？" attributes:@{NSForegroundColorAttributeName: RGB(222, 222, 222)}];
+    self.sleepField.attributedPlaceholder = [[NSAttributedString alloc] initWithString:@"你想每天睡多久？" attributes:@{NSForegroundColorAttributeName: RGB(222, 222, 222)}];
+
+    
+    self.nameField.leftViewMode = UITextFieldViewModeAlways;
+    self.weightField.leftViewMode = UITextFieldViewModeAlways;
+    self.drinkField.leftViewMode = UITextFieldViewModeAlways;
+    self.sleepField.leftViewMode = UITextFieldViewModeAlways;
+
+    UIView *lv1 = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 20, 40)];
+    UIView *lv2 = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 20, 40)];
+    UIView *lv3 = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 20, 40)];
+    UIView *lv4 = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 20, 40)];
+
+    self.nameField.leftView = lv1;
+    self.weightField.leftView = lv2;
+    self.sleepField.leftView = lv3;
+    self.drinkField.leftView = lv4;
+
     self.headImage.userInteractionEnabled = YES;
     [self.headImage.layer setCornerRadius:49];
     [self.headImage.layer setMasksToBounds:YES];
@@ -93,6 +115,8 @@
     
     [[NSUserDefaults standardUserDefaults]setObject:@"1" forKey:@"isLogin"];
     [[NSUserDefaults standardUserDefaults]setObject:self.userDic forKey:@"userDic"];
+    
+    [[NSNotificationCenter defaultCenter]postNotificationName:@"userInfo" object:nil];
     
     [self dismissViewControllerAnimated:NO completion:nil];
     

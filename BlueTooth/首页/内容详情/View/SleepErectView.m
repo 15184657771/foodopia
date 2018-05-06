@@ -1,14 +1,14 @@
 //
-//  ErectView.m
+//  SleepErectView.m
 //  BlueTooth
 //
-//  Created by Chen on 2018/4/16.
+//  Created by Chen on 2018/5/6.
 //  Copyright © 2018年 Chen. All rights reserved.
 //
 
-#import "ErectView.h"
+#import "SleepErectView.h"
 
-@interface ErectView()
+@interface SleepErectView()
 
 @property (nonatomic,strong) CAShapeLayer *lineLayer;
 @property (nonatomic,strong) CAShapeLayer *percentLineLayer;
@@ -21,7 +21,7 @@
 
 @end
 
-@implementation ErectView
+@implementation SleepErectView
 
 - (NSMutableArray *)verticalDayArray {
     if (!_verticalDayArray) {
@@ -208,7 +208,7 @@
     CGFloat everyX = 295 * WidthNum / (self.horizontalValueArray.count - 1);
     CGFloat edgeX = 40 * WidthNum;
     NSInteger num = (x - edgeX + everyX / 2) / everyX;
-        
+    
     CGFloat value = [self.horizontalValueArray[num] floatValue] > self.maxValue?self.maxValue : [self.horizontalValueArray[num] floatValue];
     CGFloat selectpointY = (200 - (value/self.maxValue) * 175) * HeightNum;
     if ([_delegate respondsToSelector:@selector(tapShowNum:)]) {
@@ -223,12 +223,12 @@
     [self.showLabel mas_remakeConstraints:^(MASConstraintMaker *make) {
         make.centerX.equalTo(ws.mas_left).with.offset(pointX);
         make.bottom.equalTo(ws.mas_top).with.offset(selectpointY - 25 * HeightNum);
-        make.size.mas_equalTo(CGSizeMake(70,40));
+        make.size.mas_equalTo(CGSizeMake(78,22));
     }];
     [self.showImageView mas_remakeConstraints:^(MASConstraintMaker *make) {
         make.centerX.equalTo(ws.showLabel.mas_centerX);
-        make.top.equalTo(ws.showLabel.mas_top).with.offset(-3);
-        make.size.mas_equalTo(CGSizeMake(70,52));
+        make.centerY.equalTo(ws.showLabel.mas_centerY);
+        make.size.mas_equalTo(CGSizeMake(78,42));
     }];
     [self bringSubviewToFront:self.showImageView];
     [self bringSubviewToFront:self.showLabel];
@@ -236,14 +236,15 @@
 }
 
 - (void)setText:(NSString *)str andLast:(NSString *)danweiStr{
-    NSMutableAttributedString *attrStr = [[NSMutableAttributedString alloc] initWithString:[NSString stringWithFormat:@"%@%@",str,danweiStr]];
+    NSMutableAttributedString *attrStr = [[NSMutableAttributedString alloc] initWithString:[NSString stringWithFormat:@"%@h%@min",str,danweiStr]];
     [attrStr addAttribute:NSFontAttributeName value:[UIFont systemFontOfSize:12]
                     range:NSMakeRange(0, [attrStr length])];
     [attrStr addAttribute:NSFontAttributeName value:[UIFont systemFontOfSize:16]
                     range:NSMakeRange(0, [str length])];
+    [attrStr addAttribute:NSFontAttributeName value:[UIFont systemFontOfSize:16]
+                    range:NSMakeRange([str length] + 1, [danweiStr length])];
     [attrStr addAttribute:NSForegroundColorAttributeName value:[UIColor whiteColor] range:NSMakeRange(0, [attrStr length])]; //设置字体颜色
     self.showLabel.attributedText = attrStr;
 }
-
 
 @end

@@ -30,7 +30,7 @@
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                 </imageView>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="CHZ-cV-6kq">
-                    <rect key="frame" x="30" y="123" width="314" height="420"/>
+                    <rect key="frame" x="30" y="143" width="314" height="380"/>
                     <subviews>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="你的名字" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="taU-TO-N0y">
                             <rect key="frame" x="30" y="62" width="65.5" height="40"/>
@@ -159,7 +159,7 @@
                         <constraint firstItem="NLn-yJ-1GK" firstAttribute="top" secondItem="WsL-HW-kl1" secondAttribute="top" id="FDf-mM-HCU"/>
                         <constraint firstAttribute="trailing" secondItem="ioS-3n-yfK" secondAttribute="trailing" constant="30" id="Gce-eq-iJh"/>
                         <constraint firstAttribute="trailing" secondItem="u23-yp-sR5" secondAttribute="trailing" constant="30" id="Jqg-TR-7Bk"/>
-                        <constraint firstAttribute="height" constant="420" id="LwG-ia-1ue"/>
+                        <constraint firstAttribute="height" constant="380" id="LwG-ia-1ue"/>
                         <constraint firstAttribute="trailing" secondItem="N3v-dp-IUB" secondAttribute="trailing" constant="30" id="NFP-HW-PmB"/>
                         <constraint firstItem="usE-kh-ZgE" firstAttribute="leading" secondItem="DbH-dl-Q2O" secondAttribute="trailing" constant="10" id="OcE-qw-MQC"/>
                         <constraint firstItem="Xdi-qz-j41" firstAttribute="top" secondItem="DbH-dl-Q2O" secondAttribute="top" id="Rcm-GD-v8D"/>
@@ -188,11 +188,12 @@
                     </userDefinedRuntimeAttributes>
                 </view>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bB3-iF-NeL">
-                    <rect key="frame" x="50" y="569" width="275" height="40"/>
+                    <rect key="frame" x="50" y="549" width="275" height="44"/>
                     <color key="backgroundColor" red="0.67843137249999996" green="0.46666666670000001" blue="0.80392156859999997" alpha="1" colorSpace="calibratedRGB"/>
                     <constraints>
-                        <constraint firstAttribute="height" constant="40" id="eRV-fu-Z5J"/>
+                        <constraint firstAttribute="height" constant="44" id="eRV-fu-Z5J"/>
                     </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
                     <state key="normal" title="进入foodopia"/>
                     <userDefinedRuntimeAttributes>
                         <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
@@ -204,14 +205,14 @@
                     </connections>
                 </button>
                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="欢迎标题" translatesAutoresizingMaskIntoConstraints="NO" id="E7h-xs-ICL">
-                    <rect key="frame" x="52" y="111" width="156" height="52"/>
+                    <rect key="frame" x="52" y="131" width="156" height="52"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="52" id="UOe-WA-4pe"/>
                         <constraint firstAttribute="width" constant="156" id="o67-p2-xqa"/>
                     </constraints>
                 </imageView>
                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="添加头像" translatesAutoresizingMaskIntoConstraints="NO" id="wui-dp-juf">
-                    <rect key="frame" x="229" y="71" width="98" height="98"/>
+                    <rect key="frame" x="229" y="91" width="98" height="98"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="98" id="3Qx-ja-FZg"/>
                         <constraint firstAttribute="width" constant="98" id="KSu-Pv-gea"/>
